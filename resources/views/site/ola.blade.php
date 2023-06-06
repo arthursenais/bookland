@@ -11,14 +11,5 @@
             <li><a href="#" class="text-black">Indicações</a></li>
             <li><i class="material-icons">search</i><input type="search" id="search"></li>
         </ul>
-
-
-
-
-
-
-
-
-
     </div>
 </nav>

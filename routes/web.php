@@ -13,13 +13,11 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('site.ola');
-})->name('index');
-
-Route::get('/login', function() {
-    return view('site.login');
-})->name('login');
+// Route::get('/', function () {
+//     return view('site.ola');
+// })->name('index');
+Route::view('/', 'site.ola');
+Route::view('/login', 'site.login');
 Route::get('/register', function() {
     return view('site.register');
 })->name('register');
