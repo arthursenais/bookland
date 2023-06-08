@@ -1,2 +1,2 @@
-@extends('layout.master')
+@extends('site.layout')
 @section('title','Registrar')

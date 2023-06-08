@@ -16,8 +16,6 @@ use Illuminate\Support\Facades\Route;
 // Route::get('/', function () {
 //     return view('site.ola');
 // })->name('index');
-Route::view('/', 'site.ola');
+Route::view('/', 'site.home')->name('index');
 Route::view('/login', 'site.login');
-Route::get('/register', function() {
-    return view('site.register');
-})->name('register');
+Route::view('/register', 'site.register')->name('register');
