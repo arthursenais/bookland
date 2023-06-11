@@ -1,7 +1,8 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-
+use App\Http\Controllers\SiteController;
+use App\Http\Controllers\LivroController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -16,6 +17,11 @@ use Illuminate\Support\Facades\Route;
 // Route::get('/', function () {
 //     return view('site.ola');
 // })->name('index');
-Route::view('/', 'site.home')->name('index');
-Route::view('/login', 'site.login');
-Route::view('/register', 'site.register')->name('register');
+
+Route::resource('livros', LivroController::class);
+Route::get('/', [SiteController::class, 'index'])->name('index');
+Route::get('/login', [SiteController::class, 'login'])->name('login');
+Route::get('/register', [SiteController::class, 'register'])->name('register');
+
+Route::get('/livro/{slug}', [SiteController::class,'details'])->name('details');
+
