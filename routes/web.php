@@ -24,5 +24,6 @@ Route::get('/login', [SiteController::class, 'login'])->name('login');
 Route::get('/register', [SiteController::class, 'register'])->name('register');
 
 Route::get('/livro/{slug}', [SiteController::class,'details'])->name('details');
-Route::get('/search/{pesquisa}', [SiteController::class,'pesquisar'])->name('pesquisar');
+
+Route::get('/pesquisa', [SiteController::class,'pesquisar'])->name('pesquisar');
 

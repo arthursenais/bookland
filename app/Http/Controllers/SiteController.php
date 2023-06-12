@@ -12,9 +12,9 @@ class SiteController extends Controller
         $livros = Livro::paginate(10);
         return view('site.home', compact('livros'));
     }
-    public function pesquisar($pesquisa) {
-        $livros = Livro::where('titulo','like',$pesquisa)->orWhere('autor','like',$pesquisa);
-        return view('site.pesquisa', compact('pesquisa'));
+    public function pesquisar(Request $pesquisa) {
+        $livros = Livro::where('titulo','like','%'. request('pesquisa') . '%')->paginate(10);
+        return view('site.pesquisa', compact('livros'));
     }
     public function details($slug) {
         $livro = Livro::where('slug', $slug)->first();

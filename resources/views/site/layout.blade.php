@@ -63,7 +63,8 @@
                         </div>
                     </div>
                 </div>
-                <form action="{{Route('pesquisar')}}" class="hidden sm:flex sm:items-center sm:justify-center sm:ml-6 sm:space-x-0 sm:w-full sm:flex-1">
+                <form action="{{route('pesquisar')}}" method="GET" class="hidden sm:flex sm:items-center sm:justify-center sm:ml-6 sm:space-x-0 sm:w-full sm:flex-1">
+                 
                     <input type="search" name="pesquisa" id="pesquisa"
                         placeholder="Pesquisar por livro, autor ou categoria"
                         class="mt-1 block px-3 py-2 bg-white border border-slate-300 rounded-l-full text-sm shadow-sm placeholder-slate-400

@@ -13,10 +13,10 @@
 
                 <h1 class="sm:text-4xl text-2xl dark:text-gray-300"> {{ $livro->titulo }} </h1>
 
-                <a href="{{Route('autor')}}"
+                <a href=""
                     class=" text-gray-600 hover:text-gray-950 dark:hover:text-gray-400 hover:underline transition-all">{{ $livro->autor }}</a>
                 <br>
-                <a href="{{Route('genero')}}"
+                <a href=""
                     class="text-gray-600 hover:text-gray-950 dark:hover:text-gray-400 hover:underline transition-all">{{ $livro->categoria->nome }}</a>
                 <p class="dark:text-gray-200">{{ $livro->descricao }}</p>
 
