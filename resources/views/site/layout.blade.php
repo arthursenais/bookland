@@ -42,10 +42,10 @@
                 </div>
                 <div class="flex flex-1 items-center justify-center sm:items-stretch sm:justify-start">
                     <div class="flex flex-shrink-0 items-center">
-                        <p class="block h-8 w-auto lg:hidden text-slate-300 font-medium">Bomlivro</p>
-                        <p
-                            class="hidden h-8 w-auto lg:block text-slate-300 font-medium py-1  hover:animate-pulse cursor-default">
-                            Bomlivro</p>
+
+                        <p class="block h-8 w-auto lg:hidden text-slate-300 font-medium">Bomlivro <a href="#" class="sm:hidden block w-auto font-medium text-center">login</a></p>
+
+                        <p class="hidden h-8 w-auto lg:block text-slate-300 font-medium py-1  hover:animate-pulse cursor-default">Bomlivro</p>
                     </div>
 
                     <div class="hidden sm:ml-6 sm:block ">
@@ -70,11 +70,12 @@
                     <input type="search" name="pesquisa" id="pesquisa"
                         placeholder="Pesquisar por livro, autor ou categoria"
                         class="mt-1 block px-3 py-2 bg-white dark:bg-slate-800 dark:text-white border border-slate-300 dark:border-slate-600 rounded-l-full text-sm shadow-sm placeholder-slate-400
-                focus:outline-none focus:border-sky-500 focus:ring-1 focus:ring-sky-500 sm:max-w-sm w-full transition">
+                        focus:outline-none focus:border-sky-500 focus:ring-1 focus:ring-sky-500 sm:max-w-sm w-full transition">
                     <button type="submit"
                         class="mt-1  border border-sky-800 focus:ring-1  focus:outline-none focus:ring-sky-500 focus:border-sky-500 hover:bg-sky-500 transition text-white px-4 py-2 rounded-r-full text-sm font-medium">
                         Pesquisar
                     </button>
+                    <a href="{{route('login')}}">Login</a>
                 </form>
             </div>
         </div>
@@ -104,6 +105,7 @@
                         class="mt-1  border border-sky-800 focus:ring-1  focus:outline-none focus:ring-sky-500 focus:border-sky-500 hover:bg-sky-500 transition text-white px-4 py-2 rounded-r-full text-sm font-medium">
                         Pesquisar
                     </button>
+
                 </form>
             </div>
         </div>
@@ -115,7 +117,8 @@
             <div class="mb-6 sm:mb-0 sm:flex">
                 <p class="sm:text-base text-2xl">Copyright © 2023 Bomlivro.com</p>
                 <p class="sm:ml-4 sm:pl-4 sm:border-l sm:border-slate-200 dark:sm:border-slate-200/5">
-                    <a class="hover:text-slate-900 dark:hover:text-slate-400 text-2xl sm:text-base " href="#">Voltar ao topo</a>
+                    <a class="hover:text-slate-900 dark:hover:text-slate-400 text-2xl sm:text-base "
+                        href="#">Voltar ao topo</a>
                 </p>
             </div>
         </div>
