@@ -12,7 +12,7 @@
         @foreach ($livros as $livro)
         <a href="{{ route('details', $livro->slug) }}"
             class="max-w-[200px] sm:hover:scale-105 ease-in transition-all shrink-0">
-            <img src="{{ $livro->imagem }}">
+            <img src="{{ $livro->imagem }}" class="rounded">
             {{-- <p class="line-clamp-2 dark:text-gray-300"> {{ $livro->titulo }} </p> --}}
         </a>
         @endforeach
@@ -28,7 +28,7 @@
             @foreach ($livros as $livro)
                 <a href="{{ route('details', $livro->slug) }}"
                     class="max-w-[200px] sm:hover:scale-105 ease-in transition-all shrink-0">
-                    <img src="{{ $livro->imagem }}">
+                    <img src="{{ $livro->imagem }}" class="rounded">
                     {{-- <p class="line-clamp-2 dark:text-gray-300"> {{ $livro->titulo }} </p> --}}
                 </a>
             @endforeach
@@ -43,7 +43,7 @@
                 @foreach ($livros as $livro)
                     <a href="{{ route('details', $livro->slug) }}"
                         class="max-w-[200px] sm:hover:scale-105 ease-in transition-all shrink-0">
-                        <img src="{{ $livro->imagem }}">
+                        <img src="{{ $livro->imagem }}" class="rounded">
                         {{-- <p class="line-clamp-2 dark:text-gray-300"> {{ $livro->titulo }} </p> --}}
                     </a>
                 @endforeach
