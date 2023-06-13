@@ -64,7 +64,7 @@
                         </div>
                     </div>
                 </div>
-                <form action="http://biblioteca-kaue.test/pesquisa" method="GET"
+                <form action="{{route('pesquisar')}}" method="GET"
                     class="hidden sm:flex sm:items-center sm:justify-center sm:ml-6 sm:space-x-0 sm:w-full sm:flex-1">
 
                     <input type="search" name="pesquisa" id="pesquisa"
@@ -75,7 +75,7 @@
                         class="mt-1  border border-sky-800 focus:ring-1  focus:outline-none focus:ring-sky-500 focus:border-sky-500 hover:bg-sky-500 transition text-white px-4 py-2 rounded-r-full text-sm font-medium">
                         Pesquisar
                     </button>
-                    <a href="{{route('login')}}">Login</a>
+                    <a href="{{route('login')}}" class="text-white pl-2">Login</a>
                 </form>
             </div>
         </div>

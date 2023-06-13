@@ -18,12 +18,14 @@ return new class extends Migration
             $table->string('autor');
             $table->string('slug');
             $table->string('imagem')->nullable();
-
+            $table->integer('emprestados')->default(0);
+            $table->integer('disponiveis')->default(0);
 
             $table->unsignedBigInteger('id_categoria');
             $table->foreign('id_categoria')->references('id')->on('categorias')->onDelete('cascade')->onUpdate('cascade');
 
             $table->timestamps();
+
         });
     }
 

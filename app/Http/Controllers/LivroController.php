@@ -20,7 +20,7 @@ class LivroController extends Controller
     {
         $now = Carbon::now();
         $startOfWeek = $now->startOfWeek(Carbon::SUNDAY)->format('Y-m-d H:i:s');
-        $endOfWeek = $now->endOfWeek(Carbon::SUNDAY)->format('Y-m-d H:i:s');
+        $endOfWeek = $now->endOfWeek(Carbon::SATURDAY)->format('Y-m-d H:i:s');
 
         $livros = Livro::whereBetween('created_at', [$startOfWeek, $endOfWeek])->paginate(10);
 
