@@ -9,11 +9,16 @@ use App\Models\Livro;
 class SiteController extends Controller
 {
     public function index() {
-        $livros = Livro::paginate(10);
+        $livros = Livro::all();
         return view('site.home', compact('livros'));
     }
     public function pesquisar(Request $pesquisa) {
-        $livros = Livro::where('titulo','like','%'. request('pesquisa') . '%')->paginate(10);
+        $livros = Livro::join('categorias', 'livros.id_categoria', '=', 'categorias.id')
+            ->where('livros.titulo', 'like', '%' . request('pesquisa') . '%')
+            ->orWhere('livros.autor', 'like', '%' . request('pesquisa') . '%')
+            ->orWhere('categorias.nome', 'like', '%' . request('pesquisa') . '%')
+            ->paginate(10);
+
         return view('site.pesquisa', compact('livros'));
     }
     public function details($slug) {

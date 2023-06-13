@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Livro;
+use Illuminate\Support\Carbon;
+
 class LivroController extends Controller
 {
     /**
@@ -13,6 +15,23 @@ class LivroController extends Controller
     {
         $livros = Livro::paginate(3);
         return view('site.home', compact('livros'));
+    }
+    public function novidades()
+    {
+        $now = Carbon::now();
+        $startOfWeek = $now->startOfWeek(Carbon::SUNDAY)->format('Y-m-d H:i:s');
+        $endOfWeek = $now->endOfWeek(Carbon::SUNDAY)->format('Y-m-d H:i:s');
+
+        $livros = Livro::whereBetween('created_at', [$startOfWeek, $endOfWeek])->paginate(10);
+
+
+        return view('site.novidades', compact('livros'));
+    }
+    public function populares()
+    {
+        $livros = Livro::where('emprestados','>=',1)->orderBy('emprestados','desc')->paginate(10);
+
+        return view('site.populares', compact('livros'));
     }
 
     /**

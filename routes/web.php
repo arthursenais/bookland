@@ -23,7 +23,11 @@ Route::get('/', [SiteController::class, 'index'])->name('index');
 Route::get('/login', [SiteController::class, 'login'])->name('login');
 Route::get('/register', [SiteController::class, 'register'])->name('register');
 
+Route::get('/novidades', [LivroController::class,'novidades'])->name('novidades');
+Route::get('/populares', [LivroController::class,'populares'])->name('populares');
 Route::get('/livro/{slug}', [SiteController::class,'details'])->name('details');
+
+Route::view('/emdesenvolvmento', 'site.wip')->name('wip');
 
 Route::get('/pesquisa', [SiteController::class,'pesquisar'])->name('pesquisar');
 

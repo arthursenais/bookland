@@ -3,11 +3,11 @@
 
 @section('content')
 
-    <h1 class="md:text-4xl text-center mt-6 text-2xl dark:text-gray-300">Resultados para '{{ request('pesquisa') }}'</h1>
+    <h1 class="md:text-4xl text-center mt-6 text-2xl dark:text-gray-300">Novidades da semana</h1>
 
     <div class="flex flex-col sm:px-32">{{ $livros->links() }}
 
-        <div class="flex flex-wrap  gap-4 justify-center  mt-5 mb-5 w-full">
+        <div class="flex flex-wrap gap-4 justify-center  mt-5 mb-5 w-full">
 
             @forelse ($livros as $livro)
                 <a href="{{ route('details', $livro->slug) }}"
