@@ -49,18 +49,18 @@
                     </div>
 
                     <div class="hidden sm:ml-6 sm:block ">
-                        <div class="flex space-x-4">
+                        <div class="flex space-x-4 ">
                             <!-- Current: "bg-gray-900 text-white", Default: "text-gray-300 hover:bg-gray-700 hover:text-white" -->
                             <a href="{{ route('index') }}"
-                                class="text-gray-300 hover:bg-gray-700 hover:text-white rounded-md px-3 py-2 text-sm font-medium">Catálogo</a>
+                                class="text-gray-300 hover:bg-gray-700 hover:text-white rounded-md px-3 py-2 text-sm font-medium transition">Catálogo</a>
                             <a href="{{ route('wip') }}"
-                                class="text-gray-300 hover:bg-gray-700 hover:text-white rounded-md px-3 py-2 text-sm font-medium">Mais
+                                class="text-gray-300 hover:bg-gray-700 hover:text-white rounded-md px-3 py-2 text-sm font-medium transition">Mais
                                 lidos</a>
                             <a href="{{ route('novidades') }}"
-                                class="text-gray-300 hover:bg-gray-700 hover:text-white rounded-md px-3 py-2 text-sm font-medium">Recém
+                                class="text-gray-300 hover:bg-gray-700 hover:text-white rounded-md px-3 py-2 text-sm font-medium transition">Recém
                                 Adicionados</a>
                             <a href="{{ route('wip') }}"
-                                class="text-gray-300 hover:bg-gray-700 hover:text-white rounded-md px-3 py-2 text-sm font-medium">Indicações</a>
+                                class="text-gray-300 hover:bg-gray-700 hover:text-white rounded-md px-3 py-2 text-sm font-medium transition">Indicações</a>
                         </div>
                     </div>
                 </div>
@@ -69,8 +69,8 @@
 
                     <input type="search" name="pesquisa" id="pesquisa"
                         placeholder="Pesquisar por livro, autor ou categoria"
-                        class="mt-1 block px-3 py-2 bg-white border border-slate-300 rounded-l-full text-sm shadow-sm placeholder-slate-400
-                focus:outline-none focus:border-sky-500 focus:ring-1 focus:ring-sky-500 sm:max-w-sm w-full">
+                        class="mt-1 block px-3 py-2 bg-white dark:bg-slate-800 dark:text-white border border-slate-300 dark:border-slate-600 rounded-l-full text-sm shadow-sm placeholder-slate-400
+                focus:outline-none focus:border-sky-500 focus:ring-1 focus:ring-sky-500 sm:max-w-sm w-full transition">
                     <button type="submit"
                         class="mt-1  border border-sky-800 focus:ring-1  focus:outline-none focus:ring-sky-500 focus:border-sky-500 hover:bg-sky-500 transition text-white px-4 py-2 rounded-r-full text-sm font-medium">
                         Pesquisar
