@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Livro;
+use App\Models\User;
 
 
 class SiteController extends Controller
@@ -11,6 +12,11 @@ class SiteController extends Controller
     public function index() {
         $livros = Livro::all();
         return view('site.home', compact('livros'));
+    }
+    public function dashboard() {
+        $livros = Livro::all();
+        $usuarios = User::all();
+        return view('site.admin.dashboard', compact('livros','usuarios'));
     }
     public function pesquisar(Request $pesquisa) {
         $livros = Livro::join('categorias', 'livros.id_categoria', '=', 'categorias.id')

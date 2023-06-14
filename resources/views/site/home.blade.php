@@ -4,6 +4,7 @@
 @section('content')
 
 
+
 <div class="flex flex-col sm:px-32">
 
     <h1 class="md:text-2xl mt-6 text-xl dark:text-gray-300" >Recém Adicionados</h1>
@@ -11,7 +12,7 @@
 
         @foreach ($livros as $livro)
         <a href="{{ route('details', $livro->slug) }}"
-            class="max-w-[200px] sm:hover:scale-105 ease-in transition-all shrink-0">
+            class="max-w-[200px] sm:hover:scale-105 ease-in transition-all shrink-0 ">
             <img src="{{ $livro->imagem }}" class="rounded">
             {{-- <p class="line-clamp-2 dark:text-gray-300"> {{ $livro->titulo }} </p> --}}
         </a>

@@ -27,6 +27,8 @@ Route::get('/novidades', [LivroController::class,'novidades'])->name('novidades'
 Route::get('/populares', [LivroController::class,'populares'])->name('populares');
 Route::get('/livro/{slug}', [SiteController::class,'details'])->name('details');
 
+Route::get('/dashboard', [SiteController::class,'dashboard'])->name('dashboard');
+
 Route::view('/emdesenvolvmento', 'site.wip')->name('wip');
 
 Route::get('/pesquisa', [SiteController::class,'pesquisar'])->name('pesquisar');
