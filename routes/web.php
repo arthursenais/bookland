@@ -29,7 +29,7 @@ Route::get('/livro/{slug}', [SiteController::class,'details'])->name('details');
 
 Route::get('/dashboard', [SiteController::class,'dashboard'])->name('dashboard');
 
-Route::view('/emdesenvolvmento', 'site.wip')->name('wip');
+Route::view('/emdesenvolvimento', 'site.wip')->name('wip');
 
 Route::get('/pesquisa', [SiteController::class,'pesquisar'])->name('pesquisar');
 
