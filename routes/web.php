@@ -5,6 +5,7 @@ use App\Http\Controllers\AdminController;
 use App\Http\Controllers\SiteController;
 use App\Http\Controllers\LivroController;
 use App\Http\Controllers\LoginController;
+use App\Http\Controllers\UserController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -21,6 +22,7 @@ use App\Http\Controllers\LoginController;
 // })->name('index');
 
 Route::resource('livros', LivroController::class);
+Route::resource('users', UserController::class);
 
 Route::get('/', [SiteController::class, 'index'])->name('index');
 Route::get('/novidades', [LivroController::class,'novidades'])->name('novidades');
@@ -35,6 +37,6 @@ Route::get('/dashboard', [AdminController::class,'dashboard'])->name('dashboard'
 
 
 Route::get('/login', [SiteController::class, 'login'])->name('login');
-Route::get('/register', [SiteController::class, 'register'])->name('register');
+Route::get('/nova-conta', [LoginController::class, 'register'])->name('register');
 Route::get('/logout', [LoginController::class, 'logout'])->name('login.logout');
 Route::post('/auth', [LoginController::class, 'auth' ])->name('login.auth');

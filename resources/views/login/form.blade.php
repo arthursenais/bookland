@@ -56,8 +56,10 @@
                             class="mt-1 block w-full px-3 py-2 bg-white border border-slate-300 rounded-md text-sm shadow-sm placeholder-slate-400
                 focus:outline-none focus:border-sky-500 focus:ring-1 focus:ring-sky-500
                 invalid:border-red-500 invalid:text-red-600
-                focus:invalid:border-red-500 focus:invalid:ring-red-500">
+                focus:invalid:border-red-500 focus:invalid:ring-red-500 ">
                     </div>
+                        <input type="checkbox" name="remember">  <label for="remember"
+                        class="text-sm font-medium leading-6 text-gray-900 dark:text-white">Lembrar Senha</label>
                 </div>
 
                 <div>
