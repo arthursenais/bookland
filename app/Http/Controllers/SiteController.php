@@ -13,11 +13,7 @@ class SiteController extends Controller
         $livros = Livro::all();
         return view('site.home', compact('livros'));
     }
-    public function dashboard() {
-        $livros = Livro::all();
-        $usuarios = User::all();
-        return view('site.admin.dashboard', compact('livros','usuarios'));
-    }
+    
     public function pesquisar(Request $pesquisa) {
         $livros = Livro::join('categorias', 'livros.id_categoria', '=', 'categorias.id')
             ->where('livros.titulo', 'like', '%' . request('pesquisa') . '%')
@@ -32,9 +28,9 @@ class SiteController extends Controller
         return view('site.details', compact('livro'));
     }
     public function login() {
-        return view('site.login');
+        return view('login.form');
     }
     public function register() {
-        return view('site.register');
+        return view('register.form');
     }
 }

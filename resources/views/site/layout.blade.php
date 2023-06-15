@@ -43,7 +43,7 @@
                 <div class="flex flex-1 items-center justify-center sm:items-stretch sm:justify-start">
                     <div class="flex flex-shrink-0 items-center">
 
-                        <p class="block h-8 w-auto lg:hidden text-slate-300 font-medium">Bomlivro <a href="#" class="sm:hidden block w-auto font-medium text-center">login</a></p>
+                        <p class="block h-8 w-auto lg:hidden text-slate-300 font-medium">Bomlivro</p>
 
                         <p class="hidden h-8 w-auto lg:block text-slate-300 font-medium py-1  hover:animate-pulse cursor-default">Bomlivro</p>
                     </div>
@@ -75,7 +75,11 @@
                         class="mt-1  border border-sky-800 focus:ring-1  focus:outline-none focus:ring-sky-500 focus:border-sky-500 hover:bg-sky-500 transition text-white px-4 py-2 rounded-r-full text-sm font-medium">
                         Pesquisar
                     </button>
+                    @auth
+                    <a href="{{route('login.logout')}}" class="text-white pl-2 hover:text-slate-200 transition">Sair</a>
+                    @else
                     <a href="{{route('login')}}" class="text-white pl-2 hover:text-slate-200 transition">Login</a>
+                    @endauth
                 </form>
             </div>
         </div>
@@ -85,6 +89,15 @@
         <div class="sm:hidden" id="mobile-menu">
             <div class="space-y-1 px-2 pb-3 pt-2">
                 <!-- Current: "bg-gray-900 text-white", Default: "text-gray-300 hover:bg-gray-700 hover:text-white" -->
+                @auth
+                    <a href="{{ route('login.logout') }}"
+                    class="text-gray-300 hover:bg-gray-700 hover:text-white block rounded-md px-3 py-2 text-base font-medium"
+                    aria-current="page">{{auth()->user()->nome}} - Sair</a>
+                    @else
+                    <a href="{{ route('login') }}"
+                    class="text-gray-300 hover:bg-gray-700 hover:text-white block rounded-md px-3 py-2 text-base font-medium"
+                    aria-current="page">Login</a>
+                    @endauth
                 <a href="{{ route('index') }}"
                     class="text-gray-300 hover:bg-gray-700 hover:text-white block rounded-md px-3 py-2 text-base font-medium"
                     aria-current="page">Catálogo</a>
