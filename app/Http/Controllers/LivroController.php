@@ -13,8 +13,7 @@ class LivroController extends Controller
      */
     public function index()
     {
-        $livros = Livro::paginate(3);
-        return view('site.home', compact('livros'));
+        //
     }
     public function novidades()
     {

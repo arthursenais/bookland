@@ -10,4 +10,8 @@ class Categoria extends Model
 
     use HasFactory;
     protected $table = 'categorias';
+
+    public function livros() {
+        return $this->hasMany(Livro::class,'id_categoria','id');
+    }
 }

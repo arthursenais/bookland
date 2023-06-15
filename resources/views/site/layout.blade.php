@@ -8,32 +8,33 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <title>Biblioteca - @yield('title')</title>
     <style>
-::-webkit-scrollbar {
-  width: 2px;
-}
-::-webkit-scrollbar:horizontal {
-  width: 2px;
- height: 3px;
+        ::-webkit-scrollbar {
+            width: 2px;
+        }
 
-}
+        ::-webkit-scrollbar:horizontal {
+            width: 2px;
+            height: 3px;
 
-/* Track */
-::-webkit-scrollbar-track {
-  background: #88888817;
-  border-radius: 12px;
+        }
 
-}
+        /* Track */
+        ::-webkit-scrollbar-track {
+            background: #88888817;
+            border-radius: 12px;
 
-/* Handle */
-::-webkit-scrollbar-thumb {
-  background: #888;
-  border-radius: 12px;
-}
+        }
 
-/* Handle on hover */
-::-webkit-scrollbar-thumb:hover {
-  background: #555;
-}
+        /* Handle */
+        ::-webkit-scrollbar-thumb {
+            background: #888;
+            border-radius: 12px;
+        }
+
+        /* Handle on hover */
+        ::-webkit-scrollbar-thumb:hover {
+            background: #555;
+        }
     </style>
 </head>
 
@@ -73,7 +74,9 @@
 
                         <p class="block h-8 w-auto lg:hidden text-slate-300 font-medium">Bomlivro</p>
 
-                        <p class="hidden h-8 w-auto lg:block text-slate-300 font-medium py-1  hover:animate-pulse cursor-default">Bomlivro</p>
+                        <p
+                            class="hidden h-8 w-auto lg:block text-slate-300 font-medium py-1  hover:animate-pulse cursor-default">
+                            Bomlivro</p>
                     </div>
 
                     <div class="hidden sm:ml-6 sm:block ">
@@ -92,7 +95,7 @@
                         </div>
                     </div>
                 </div>
-                <form action="{{route('pesquisar')}}" method="GET"
+                <form action="{{ route('pesquisar') }}" method="GET"
                     class="hidden sm:flex sm:items-center sm:justify-center sm:ml-6 sm:space-x-0 sm:w-full sm:flex-1">
 
                     <input type="search" name="pesquisa" id="pesquisa"
@@ -104,32 +107,36 @@
                         Pesquisar
                     </button>
                     @auth
-                    <div class="p-4">
-    <div class="group relative">
-        <button type="button" class="text-gray-300 hover:bg-gray-700 hover:text-white rounded-md px-3 py-2 text-sm font-medium transition">{{auth()->user()->nome}}</button>
-        <nav tabindex="0" class="border border-2 bg-gray-900 font-medium dark:text-white invisible border-gray-800 rounded min-w-full  absolute left-0 top-full transition-all opacity-0 group-focus-within:visible group-focus-within:opacity-100 group-focus-within:translate-y-1">
-            <ul class="py-1">
-                @can('verDashboard')
-
-                <li>
-                    <a href="{{route('dashboard')}}" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-700 transition">
-                        Dashboard
-                    </a>
-                </li>
-                @endcan
-                <li>
-                    <a href="{{route('login.logout')}}" class="block text-red-400    px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-700 transition">
-                        Sair
-                    </a>
-                </li>
-            </ul>
-        </nav>
-    </div>
-</div>
-
+                        <div class="p-4">
+                            <div class="group relative">
+                                <button type="button"
+                                    class="text-gray-300 hover:bg-gray-700 hover:text-white rounded-md px-3 py-2 text-sm font-medium transition">{{ auth()->user()->nome }}</button>
+                                <nav tabindex="0"
+                                    class="border border-2 bg-gray-900 font-medium dark:text-white invisible border-gray-800 rounded min-w-full  absolute left-0 top-full transition-all opacity-0 group-focus-within:visible group-focus-within:opacity-100 group-focus-within:translate-y-1">
+                                    <ul class="py-1">
+                                        @can('verDashboard')
+                                            <li>
+                                                <a href="{{ route('dashboard') }}"
+                                                    class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-700 transition">
+                                                    Dashboard
+                                                </a>
+                                            </li>
+                                        @endcan
+                                        <li>
+                                            <a href="{{ route('login.logout') }}"
+                                                class="block text-red-400    px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-700 transition">
+                                                Sair
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </nav>
+                            </div>
+                        </div>
                     @else
-                    <a href="{{route('login')}}" class="text-gray-300 hover:bg-gray-700 hover:text-white rounded-md px-3 py-2 text-sm font-medium transition">Login</a>
-                    @endauth
+                    <div class="p-4">
+                        <a href="{{ route('login') }}" class="text-gray-300 hover:bg-gray-700 hover:text-white rounded-md px-3 py-2 text-sm font-medium transition">Login</a>
+                    </div>
+                            @endauth
                 </form>
             </div>
         </div>
@@ -141,13 +148,13 @@
                 <!-- Current: "bg-gray-900 text-white", Default: "text-gray-300 hover:bg-gray-700 hover:text-white" -->
                 @auth
                     <a href="{{ route('login.logout') }}"
-                    class="text-gray-300 hover:bg-gray-700 hover:text-white block rounded-md px-3 py-2 text-base font-medium"
-                    aria-current="page">{{auth()->user()->nome}} - Sair</a>
-                    @else
+                        class="text-gray-300 hover:bg-gray-700 hover:text-white block rounded-md px-3 py-2 text-base font-medium"
+                        aria-current="page">{{ auth()->user()->nome }} - Sair</a>
+                @else
                     <a href="{{ route('login') }}"
-                    class="text-gray-300 hover:bg-gray-700 hover:text-white block rounded-md px-3 py-2 text-base font-medium"
-                    aria-current="page">Login</a>
-                    @endauth
+                        class="text-gray-300 hover:bg-gray-700 hover:text-white block rounded-md px-3 py-2 text-base font-medium"
+                        aria-current="page">Login</a>
+                @endauth
                 <a href="{{ route('index') }}"
                     class="text-gray-300 hover:bg-gray-700 hover:text-white block rounded-md px-3 py-2 text-base font-medium"
                     aria-current="page">Catálogo</a>
