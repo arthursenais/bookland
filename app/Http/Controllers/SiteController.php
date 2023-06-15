@@ -30,5 +30,5 @@ class SiteController extends Controller
     public function login() {
         return view('login.form');
     }
-    
+
 }

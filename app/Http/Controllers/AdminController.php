@@ -8,6 +8,7 @@ use Illuminate\Http\Request;
 class AdminController extends Controller
 {
     public function dashboard() {
+        $this->authorize('verDashboard');
         $livros = Livro::all();
         $usuarios = User::all();
         return view('admin.dashboard', compact('livros','usuarios'));
