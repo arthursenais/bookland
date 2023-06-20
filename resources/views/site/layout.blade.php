@@ -117,14 +117,14 @@
                                         @can('verDashboard')
                                             <li>
                                                 <a href="{{ route('dashboard') }}"
-                                                    class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-700 transition">
+                                                    class="block px-4 py-2  text-gray-100 hover:bg-gray-700 transition">
                                                     Dashboard
                                                 </a>
                                             </li>
                                         @endcan
                                         <li>
                                             <a href="{{ route('login.logout') }}"
-                                                class="block text-red-400    px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-700 transition">
+                                                class="block text-red-400    px-4 py-2 hover:bg-gray-700 transition">
                                                 Sair
                                             </a>
                                         </li>
