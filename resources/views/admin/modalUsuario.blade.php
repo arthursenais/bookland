@@ -1,5 +1,5 @@
 <div id="modalUsuario-{{ $usuario->id }}"
-    class="hidden inset-0 flex fixed bg-gray-900/50 backdrop-blur-sm items-center justify-center z-50">
+    class="hidden inset-0 flex fixed bg-gray-900/50 items-center justify-center z-50">
     <div class="flex flex-col bg-white dark:bg-slate-800 rounded p-4 dark:text-white sm:min-w-[300px]">
         <div class="flex justify-between w-full items-center mb-4">
             <h1 class="sm:text-4xl text-xl">Usuário</h1>

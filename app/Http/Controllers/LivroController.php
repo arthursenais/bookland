@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Livro;
 use Illuminate\Support\Carbon;
+use Illuminate\Support\Str;
 
 class LivroController extends Controller
 {
@@ -21,7 +22,7 @@ class LivroController extends Controller
         $startOfWeek = $now->startOfWeek(Carbon::SUNDAY)->format('Y-m-d H:i:s');
         $endOfWeek = $now->endOfWeek(Carbon::SATURDAY)->format('Y-m-d H:i:s');
 
-        $livros = Livro::whereBetween('created_at', [$startOfWeek, $endOfWeek])->paginate(10);
+        $livros = Livro::whereBetween('created_at', [$startOfWeek, $endOfWeek])->orderBy('created_at','desc')->paginate(10);
 
 
         return view('site.novidades', compact('livros'));
@@ -46,7 +47,16 @@ class LivroController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $livro = $request->all();
+        if($request->imagem) {
+            $livro['imagem'] = $request->imagem->store('livros');
+        }
+        $livro['slug'] = Str::slug($request->titulo);
+
+
+        $livro = Livro::create($livro);
+        return redirect()->route('dashboard')->with('sucesso','Livro adicionado com sucesso!');
+
     }
 
     /**

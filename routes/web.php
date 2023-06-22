@@ -42,3 +42,4 @@ Route::post('/auth', [LoginController::class, 'auth' ])->name('login.auth');
 
 Route::get('/dashboard', [AdminController::class,'dashboard'])->name('dashboard')->middleware('auth');
 Route::delete('/admin/livro/delete/{id}', [LivroController::class,'destroy'])->name('admin.deleteLivro');
+Route::post('/admin/livro/store', [LivroController::class,'store'])->name('admin.storeLivro');

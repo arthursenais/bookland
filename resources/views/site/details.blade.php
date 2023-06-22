@@ -7,7 +7,7 @@
             <div class=" max-w-xs mb-12 sm:mr-12 ">
                 <h1 class="sm:hidden text-2xl dark:text-gray-300">{{ $livro->titulo }}</h1>
                 <img class="shadow-lg shadow-black/50 hover:shadow-black/70 dark:shadow-black/30 dark:hover:shadow-black/50 hover:grayscale-0 grayscale-[30%] ease-out duration-300"
-                    src="{{ $livro->imagem }}">
+                    src="{{ Str::startsWith($livro->imagem, 'http') ? $livro->imagem : asset("storage/{$livro->imagem}") }}">
             </div>
             <div class="max-w-xs sm:max-w-none">
 

@@ -12,7 +12,7 @@
             @forelse ($livros as $livro)
                 <a href="{{ route('details', $livro->slug) }}"
                     class="self-stretch max-w-[200px] sm:hover:max-w-[210px] ease-in transition-all  ">
-                    <img src="{{ $livro->imagem }}" class="rounded">
+                    <img src="{{ Str::startsWith($livro->imagem, 'http') ? $livro->imagem : asset("storage/{$livro->imagem}") }}" class="rounded">
                     <p class="line-clamp-2 dark:text-gray-300"> {{ $livro->titulo }} </p>
                 </a>
             @empty

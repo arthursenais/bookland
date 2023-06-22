@@ -1,6 +1,6 @@
 {{-- modal modificar livro --}}
 <div id="modalLivro-{{ $livro->id }}"
-    class="hidden inset-0 flex fixed bg-gray-900/50 backdrop-blur-sm items-center justify-center z-40">
+    class="hidden inset-0 flex fixed bg-gray-900/50  items-center justify-center z-40">
     <div class="flex flex-col bg-white dark:bg-slate-800 rounded p-4 dark:text-white sm:min-w-[500px]">
         <div class="flex justify-between w-full items-center mb-4">
             <h1 onmouseover="displayTitulo(this)"
@@ -90,7 +90,11 @@
         </div>
     </div>
 </div>
+
+
 {{-- modal adicionar livro --}}
+
+
 <div id="modalAddLivro" class="hidden inset-0 flex fixed bg-gray-900/50 backdrop-blur items-center justify-center z-50">
     <div class="flex flex-col bg-white dark:bg-slate-800 rounded p-4 dark:text-white sm:min-w-[500px]">
         <div class="flex justify-between w-full items-center mb-4">
@@ -99,8 +103,8 @@
                 onclick="document.getElementById('modalAddLivro').style.display = 'none';">close</button>
         </div>
 
-        <form action="" method="POST" enctype="multipart/form-data" class="flex flex-col text-left align-center justify-center items-center gap-4">
-
+        <form action="{{route('admin.storeLivro')}}" method="POST" enctype="multipart/form-data" class="flex flex-col text-left align-center justify-center items-center gap-4">
+            @csrf
             <div class="flex justify-start w-full">
                 <table class="sm:w-full">
                     <tr>
@@ -112,15 +116,15 @@
                     <tr>
                         <th>autor:</th>
                         <td class="w-full">
-                            <input type="text" placeholder="Digite aqui" required class="dark:bg-slate-800 w-full truncate  rounded p-0.5  invalid:border invalid:border invalid:border-red-600/20 focus:outline-none focus:ring invalid:focus:ring-red-600">
+                            <input name="autor" type="text" placeholder="Digite aqui" required class="dark:bg-slate-800 w-full truncate  rounded p-0.5  invalid:border invalid:border invalid:border-red-600/20 focus:outline-none focus:ring invalid:focus:ring-red-600">
                         </td>
                     </tr>
                     <tr>
                         <th>categoria:</th>
                         <td class="w-full">
-                            <select required name="categoria" class="dark:bg-slate-800 w-fit truncate  rounded p-0.5  invalid:border invalid:border invalid:border-red-600/20 focus:outline-none focus:ring invalid:focus:ring-red-600">
+                            <select required name="id_categoria" class="dark:bg-slate-800 w-fit truncate  rounded p-0.5  invalid:border invalid:border invalid:border-red-600/20 focus:outline-none focus:ring invalid:focus:ring-red-600">
                                 @foreach ($categorias as $categoria)
-                                    <option value="{{$categoria->nome}}">{{$categoria->nome}}</option>
+                                    <option value="{{$categoria->id}}">{{$categoria->nome}}</option>
                                 @endforeach
                             </select>
 
@@ -130,22 +134,22 @@
                     <tr>
                         <th>disponiveis:</th>
                         <td class="w-full">
-                            <input type="number" min="0" max="100" required class="dark:bg-slate-800 max-w-min truncate  rounded p-0.5  invalid:border invalid:border invalid:border-red-600/20 focus:outline-none focus:ring invalid:focus:ring-red-600">
+                            <input type="number" name="disponiveis" min="0" max="100" required class="dark:bg-slate-800 max-w-min truncate  rounded p-0.5  invalid:border invalid:border invalid:border-red-600/20 focus:outline-none focus:ring invalid:focus:ring-red-600">
                         </td>
                     </tr>
                 </table>
                 <div class="min-w-[250px] flex flex-col items-center">
                     <label for="addImagem" class="material-icons button rounded-full bg-emerald-500 p-2 hover:bg-emerald-600 cursor-pointer text-white transition">image</label>
-                <input type="file" id="addImagem" class="hidden">
+                <input type="file" id="addImagem" name="imagem" class="hidden">
                 </div>
             </div>
             <p>Descrição:</p>
 
-            <textarea class="dark:bg-gray-900 w-full" rows="8" placeholder="Digite aqui"></textarea>
+            <textarea name="descricao" class="dark:bg-gray-900 w-full" rows="8" placeholder="Digite aqui"></textarea>
 
             <div class="flex justify-between w-full">
-                <button type="button" class="button sm:bg-transparent border border-indigo-600 sm:text-indigo-300 bg-indigo-600 px-2 rounded-full hover:bg-indigo-600 hover:text-white transition">Cadastrar</button>
-                <button onclick="document.getElementById('modalAddLivro').style.display = 'none';" class="button sm:bg-transparent border border-red-600 sm:text-red-600 bg-red-600 px-2 rounded-full hover:bg-red-600 hover:text-white transition">Cancelar</button>
+                <button type="submit" class="button sm:bg-transparent border border-indigo-600 sm:text-indigo-300 bg-indigo-600 px-2 rounded-full hover:bg-indigo-600 hover:text-white transition">Cadastrar</button>
+                <button type="button" onclick="document.getElementById('modalAddLivro').style.display = 'none';" class="button sm:bg-transparent border border-red-600 sm:text-red-600 bg-red-600 px-2 rounded-full hover:bg-red-600 hover:text-white transition">Cancelar</button>
             </div>
         </form>
     </div>

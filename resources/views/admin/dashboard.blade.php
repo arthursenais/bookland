@@ -8,12 +8,11 @@
 
             @include('admin.mensagens')
             <h1 class="text-md dark:text-gray-200 text-bold">Bem vindo, {{ auth()->user()->nome }}!</h1>
-            <h1 class="text-4xl dark:text-gray-200 text-bold hover:animate-pulse cursor-default">Bomlivro</h1>
+            <h1 class="text-4xl dark:text-gray-200 text-bold hover:animate-pulse cursor-default">BookLand</h1>
             <div class="flex flex-col lg:flex-row m-12 gap-6 min-w-full justify-center">
                 <div>
                     <div class="flex align-bottom gap-2 ">
                         <p class="text-2xl dark:text-gray-200">{{ $livros->count() }} Items no Acervo</p>
-                        <input type="text" placeholder="Pesquisar no acervo" id="searchAcervo" class="bg-transparent outline-none max-w-[150px] dark:text-white border-b">
                     </div>
 
                     <div id='results'
@@ -23,7 +22,7 @@
                             <div
                                 class="linkLivro flex items-center justify-around  hover:bg-gray-200 dark:hover:bg-gray-700 transition dark:text-gray-200">
                                 <a href="{{ route('details', $livro->slug) }}" class="flex items-center w-[90%] gap-2 p-2">
-                                    <img src="{{ $livro->imagem }}" alt="imagem" class="max-w-[64px] rounded">
+                                    <img src="{{ Str::startsWith($livro->imagem, 'http') ? $livro->imagem : asset("storage/{$livro->imagem}") }}" alt="imagem" class="max-w-[64px] rounded">
                                     <div>
                                         <p class="max-w-xs">
                                             {{ $livro->titulo }}
@@ -108,26 +107,7 @@
                 </div>
             </div>
         </div>
-    <script>
-        const searchInput = document.getElementById('searchAcervo');
-        const resultsContainer = document.getElementById('results');
-        const links = Array.from(document.getElementsByClassName('linkLivro'));
 
-        searchInput.addEventListener('input', () => {
-            const searchTerm = searchInput.value.toLowerCase();
-            const filteredLinks = links.filter(link =>
-                link.textContent.toLowerCase().includes(searchTerm)
-            );
-
-            resultsContainer.innerHTML = '';
-
-            filteredLinks.forEach(link => {
-                resultsContainer.appendChild(link.cloneNode(true));
-            });
-        });
-
-
-    </script>
     @else
         <div class="flex flex-col justify-center p-20 items-center">
             <h1 class="text-4xl dark:text-gray-200 text-bold">Acesso restrito</h1>
