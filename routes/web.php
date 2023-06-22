@@ -33,10 +33,12 @@ Route::get('/pesquisa', [SiteController::class,'pesquisar'])->name('pesquisar');
 
 
 
-Route::get('/dashboard', [AdminController::class,'dashboard'])->name('dashboard')->middleware('auth');
 
 
 Route::get('/login', [SiteController::class, 'login'])->name('login');
 Route::get('/nova-conta', [LoginController::class, 'register'])->name('register');
 Route::get('/logout', [LoginController::class, 'logout'])->name('login.logout');
 Route::post('/auth', [LoginController::class, 'auth' ])->name('login.auth');
+
+Route::get('/dashboard', [AdminController::class,'dashboard'])->name('dashboard')->middleware('auth');
+Route::delete('/admin/livro/delete/{id}', [LivroController::class,'destroy'])->name('admin.deleteLivro');

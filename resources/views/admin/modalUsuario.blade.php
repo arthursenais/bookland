@@ -79,7 +79,7 @@
     }
 
     window.addEventListener('click', function(event) {
-        var modal = document.getElementById('modalUsuario-' + id);
+        var modal = document.getElementById('modalUsuario-' + {{$usuario->id}});
         if (event.target === modal) {
             modal.style.display = 'none';
         }

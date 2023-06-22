@@ -5,6 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <script src="https://cdn.tailwindcss.com"></script>
     <title>Biblioteca - @yield('title')</title>
     <style>
@@ -39,7 +40,7 @@
 </head>
 
 <body class="bg-white dark:bg-slate-800">
-    <nav class="backdrop-blur bg-gray-800/90 dark:bg-gray-900/70 sm:sticky top-0 z-50 ">
+    <nav class="backdrop-blur bg-gray-800/90 dark:bg-gray-900/70 sm:sticky top-0 z-40 ">
         <div class="mx-auto max-w-7xl px-2 sm:px-6 lg:px-8">
             <div class="relative flex h-16 items-center justify-between">
                 <div class="absolute inset-y-0 left-0 flex items-center sm:hidden">

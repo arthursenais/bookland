@@ -3,19 +3,19 @@
 
 @section('content')
     @auth
-        <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 
         <div class="flex flex-col justify-center items-center mt-4 ">
 
+            @include('admin.mensagens')
             <h1 class="text-md dark:text-gray-200 text-bold">Bem vindo, {{ auth()->user()->nome }}!</h1>
             <h1 class="text-4xl dark:text-gray-200 text-bold hover:animate-pulse cursor-default">Bomlivro</h1>
             <div class="flex flex-col lg:flex-row m-12 gap-6 min-w-full justify-center">
                 <div>
                     <div class="flex align-bottom gap-2 ">
-                        <h1 class="text-2xl dark:text-gray-200">{{ $livros->count() }} Items no Acervo</h1>
-                        <input type="text" placeholder="Pesquisar no acervo" id="searchAcervo"
-                            class="bg-transparent outline-none max-w-[150px] dark:text-white border-b">
+                        <p class="text-2xl dark:text-gray-200">{{ $livros->count() }} Items no Acervo</p>
+                        <input type="text" placeholder="Pesquisar no acervo" id="searchAcervo" class="bg-transparent outline-none max-w-[150px] dark:text-white border-b">
                     </div>
+
                     <div id='results'
                         class="shadow-lg border  dark:border-gray-600/20   sm:min-w-[500px] min-h-full max-h-80 rounded-lg  overflow-auto ">
 
@@ -32,12 +32,14 @@
                                     </div>
 
                                 </a>
-                                <button class="rounded-full bg-red-500 h-12 w-12 material-icons mr-2 text-white hover:bg-red-600 transition">edit</button>
+                                <button type="button" onclick="modalLivro({{$livro->id}})" class="rounded-full bg-red-500 h-12 w-12 material-icons mr-2 text-white hover:bg-red-600 transition">edit</button>
                             </div>
+                            @include('admin.modalLivro')
                         @empty
                             Não há livros no acervo
                         @endforelse
                     </div>
+                    <button type="button"  onclick="modalAddLivro()" class="rounded-full relative bottom-4 right-4 bg-indigo-500 h-16 w-16 material-icons mr-2 text-white hover:bg-indigo-600 transition">add</button>
                 </div>
 
 
@@ -106,12 +108,6 @@
                 </div>
             </div>
         </div>
-    @else
-        <div class="flex flex-col justify-center p-20 items-center">
-            <h1 class="text-4xl dark:text-gray-200 text-bold">Acesso restrito</h1>
-        </div>
-    @endauth
-
     <script>
         const searchInput = document.getElementById('searchAcervo');
         const resultsContainer = document.getElementById('results');
@@ -130,6 +126,12 @@
             });
         });
 
-       
+
     </script>
+    @else
+        <div class="flex flex-col justify-center p-20 items-center">
+            <h1 class="text-4xl dark:text-gray-200 text-bold">Acesso restrito</h1>
+        </div>
+    @endauth
+
 @endsection

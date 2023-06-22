@@ -20,4 +20,12 @@ class AdminController extends Controller
             return redirect()->route('index') ;
         }
     }
+    public function acervo() {
+        $livros = Livro::all();
+        if (Gate::allows('verDashboard')) {
+            return view('admin.acervo', compact('livros'));
+        } else {
+            return redirect()->route('index') ;
+        }
+    }
 }
