@@ -6,6 +6,7 @@ use App\Http\Controllers\SiteController;
 use App\Http\Controllers\LivroController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\CategoriaController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -41,6 +42,11 @@ Route::get('/logout', [LoginController::class, 'logout'])->name('login.logout');
 Route::post('/auth', [LoginController::class, 'auth' ])->name('login.auth');
 
 Route::get('/dashboard', [AdminController::class,'dashboard'])->name('dashboard')->middleware('auth');
+
 Route::delete('/admin/livro/delete/{id}', [LivroController::class,'destroy'])->name('admin.deleteLivro');
 Route::post('/admin/livro/store', [LivroController::class,'store'])->name('admin.storeLivro');
 Route::post('/admin/livro/update/{id}', [LivroController::class,'update'])->name('admin.updateLivro');
+
+Route::delete('/admin/categoria/delete/{id}', [CategoriaController::class,'destroy'])->name('admin.deleteCategoria');
+Route::post('/admin/categoria/store', [CategoriaController::class,'store'])->name('admin.storeCategoria');
+Route::post('/admin/categoria/update/{id}', [CategoriaController::class,'update'])->name('admin.updateCategoria');

@@ -77,14 +77,27 @@
 
 
                 <div>
-                    <h1 class="text-2xl dark:text-gray-200">{{ $categorias->count() }} Categorias</h1>
+                    <h1 class="text-2xl dark:text-gray-200"> {{ $categorias->count() }}Categorias</h1>
                     <div
                         class="shadow-lg border  dark:border-gray-600/20 sm:min-w-[300px] min-h-full max-h-80 rounded-lg  overflow-auto ">
                         @forelse ($categorias as $categoria)
-                            <a href="#"
-                                class="block px-2 py-2 transition hover:bg-gray-200 dark:hover:bg-gray-700 sm:py-5 dark:text-gray-200">{{ $categoria->nome }}</a>
+                            <div
+                                class="flex items-center justify-around transition hover:bg-gray-200 dark:hover:bg-gray-700 dark:text-gray-200">
+                                <div class="flex items-center w-[90%] gap-2 p-2">
+                                    <div>
+                                        <p class="max-w-xs">
+
+                                            {{ $categoria->nome }}
+                                        </p>
+
+                                    </div>
+                                </div>
+                                <button onclick="modalCategoria({{ $categoria->id }})"
+                                    class="w-12 h-12 mr-2 text-white transition bg-red-500 rounded-full material-icons hover:bg-red-600">edit</button>
+                            </div>
+                            @include('admin.modalCategoria')
                         @empty
-                            Não há categorias
+                            sem usuarios
                         @endforelse
                     </div>
                 </div>
@@ -157,7 +170,6 @@
 
                 }
             });
-
         </script>
     @else
         <div class="flex flex-col items-center justify-center p-20">

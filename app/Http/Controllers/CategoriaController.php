@@ -28,7 +28,12 @@ class CategoriaController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $categoria = $request->all();
+        $categoria = Categoria::create($categoria);
+
+        return redirect()->route('dashboard')->with('sucesso','Categoria adicionada com sucesso!');
+
+
     }
 
     /**
@@ -50,16 +55,23 @@ class CategoriaController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Categoria $categoria)
+    public function update(Request $request, string $id)
     {
-        //
+        $categoria = Categoria::find($id);
+        $categoria->nome = $request->nome;
+        $categoria->descricao = $request->descricao;
+        $categoria->save();
+        return redirect()->route('dashboard')->with('sucesso','categoria atualizada com sucesso!');
+
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Categoria $categoria)
+    public function destroy(string $id)
     {
-        //
+        $categoria = Categoria::find($id);
+        $categoria->delete();
+        return redirect()->route('dashboard')->with('sucesso','categoria removida com sucesso!');
     }
 }

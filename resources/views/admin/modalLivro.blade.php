@@ -89,12 +89,12 @@
 {{-- modal adicionar livro --}}
 
 
-<div id="modalAddLivro" class="fixed inset-0 z-50 items-center justify-center hidden bg-gray-900/50 backdrop-blur">
+<div id="modalAddLivro-{{$livro->id}}" class="fixed inset-0 z-50 items-center justify-center hidden bg-gray-900/50 backdrop-blur">
     <div class="flex flex-col bg-white dark:bg-slate-800 rounded p-4 dark:text-white sm:min-w-[500px]">
         <div class="flex items-center justify-between w-full mb-4">
             <h1 class="max-w-xs text-xl truncate bg-white sm:text-2xl dark:bg-slate-800">Adicionar Livro</h1>
             <button class="w-10 h-6 text-white transition bg-red-500 rounded-md material-icons hover:bg-red-600"
-                onclick="document.getElementById('modalAddLivro').style.display = 'none';">close</button>
+                onclick="document.getElementById('modalAddLivro-{{$livro->id}}').style.display = 'none';">close</button>
         </div>
 
         <form action="{{route('admin.storeLivro')}}" method="POST" enctype="multipart/form-data" class="flex flex-col items-center justify-center gap-4 text-left align-center">
@@ -143,7 +143,7 @@
 
             <div class="flex justify-between w-full">
                 <button type="submit" class="px-2 transition bg-indigo-600 border border-indigo-600 rounded-full button sm:bg-transparent sm:text-indigo-300 hover:bg-indigo-600 hover:text-white">Cadastrar</button>
-                <button type="button" onclick="document.getElementById('modalAddLivro').style.display = 'none';" class="px-2 transition bg-red-600 border border-red-600 rounded-full button sm:bg-transparent sm:text-red-600 hover:bg-red-600 hover:text-white">Cancelar</button>
+                <button type="button" onclick="document.getElementById('modalAddLivro-{{$livro->id}}').style.display = 'none';" class="px-2 transition bg-red-600 border border-red-600 rounded-full button sm:bg-transparent sm:text-red-600 hover:bg-red-600 hover:text-white">Cancelar</button>
             </div>
         </form>
     </div>
@@ -175,11 +175,11 @@
     }
 
 
-    function modalAddLivro() {
-        document.getElementById('modalAddLivro').style.display = 'flex';
+    function modalAddLivro(idLivro) {
+        document.getElementById('modalAddLivro-' + idLivro).style.display = 'flex';
     }
     window.addEventListener('click', function(event) {
-        var modal = document.getElementById('modalAddLivro');
+        var modal = document.getElementById('modalAddLivro-' + idLivro);
         if (event.target === modal) {
             modal.style.display = 'none';
         }
