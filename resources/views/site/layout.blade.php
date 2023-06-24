@@ -40,13 +40,13 @@
 </head>
 
 <body class="bg-white dark:bg-slate-800">
-    <nav class="backdrop-blur bg-gray-800/90 dark:bg-gray-900/70 sm:sticky top-0 z-40 ">
-        <div class="mx-auto max-w-7xl px-2 sm:px-6 lg:px-8">
-            <div class="relative flex h-16 items-center justify-between">
+    <nav class="top-0 z-40 backdrop-blur bg-gray-800/90 dark:bg-gray-900/70 sm:sticky ">
+        <div class="px-2 mx-auto max-w-7xl sm:px-6 lg:px-8">
+            <div class="relative flex items-center justify-between h-16">
                 <div class="absolute inset-y-0 left-0 flex items-center sm:hidden">
                     <!-- Mobile menu button-->
                     <button type="button"
-                        class="inline-flex items-center justify-center rounded-md p-2 text-gray-400 hover:bg-gray-700 hover:text-white focus:outline-none focus:ring-2 focus:ring-inset focus:ring-white"
+                        class="inline-flex items-center justify-center p-2 text-gray-400 rounded-md hover:bg-gray-700 hover:text-white focus:outline-none focus:ring-2 focus:ring-inset focus:ring-white"
                         aria-controls="mobile-menu" aria-expanded="false">
                         <span class="sr-only">Abrir menu</span>
                         <!--
@@ -54,7 +54,7 @@
 
                                     Menu open: "hidden", Menu closed: "block"
                                 -->
-                        <svg class="block h-6 w-6" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+                        <svg class="block w-6 h-6" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
                             stroke="currentColor" aria-hidden="true">
                             <path stroke-linecap="round" stroke-linejoin="round"
                                 d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5"></path>
@@ -64,35 +64,35 @@
 
                                 Menu open: "block", Menu closed: "hidden"
                             -->
-                        <svg class="hidden h-6 w-6" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+                        <svg class="hidden w-6 h-6" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
                             stroke="currentColor" aria-hidden="true">
                             <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"></path>
                         </svg>
                     </button>
                 </div>
-                <div class="flex flex-1 items-center justify-center sm:items-stretch sm:justify-start">
-                    <div class="flex flex-shrink-0 items-center">
+                <div class="flex items-center justify-center flex-1 sm:items-stretch sm:justify-start">
+                    <div class="flex items-center flex-shrink-0">
 
-                        <p class="block h-8 w-auto lg:hidden text-slate-300 font-medium">Bomlivro</p>
+                        <p class="block w-auto h-8 font-medium lg:hidden text-slate-300">Bomlivro</p>
 
                         <p
-                            class="hidden h-8 w-auto lg:block text-slate-300 font-medium py-1  hover:animate-pulse cursor-default">
+                            class="hidden w-auto h-8 py-1 font-medium cursor-default lg:block text-slate-300 hover:animate-pulse">
                             Bomlivro</p>
                     </div>
 
                     <div class="hidden sm:ml-6 sm:block ">
-                        <div class="flex space-x-4 items-center ">
+                        <div class="flex items-center space-x-4 ">
                             <!-- Current: "bg-gray-900 text-white", Default: "text-gray-300 hover:bg-gray-700 hover:text-white" -->
                             <a href="{{ route('index') }}"
-                                class="text-gray-300 hover:bg-gray-700 hover:text-white rounded-md px-3 py-2 text-xs lg:text-sm font-medium transition">Catálogo</a>
+                                class="px-3 py-2 text-xs font-medium text-gray-300 transition rounded-md hover:bg-gray-700 hover:text-white lg:text-sm">Catálogo</a>
                             <a href="{{ route('wip') }}"
-                                class="text-gray-300 hover:bg-gray-700 hover:text-white rounded-md px-3 py-2 text-xs lg:text-sm font-medium transition">Mais
+                                class="px-3 py-2 text-xs font-medium text-gray-300 transition rounded-md hover:bg-gray-700 hover:text-white lg:text-sm">Mais
                                 lidos</a>
                             <a href="{{ route('novidades') }}"
-                                class="text-gray-300 hover:bg-gray-700 hover:text-white rounded-md px-3 py-2 text-xs lg:text-sm font-medium transition">Recém
+                                class="px-3 py-2 text-xs font-medium text-gray-300 transition rounded-md hover:bg-gray-700 hover:text-white lg:text-sm">Recém
                                 Adicionados</a>
                             <a href="{{ route('wip') }}"
-                                class="text-gray-300 hover:bg-gray-700 hover:text-white rounded-md px-3 py-2 text-xs lg:text-sm font-medium transition">Indicações</a>
+                                class="px-3 py-2 text-xs font-medium text-gray-300 transition rounded-md hover:bg-gray-700 hover:text-white lg:text-sm">Indicações</a>
                         </div>
                     </div>
                 </div>
@@ -101,31 +101,30 @@
 
                     <input type="search" name="pesquisa" id="pesquisa"
                         placeholder="Pesquisar por livro, autor ou categoria"
-                        class="mt-1 block px-3 py-2 bg-white dark:bg-slate-800 dark:text-white border border-slate-300 dark:border-slate-600 rounded-l-full text-xs lg:text-sm shadow-sm placeholder-slate-400
-                        focus:outline-none focus:border-sky-500 focus:ring-1 focus:ring-sky-500 sm:max-w-sm w-full transition">
+                        class="block w-full px-3 py-2 mt-1 text-xs transition bg-white border rounded-l-full shadow-sm dark:bg-slate-800 dark:text-white border-slate-300 dark:border-slate-600 lg:text-sm placeholder-slate-400 focus:outline-none focus:border-sky-500 focus:ring-1 focus:ring-sky-500 sm:max-w-sm">
                     <button type="submit"
-                        class="mt-1  border border-sky-800 focus:ring-1  focus:outline-none focus:ring-sky-500 focus:border-sky-500 hover:bg-sky-500 transition text-white px-4 py-2 rounded-r-full text-xs lg:text-sm font-medium">
+                        class="px-4 py-2 mt-1 text-xs font-medium text-white transition border rounded-r-full border-sky-800 focus:ring-1 focus:outline-none focus:ring-sky-500 focus:border-sky-500 hover:bg-sky-500 lg:text-sm">
                         Pesquisar
                     </button>
                     @auth
                         <div class="p-4">
-                            <div class="group relative">
+                            <div class="relative group">
                                 <button type="button"
-                                    class="text-gray-300 hover:bg-gray-700 hover:text-white rounded-md px-3 py-2 text-sm font-medium transition">{{ auth()->user()->nome }}</button>
+                                    class="px-3 py-2 text-sm font-medium text-gray-300 transition rounded-md hover:bg-gray-700 hover:text-white">{{ auth()->user()->nome }}</button>
                                 <nav tabindex="0"
-                                    class="border border-2 bg-gray-900 font-medium dark:text-white invisible border-gray-800 rounded min-w-full  absolute left-0 top-full transition-all opacity-0 group-focus-within:visible group-focus-within:opacity-100 group-focus-within:translate-y-1">
+                                    class="absolute left-0 invisible min-w-full font-medium transition-all bg-gray-900 border border-2 border-gray-800 rounded opacity-0 dark:text-white top-full group-focus-within:visible group-focus-within:opacity-100 group-focus-within:translate-y-1">
                                     <ul class="py-1">
                                         @can('verDashboard')
                                             <li>
                                                 <a href="{{ route('dashboard') }}"
-                                                    class="block px-4 py-2  text-gray-100 hover:bg-gray-700 transition">
+                                                    class="block px-4 py-2 text-gray-100 transition hover:bg-gray-700">
                                                     Dashboard
                                                 </a>
                                             </li>
                                         @endcan
                                         <li>
                                             <a href="{{ route('login.logout') }}"
-                                                class="block text-red-400    px-4 py-2 hover:bg-gray-700 transition">
+                                                class="block px-4 py-2 text-red-400 transition hover:bg-gray-700">
                                                 Sair
                                             </a>
                                         </li>
@@ -135,7 +134,7 @@
                         </div>
                     @else
                     <div class="p-4">
-                        <a href="{{ route('login') }}" class="text-gray-300 hover:bg-gray-700 hover:text-white rounded-md px-3 py-2 text-sm font-medium transition">Login</a>
+                        <a href="{{ route('login') }}" class="px-3 py-2 text-sm font-medium text-gray-300 transition rounded-md hover:bg-gray-700 hover:text-white">Login</a>
                     </div>
                             @endauth
                 </form>
@@ -145,35 +144,34 @@
 
         <!-- Mobile menu, show/hide based on menu state. -->
         <div class="sm:hidden" id="mobile-menu">
-            <div class="space-y-1 px-2 pb-3 pt-2">
+            <div class="px-2 pt-2 pb-3 space-y-1">
                 <!-- Current: "bg-gray-900 text-white", Default: "text-gray-300 hover:bg-gray-700 hover:text-white" -->
                 @auth
                     <a href="{{ route('login.logout') }}"
-                        class="text-gray-300 hover:bg-gray-700 hover:text-white block rounded-md px-3 py-2 text-base font-medium"
+                        class="block px-3 py-2 text-base font-medium text-gray-300 rounded-md hover:bg-gray-700 hover:text-white"
                         aria-current="page">{{ auth()->user()->nome }} - Sair</a>
                 @else
                     <a href="{{ route('login') }}"
-                        class="text-gray-300 hover:bg-gray-700 hover:text-white block rounded-md px-3 py-2 text-base font-medium"
+                        class="block px-3 py-2 text-base font-medium text-gray-300 rounded-md hover:bg-gray-700 hover:text-white"
                         aria-current="page">Login</a>
                 @endauth
                 <a href="{{ route('index') }}"
-                    class="text-gray-300 hover:bg-gray-700 hover:text-white block rounded-md px-3 py-2 text-base font-medium"
+                    class="block px-3 py-2 text-base font-medium text-gray-300 rounded-md hover:bg-gray-700 hover:text-white"
                     aria-current="page">Catálogo</a>
                 <a href="{{ route('wip') }}"
-                    class="text-gray-300 hover:bg-gray-700 hover:text-white block rounded-md px-3 py-2 text-base font-medium">Mais
+                    class="block px-3 py-2 text-base font-medium text-gray-300 rounded-md hover:bg-gray-700 hover:text-white">Mais
                     vendidos</a>
                 <a href="{{ route('novidades') }}"
-                    class="text-gray-300 hover:bg-gray-700 hover:text-white block rounded-md px-3 py-2 text-base font-medium">Recém
+                    class="block px-3 py-2 text-base font-medium text-gray-300 rounded-md hover:bg-gray-700 hover:text-white">Recém
                     Adicionados</a>
                 <a href="{{ route('wip') }}"
-                    class="text-gray-300 hover:bg-gray-700 hover:text-white block rounded-md px-3 py-2 text-base font-medium">Indicações</a>
-                <form class=" flex sm:items-center sm:justify-center sm:space-x-0 sm:w-full sm:flex-1">
+                    class="block px-3 py-2 text-base font-medium text-gray-300 rounded-md hover:bg-gray-700 hover:text-white">Indicações</a>
+                <form class="flex sm:items-center sm:justify-center sm:space-x-0 sm:w-full sm:flex-1">
                     <input type="search" name="pesquisa" id="pesquisa"
                         placeholder="Pesquisar por livro, autor ou categoria"
-                        class="mt-1 block px-3 py-2 bg-white border border-slate-300 rounded-l-full text-sm shadow-sm placeholder-slate-400
-                focus:outline-none focus:border-sky-500 focus:ring-1 focus:ring-sky-500  w-full ">
+                        class="block w-full px-3 py-2 mt-1 text-sm bg-white border rounded-l-full shadow-sm border-slate-300 placeholder-slate-400 focus:outline-none focus:border-sky-500 focus:ring-1 focus:ring-sky-500 ">
                     <button type="submit"
-                        class="mt-1  border border-sky-800 focus:ring-1  focus:outline-none focus:ring-sky-500 focus:border-sky-500 hover:bg-sky-500 transition text-white px-4 py-2 rounded-r-full text-sm font-medium">
+                        class="px-4 py-2 mt-1 text-sm font-medium text-white transition border rounded-r-full border-sky-800 focus:ring-1 focus:outline-none focus:ring-sky-500 focus:border-sky-500 hover:bg-sky-500">
                         Pesquisar
                     </button>
 
@@ -183,12 +181,12 @@
     </nav>
 
     @yield('content')
-    <footer class="mt-10 p-8 border-t border-slate-200 sm:flex justify-between text-slate-500 dark:border-slate-200/5">
+    <footer class="justify-between p-8 mt-10 border-t border-slate-200 sm:flex text-slate-500 dark:border-slate-200/5">
         <div>
             <div class="mb-6 sm:mb-0 sm:flex">
-                <p class="sm:text-base text-2xl">Copyright © 2023 Bomlivro.com</p>
+                <p class="text-2xl sm:text-base">Copyright © 2023 Bomlivro.com</p>
                 <p class="sm:ml-4 sm:pl-4 sm:border-l sm:border-slate-200 dark:sm:border-slate-200/5">
-                    <a class="hover:text-slate-900 dark:hover:text-slate-400 text-2xl sm:text-base "
+                    <a class="text-2xl hover:text-slate-900 dark:hover:text-slate-400 sm:text-base "
                         href="#">Voltar ao topo</a>
                 </p>
             </div>

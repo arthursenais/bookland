@@ -80,7 +80,19 @@ class LivroController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        $livro = Livro::find($id);
+        if ($request->imagem) {
+            $livro->imagem = $request->imagem->store('livros');
+        }
+        $livro->titulo = $request->titulo;
+        $livro->autor = $request->autor;
+        $livro->descricao = $request->descricao;
+        $livro->disponiveis = $request->disponiveis;
+        $livro->id_categoria = $request->id_categoria;
+        $livro->slug = Str::slug($request->titulo);
+        $livro->save();
+        return redirect()->route('dashboard')->with('sucesso','Livro atualizado com sucesso!');
+
     }
 
     /**

@@ -4,14 +4,14 @@
 @section('content')
     @auth
 
-        <div class="flex flex-col justify-center items-center mt-4 ">
+        <div class="flex flex-col items-center justify-center mt-4">
 
             @include('admin.mensagens')
             <h1 class="text-md dark:text-gray-200 text-bold">Bem vindo, {{ auth()->user()->nome }}!</h1>
-            <h1 class="text-4xl dark:text-gray-200 text-bold hover:animate-pulse cursor-default">BookLand</h1>
-            <div class="flex flex-col lg:flex-row m-12 gap-6 min-w-full justify-center">
+            <h1 class="text-4xl cursor-default dark:text-gray-200 text-bold hover:animate-pulse">BookLand</h1>
+            <div class="flex flex-col justify-center min-w-full gap-6 m-12 lg:flex-row">
                 <div>
-                    <div class="flex align-bottom gap-2 ">
+                    <div class="flex gap-2 align-bottom ">
                         <p class="text-2xl dark:text-gray-200">{{ $livros->count() }} Items no Acervo</p>
                     </div>
 
@@ -20,9 +20,10 @@
 
                         @forelse ($livros as $livro)
                             <div
-                                class="linkLivro flex items-center justify-around  hover:bg-gray-200 dark:hover:bg-gray-700 transition dark:text-gray-200">
+                                class="flex items-center justify-around transition linkLivro hover:bg-gray-200 dark:hover:bg-gray-700 dark:text-gray-200">
                                 <a href="{{ route('details', $livro->slug) }}" class="flex items-center w-[90%] gap-2 p-2">
-                                    <img src="{{ Str::startsWith($livro->imagem, 'http') ? $livro->imagem : asset("storage/{$livro->imagem}") }}" alt="imagem" class="max-w-[64px] rounded">
+                                    <img src="{{ Str::startsWith($livro->imagem, 'http') ? $livro->imagem : asset("storage/{$livro->imagem}") }}"
+                                        alt="imagem" class="max-w-[64px] rounded">
                                     <div>
                                         <p class="max-w-xs">
                                             {{ $livro->titulo }}
@@ -31,14 +32,16 @@
                                     </div>
 
                                 </a>
-                                <button type="button" onclick="modalLivro({{$livro->id}})" class="rounded-full bg-red-500 h-12 w-12 material-icons mr-2 text-white hover:bg-red-600 transition">edit</button>
+                                <button type="button" onclick="modalLivro({{ $livro->id }})"
+                                    class="w-12 h-12 mr-2 text-white transition bg-red-500 rounded-full material-icons hover:bg-red-600">edit</button>
                             </div>
                             @include('admin.modalLivro')
                         @empty
                             Não há livros no acervo
                         @endforelse
                     </div>
-                    <button type="button"  onclick="modalAddLivro()" class="rounded-full relative bottom-4 right-4 bg-indigo-500 h-16 w-16 material-icons mr-2 text-white hover:bg-indigo-600 transition">add</button>
+                    <button type="button" onclick="modalAddLivro()"
+                        class="relative w-16 h-16 mr-2 text-white transition bg-indigo-500 rounded-full bottom-4 right-4 material-icons hover:bg-indigo-600">add</button>
                 </div>
 
 
@@ -48,24 +51,25 @@
                         class="shadow-lg border  dark:border-gray-600/20 sm:min-w-[300px] min-h-full max-h-80 rounded-lg  overflow-auto ">
                         @forelse ($usuarios as $usuario)
                             <div
-                                class="flex items-center justify-around  hover:bg-gray-200 dark:hover:bg-gray-700 transition dark:text-gray-200">
-                                <a href="{{ route('details', $livro->slug) }}" class="flex items-center w-[90%] gap-2 p-2">
+                                class="flex items-center justify-around transition hover:bg-gray-200 dark:hover:bg-gray-700 dark:text-gray-200">
+                                <div class="flex items-center w-[90%] gap-2 p-2">
                                     <div>
-                                        <p class="max-w-xs"> @if ($usuario->admin == 1)
-                                            <label class="bg-purple-900/30 w-min p-1 rounded-lg text-xs">Admin</label>
-                                        @endif
+                                        <p class="max-w-xs">
+                                            @if ($usuario->admin == 1)
+                                                <label class="p-1 text-xs rounded-lg bg-purple-900/30 w-min">Admin</label>
+                                            @endif
                                             {{ $usuario->nome }}
                                         </p>
                                         <p class="italic font-thin ">Cadastrado em {{ $usuario->created_at->format('d/m/y') }}
                                         </p>
                                     </div>
-                                </a>
-                                <button onclick="modalUsuario({{$usuario->id}})"
-                                    class="rounded-full bg-red-500 h-12 w-12 material-icons mr-2 text-white hover:bg-red-600 transition">visibility</button>
+                                </div>
+                                <button onclick="modalUsuario({{ $usuario->id }})"
+                                    class="w-12 h-12 mr-2 text-white transition bg-red-500 rounded-full material-icons hover:bg-red-600">visibility</button>
                             </div>
                             @include('admin.modalUsuario')
                         @empty
-                        sem usuarios
+                            sem usuarios
                         @endforelse
                     </div>
                 </div>
@@ -78,7 +82,7 @@
                         class="shadow-lg border  dark:border-gray-600/20 sm:min-w-[300px] min-h-full max-h-80 rounded-lg  overflow-auto ">
                         @forelse ($categorias as $categoria)
                             <a href="#"
-                                class="block hover:bg-gray-200 dark:hover:bg-gray-700 transition py-2 sm:py-5 dark:text-gray-200 px-2">{{ $categoria->nome }}</a>
+                                class="block px-2 py-2 transition hover:bg-gray-200 dark:hover:bg-gray-700 sm:py-5 dark:text-gray-200">{{ $categoria->nome }}</a>
                         @empty
                             Não há categorias
                         @endforelse
@@ -88,28 +92,75 @@
 
 
             </div>
-            <h1 class="text-4xl dark:text-gray-200 text-bold hover:animate-pulse cursor-default mt-4">Gráficos</h1>
-            <div class="flex flex-col lg:flex-row m-12 gap-6 min-w-full justify-center">
+            <h1 class="mt-4 text-2xl cursor-default dark:text-gray-200 text-bold hover:animate-pulse">Gráficos</h1>
+            <div class="flex flex-col items-center justify-center gap-8 sm:items-start lg:flex-row">
+                {{-- grafico livros --}}
+                <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
                 <div>
-                    <h1 class="text-2xl dark:text-gray-200">Aquisição de usuários</h1>
-                    <div
-                        class="shadow-lg border  dark:border-gray-600/20 sm:min-w-[300px] min-h-full max-h-80 rounded-lg  overflow-auto ">
-                        <h1>Gráfico emprestimos realizados no tempo</h1>
+                    <h1 class="text-2xl cursor-default dark:text-gray-200 text-bold hover:animate-pulse">Livros por categoria
+                    </h1>
+                    <div class="relative sm:w-[450px] sm:h-[600px] border rounded-lg shadow-lg dark:border-gray-600/20 ">
+                        <canvas id="myChart"></canvas>
                     </div>
                 </div>
                 <div>
-                    <h1 class="text-2xl dark:text-gray-200">Livros</h1>
-                    <div
-                        class="shadow-lg border  dark:border-gray-600/20 sm:min-w-[300px] min-h-full max-h-80 rounded-lg  overflow-auto ">
-                        <h1>Gráfico pizza mostrando a quais categorias os livros pertencem </h1>
+                    <div>
+                        <h1 class="text-2xl cursor-default dark:text-gray-200 text-bold hover:animate-pulse">Grafico 2</h1>
+                        <div class="relative sm:w-[450px] sm:h-[200px] border rounded-lg shadow-lg dark:border-gray-600/20 ">
+                            <canvas id="myChart"></canvas>
+                        </div>
+                    </div>
+                    <div>
+                        <h1 class="text-2xl cursor-default dark:text-gray-200 text-bold hover:animate-pulse">Grafico 3</h1>
+                        <div class="relative sm:w-[450px] sm:h-[200px] border rounded-lg shadow-lg dark:border-gray-600/20 ">
+                            <canvas id="myChart"></canvas>
+                        </div>
                     </div>
 
                 </div>
             </div>
         </div>
 
+        <script>
+            const ctx = document.getElementById('myChart').getContext('2d');
+            const categorias = [
+                @foreach ($categorias as $categoria)
+                    '{{ $categoria->nome }}',
+                @endforeach
+            ];
+            const livrosPorCategoria = [
+                @foreach ($categorias as $categoria)
+                    '{{ $categoria->livros->count() }}',
+                @endforeach
+            ];
+
+            const datas = [
+                @foreach ($usuarios as $usuario)
+                    "{{ $usuario->created_at->format('Y-m-d') }}",
+                @endforeach
+            ];
+
+            new Chart(ctx, {
+                type: 'pie',
+                data: {
+                    labels: categorias,
+                    datasets: [{
+                        label: '# de Livros',
+                        data: livrosPorCategoria,
+                        borderWidth: 1
+                    }],
+
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+
+                }
+            });
+
+        </script>
     @else
-        <div class="flex flex-col justify-center p-20 items-center">
+        <div class="flex flex-col items-center justify-center p-20">
             <h1 class="text-4xl dark:text-gray-200 text-bold">Acesso restrito</h1>
         </div>
     @endauth

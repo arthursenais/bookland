@@ -1,90 +1,84 @@
 {{-- modal modificar livro --}}
 <div id="modalLivro-{{ $livro->id }}"
-    class="hidden inset-0 flex fixed bg-gray-900/50  items-center justify-center z-40">
+    class="fixed inset-0 z-40 items-center justify-center hidden bg-gray-900/50">
     <div class="flex flex-col bg-white dark:bg-slate-800 rounded p-4 dark:text-white sm:min-w-[500px]">
-        <div class="flex justify-between w-full items-center mb-4">
+        <div class="flex items-center justify-between w-full mb-4">
             <h1 onmouseover="displayTitulo(this)"
-                class="sm:text-2xl text-xl max-w-xs dark:bg-slate-800 bg-white truncate">{{ $livro->titulo }}</h1>
+                class="max-w-xs text-xl truncate bg-white sm:text-2xl dark:bg-slate-800">{{ $livro->titulo }}</h1>
             <h1 onmouseout="fecharTitulo(this)" id="tituloCompleto"
-                class="hidden sm:text-2xl text-xl max-w-full dark:bg-slate-800 bg-white py-3 rounded truncate">
+                class="hidden max-w-full py-3 text-xl truncate bg-white rounded sm:text-2xl dark:bg-slate-800">
                 {{ $livro->titulo }}</h1>
-            <button class="material-icons w-10 h-6 rounded-md text-white bg-red-500 hover:bg-red-600 transition"
+            <button class="w-10 h-6 text-white transition bg-red-500 rounded-md material-icons hover:bg-red-600"
                 onclick="fecharModalLivro({{ $livro->id }})">close</button>
         </div>
 
-        <div class="flex flex-col text-left align-center justify-center items-center gap-4">
+        <form method="POST" action="{{route('admin.updateLivro', $livro->id)}}" enctype="multipart/form-data" class="flex flex-col items-center justify-center gap-4 text-left align-center">
+            @csrf
             <div>
                 <img src="{{ $livro->imagem }}" class="max-w-[100px]">
                 <label for="imageupload"
-                    class="material-icons button rounded-full bg-emerald-500 p-2 relative bottom-6 left-20 hover:bg-emerald-600 cursor-pointer text-white transition">edit</label>
-                <input type="file" id="imageupload" class="hidden">
+                    class="relative p-2 text-white transition rounded-full cursor-pointer material-icons button bg-emerald-500 bottom-6 left-20 hover:bg-emerald-600">edit</label>
+                <input type="file" id="imageupload" name="imagem" class="hidden">
             </div>
+
             <table class="sm:w-full">
                 <tr>
                     <th>titulo:</th>
                     <th class="w-full">
-                        <input type="text" value="{{ $livro->titulo }}"
-                            class="dark:bg-slate-800 w-full truncate text-right">
+                        <input name="titulo" required type="text" value="{{ $livro->titulo }}" class="w-full text-right truncate dark:bg-slate-800">
                     </th>
                 </tr>
                 <tr>
                     <th>autor:</th>
                     <th class="text-right">
-                        <input type="text" value="{{ $livro->autor }}" class="dark:bg-slate-800 text-right truncate">
+                        <input name="autor" required  type="text" value="{{ $livro->autor }}" class="text-right truncate dark:bg-slate-800">
                     </th>
                 </tr>
                 <tr>
                     <th>categoria:</th>
                     <th class="text-right">
-                        <input type="text" value="{{ $livro->categoria->nome }}"
-                            class="dark:bg-slate-800 text-right truncate">
+                        <select required name="id_categoria"  class="dark:bg-slate-800 w-fit truncate  text-right rounded p-0.5 invalid:border invalid:border-red-600/20 focus:outline-none focus:ring invalid:focus:ring-red-600">
+                            @foreach ($categorias as $categoria)
+                                <option value="{{$categoria->id}}" {{ $categoria->id == $livro->categoria->id ? 'selected' : '' }}>{{$categoria->nome}}</option>
+                            @endforeach
+                        </select>
                     </th>
-                </tr>
-                <tr>
-                    <th>criado em:</th>
-                    <th class="text-right">
-                        <input type="datetime" value="{{ $livro->created_at->format('d/m/y H:i') }}"
-                            class="dark:bg-slate-800 text-right truncate">
-                    </th>
-
                 </tr>
 
                 <tr>
                     <th>disponiveis:</th>
                     <th class="text-right">
-                        <input type="number" min="0" max="100" value="{{ $livro->disponiveis }}"
-                            class="dark:bg-slate-800 text-right w-fit">
+                        <input type="number" name="disponiveis" min="0" max="100" value="{{ $livro->disponiveis }}"
+                            class="text-right dark:bg-slate-800 w-fit">
                     </th>
                 </tr>
             </table>
 
             <p>Descrição:</p>
 
-            <textarea class="dark:bg-gray-900 w-full" rows="8">{{ $livro->descricao }}</textarea>
+            <textarea name="descricao" class="w-full dark:bg-gray-900" rows="8">{{ $livro->descricao }}</textarea>
 
             <div class="flex justify-between w-full">
-                <button type="button"
-                    class="button sm:bg-transparent border border-indigo-600 sm:text-indigo-300 bg-indigo-600 px-2 rounded-full hover:bg-indigo-600 hover:text-white transition">aplicar</button>
-                <button onclick="modalDelete({{ $livro->id }})"
-                    class="button sm:bg-transparent border border-red-600 sm:text-red-600 bg-red-600 px-2 rounded-full hover:bg-red-600 hover:text-white transition">Apagar
+                <button type="submit" class="px-2 transition bg-indigo-600 border border-indigo-600 rounded-full button sm:bg-transparent sm:text-indigo-600 hover:bg-indigo-600 hover:text-white">aplicar</button>
+                <button type="button" onclick="modalDelete({{ $livro->id }})" class="px-2 transition bg-red-600 border border-red-600 rounded-full button sm:bg-transparent sm:text-red-600 hover:bg-red-600 hover:text-white">Apagar
                     livro</button>
             </div>
-        </div>
+        </form>
     </div>
 </div>
 {{-- modal deletar livro --}}
 <div id="modalDelete-{{ $livro->id }}"
-    class="hidden inset-0 flex fixed bg-gray-900/50 backdrop-blur-sm items-center justify-center z-50">
+    class="fixed inset-0 z-50 items-center justify-center hidden bg-gray-900/50 backdrop-blur-sm">
     <div>
-        <div class="flex flex-col bg-white dark:bg-slate-800 rounded p-4 dark:text-white ">
+        <div class="flex flex-col p-4 bg-white rounded dark:bg-slate-800 dark:text-white ">
             <h1>deseja apagar o livro <b class="text-red-500"> {{ $livro->titulo }}</b> ?</h1>
             <form class="flex justify-evenly" action="{{ route('admin.deleteLivro', $livro->id) }}" method="POST">
                 @method('DELETE')
                 @csrf
-                <button type="button" class="max-w-min text-blue-600 hover:text-blue-800 hover:underline transition"
+                <button type="button" class="text-blue-600 transition max-w-min hover:text-blue-800 hover:underline"
                     onclick="document.getElementById('modalDelete-' + {{ $livro->id }}).style.display = 'none';">Cancelar</button>
                 <button type="submit"
-                    class="button sm:bg-transparent  sm:text-red-600 bg-red-600 px-2 rounded-full hover:bg-red-600 hover:text-white transition">Apagar
+                    class="px-2 transition bg-red-600 rounded-full button sm:bg-transparent sm:text-red-600 hover:bg-red-600 hover:text-white">Apagar
                     o livro</button>
             </form>
         </div>
@@ -95,34 +89,34 @@
 {{-- modal adicionar livro --}}
 
 
-<div id="modalAddLivro" class="hidden inset-0 flex fixed bg-gray-900/50 backdrop-blur items-center justify-center z-50">
+<div id="modalAddLivro" class="fixed inset-0 z-50 items-center justify-center hidden bg-gray-900/50 backdrop-blur">
     <div class="flex flex-col bg-white dark:bg-slate-800 rounded p-4 dark:text-white sm:min-w-[500px]">
-        <div class="flex justify-between w-full items-center mb-4">
-            <h1 class="sm:text-2xl text-xl max-w-xs dark:bg-slate-800 bg-white truncate">Adicionar Livro</h1>
-            <button class="material-icons w-10 h-6 rounded-md text-white bg-red-500 hover:bg-red-600 transition"
+        <div class="flex items-center justify-between w-full mb-4">
+            <h1 class="max-w-xs text-xl truncate bg-white sm:text-2xl dark:bg-slate-800">Adicionar Livro</h1>
+            <button class="w-10 h-6 text-white transition bg-red-500 rounded-md material-icons hover:bg-red-600"
                 onclick="document.getElementById('modalAddLivro').style.display = 'none';">close</button>
         </div>
 
-        <form action="{{route('admin.storeLivro')}}" method="POST" enctype="multipart/form-data" class="flex flex-col text-left align-center justify-center items-center gap-4">
+        <form action="{{route('admin.storeLivro')}}" method="POST" enctype="multipart/form-data" class="flex flex-col items-center justify-center gap-4 text-left align-center">
             @csrf
             <div class="flex justify-start w-full">
                 <table class="sm:w-full">
                     <tr>
                         <th>titulo:</th>
                         <td class="w-full">
-                            <input name="titulo" type="text" placeholder="Digite aqui" required class="dark:bg-slate-800 w-full truncate  rounded p-0.5  invalid:border invalid:border invalid:border-red-600/20 focus:outline-none focus:ring invalid:focus:ring-red-600">
+                            <input name="titulo" type="text" placeholder="Digite aqui" required class="dark:bg-slate-800 w-full truncate  rounded p-0.5  invalid:border invalid:border-red-600/20 focus:outline-none focus:ring invalid:focus:ring-red-600">
                         </td>
                     </tr>
                     <tr>
                         <th>autor:</th>
                         <td class="w-full">
-                            <input name="autor" type="text" placeholder="Digite aqui" required class="dark:bg-slate-800 w-full truncate  rounded p-0.5  invalid:border invalid:border invalid:border-red-600/20 focus:outline-none focus:ring invalid:focus:ring-red-600">
+                            <input name="autor" type="text" placeholder="Digite aqui" required class="dark:bg-slate-800 w-full truncate  rounded p-0.5   invalid:border invalid:border-red-600/20 focus:outline-none focus:ring invalid:focus:ring-red-600">
                         </td>
                     </tr>
                     <tr>
                         <th>categoria:</th>
                         <td class="w-full">
-                            <select required name="id_categoria" class="dark:bg-slate-800 w-fit truncate  rounded p-0.5  invalid:border invalid:border invalid:border-red-600/20 focus:outline-none focus:ring invalid:focus:ring-red-600">
+                            <select required name="id_categoria" class="dark:bg-slate-800 w-fit truncate  rounded p-0.5   invalid:border invalid:border-red-600/20 focus:outline-none focus:ring invalid:focus:ring-red-600">
                                 @foreach ($categorias as $categoria)
                                     <option value="{{$categoria->id}}">{{$categoria->nome}}</option>
                                 @endforeach
@@ -134,22 +128,22 @@
                     <tr>
                         <th>disponiveis:</th>
                         <td class="w-full">
-                            <input type="number" name="disponiveis" min="0" max="100" required class="dark:bg-slate-800 max-w-min truncate  rounded p-0.5  invalid:border invalid:border invalid:border-red-600/20 focus:outline-none focus:ring invalid:focus:ring-red-600">
+                            <input type="number" name="disponiveis" min="0" max="100" required class="dark:bg-slate-800 max-w-min truncate  rounded p-0.5 invalid:border invalid:border-red-600/20 focus:outline-none focus:ring invalid:focus:ring-red-600">
                         </td>
                     </tr>
                 </table>
                 <div class="min-w-[250px] flex flex-col items-center">
-                    <label for="addImagem" class="material-icons button rounded-full bg-emerald-500 p-2 hover:bg-emerald-600 cursor-pointer text-white transition">image</label>
+                    <label for="addImagem" class="p-2 text-white transition rounded-full cursor-pointer material-icons button bg-emerald-500 hover:bg-emerald-600">image</label>
                 <input type="file" id="addImagem" name="imagem" class="hidden">
                 </div>
             </div>
             <p>Descrição:</p>
 
-            <textarea name="descricao" class="dark:bg-gray-900 w-full" rows="8" placeholder="Digite aqui"></textarea>
+            <textarea name="descricao" class="w-full dark:bg-gray-900" rows="8" placeholder="Digite aqui"></textarea>
 
             <div class="flex justify-between w-full">
-                <button type="submit" class="button sm:bg-transparent border border-indigo-600 sm:text-indigo-300 bg-indigo-600 px-2 rounded-full hover:bg-indigo-600 hover:text-white transition">Cadastrar</button>
-                <button type="button" onclick="document.getElementById('modalAddLivro').style.display = 'none';" class="button sm:bg-transparent border border-red-600 sm:text-red-600 bg-red-600 px-2 rounded-full hover:bg-red-600 hover:text-white transition">Cancelar</button>
+                <button type="submit" class="px-2 transition bg-indigo-600 border border-indigo-600 rounded-full button sm:bg-transparent sm:text-indigo-300 hover:bg-indigo-600 hover:text-white">Cadastrar</button>
+                <button type="button" onclick="document.getElementById('modalAddLivro').style.display = 'none';" class="px-2 transition bg-red-600 border border-red-600 rounded-full button sm:bg-transparent sm:text-red-600 hover:bg-red-600 hover:text-white">Cancelar</button>
             </div>
         </form>
     </div>

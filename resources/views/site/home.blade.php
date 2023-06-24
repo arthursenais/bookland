@@ -5,10 +5,10 @@
 
 
 
-    <div class="flex flex-col sm:px-32 px-2">
+    <div class="flex flex-col px-2 sm:px-32">
 
-        <h1 class="md:text-2xl mt-6 text-xl dark:text-gray-300 font-medium">Recém Adicionados</h1>
-        <div class="flex  gap-4   w-full overflow-x-auto overflow-y-clip py-3 ">
+        <h1 class="mt-6 text-xl font-medium md:text-2xl dark:text-gray-300">Recém Adicionados</h1>
+        <div class="flex w-full gap-4 py-3 overflow-x-auto overflow-y-clip ">
 
             @foreach ($livros as $livro)
                 <a href="{{ route('details', $livro->slug) }}"
@@ -21,9 +21,9 @@
 
         </div>
 
-        <h1 class="md:text-2xl mt-6 text-xl dark:text-gray-300 font-medium">Principais Escolhas</h1>
+        <h1 class="mt-6 text-xl font-medium md:text-2xl dark:text-gray-300">Principais Escolhas</h1>
 
-        <div class="flex  gap-4  w-full overflow-x-auto overflow-y-clip py-3 ">
+        <div class="flex w-full gap-4 py-3 overflow-x-auto overflow-y-clip ">
 
             @foreach ($livros as $livro)
                 <a href="{{ route('details', $livro->slug) }}"
@@ -36,9 +36,9 @@
 
         </div>
 
-        <h1 class="md:text-2xl mt-6 text-xl dark:text-gray-300 font-medium">Fantasia</h1>
+        <h1 class="mt-6 text-xl font-medium md:text-2xl dark:text-gray-300">Fantasia</h1>
 
-        <div class="flex  gap-4  w-full overflow-x-auto overflow-y-clip py-3 ">
+        <div class="flex w-full gap-4 py-3 overflow-x-auto overflow-y-clip ">
 
             @foreach ($livros as $livro)
                 <a href="{{ route('details', $livro->slug) }}"

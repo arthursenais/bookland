@@ -1,13 +1,13 @@
 <div id="modalUsuario-{{ $usuario->id }}"
-    class="hidden inset-0 flex fixed bg-gray-900/50 items-center justify-center z-50">
+    class="fixed inset-0 z-50 items-center justify-center hidden bg-gray-900/50">
     <div class="flex flex-col bg-white dark:bg-slate-800 rounded p-4 dark:text-white sm:min-w-[300px]">
-        <div class="flex justify-between w-full items-center mb-4">
-            <h1 class="sm:text-4xl text-xl">Usuário</h1>
-            <button class="material-icons  w-10 h-6 rounded-md text-white bg-red-500 hover:bg-red-600 transition"
+        <div class="flex items-center justify-between w-full mb-4">
+            <h1 class="text-xl sm:text-4xl">Usuário</h1>
+            <button class="w-10 h-6 text-white transition bg-red-500 rounded-md material-icons hover:bg-red-600"
                 onclick="fecharModal({{ $usuario->id }})">close</button>
         </div>
 
-        <table class="hidden sm:table border-collapse border border-slate-500 text-left border-spacing-2">
+        <table class="hidden text-left border border-collapse sm:table border-slate-500 border-spacing-2">
             <thead class="border border-slate-500">
                 <tr>
                     <th class="sm:p-4">id</th>
@@ -36,7 +36,7 @@
                 </tr>
             </tbody>
         </table>
-        <table class="sm:hidden text-left">
+        <table class="text-left sm:hidden">
             <thead>
                 <tr>
                     <th>Id</th>
