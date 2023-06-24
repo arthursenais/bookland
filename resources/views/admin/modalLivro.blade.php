@@ -15,10 +15,10 @@
         <form method="POST" action="{{route('admin.updateLivro', $livro->id)}}" enctype="multipart/form-data" class="flex flex-col items-center justify-center gap-4 text-left align-center">
             @csrf
             <div>
-                <img src="{{ $livro->imagem }}" class="max-w-[100px]">
-                <label for="imageupload"
+                <img src="{{ Str::startsWith($livro->imagem, 'http') ? $livro->imagem : asset("storage/{$livro->imagem}") }}" class="max-w-[100px]">
+                <label for="imageupload-{{$livro->id}}"
                     class="relative p-2 text-white transition rounded-full cursor-pointer material-icons button bg-emerald-500 bottom-6 left-20 hover:bg-emerald-600">edit</label>
-                <input type="file" id="imageupload" name="imagem" class="hidden">
+                <input type="file" id="imageupload-{{$livro->id}}" name="imagem" class="hidden">
             </div>
 
             <table class="sm:w-full">

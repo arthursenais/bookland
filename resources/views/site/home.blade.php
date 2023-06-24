@@ -28,7 +28,7 @@
             @foreach ($livros as $livro)
                 <a href="{{ route('details', $livro->slug) }}"
                     class="sm:max-w-[200px] max-w-[120px] sm:hover:scale-105 ease-in transition-all shrink-0">
-                    <img src="{{ $livro->imagem }}" class="rounded">
+                    <img src="{{ Str::startsWith($livro->imagem, 'http') ? $livro->imagem : asset("storage/{$livro->imagem}") }}" class="rounded">
                     {{-- <p class="line-clamp-2 dark:text-gray-300"> {{ $livro->titulo }} </p> --}}
                 </a>
             @endforeach
@@ -43,7 +43,7 @@
             @foreach ($livros as $livro)
                 <a href="{{ route('details', $livro->slug) }}"
                     class="sm:max-w-[200px] max-w-[120px] sm:hover:scale-105 ease-in transition-all shrink-0">
-                    <img src="{{ $livro->imagem }}" class="rounded">
+                    <img src="{{ Str::startsWith($livro->imagem, 'http') ? $livro->imagem : asset("storage/{$livro->imagem}") }}" class="rounded">
                     {{-- <p class="line-clamp-2 dark:text-gray-300"> {{ $livro->titulo }} </p> --}}
                 </a>
             @endforeach
