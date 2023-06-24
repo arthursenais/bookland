@@ -28,7 +28,7 @@
                 <div class="flex justify-between w-full">
                     <button type="submit"
                         class="px-2 transition bg-indigo-600 border border-indigo-600 rounded-full button sm:bg-transparent sm:text-indigo-600 hover:bg-indigo-600 hover:text-white">aplicar</button>
-                    <button type="button" onclick="modalDelete({{ $categoria->id }})"
+                    <button type="button" onclick="modalDeleteCategoria({{ $categoria->id }})"
                         class="px-2 transition bg-red-600 border border-red-600 rounded-full button sm:bg-transparent sm:text-red-600 hover:bg-red-600 hover:text-white">Apagar
                         categoria</button>
                 </div>
@@ -36,7 +36,7 @@
     </div>
 </div>
 {{-- modal deletar categoria --}}
-<div id="modalDelete-{{ $categoria->id }}"
+<div id="modalDeleteCategoria-{{ $categoria->id }}"
     class="fixed inset-0 z-50 items-center justify-center hidden bg-gray-900/50 backdrop-blur-sm">
     <div>
         <div class="flex flex-col p-4 bg-white rounded dark:bg-slate-800 dark:text-white ">
@@ -46,7 +46,7 @@
                 @method('DELETE')
                 @csrf
                 <button type="button" class="text-blue-600 transition max-w-min hover:text-blue-800 hover:underline"
-                    onclick="document.getElementById('modalDelete-' + {{ $categoria->id }}).style.display = 'none';">Cancelar</button>
+                    onclick="document.getElementById('modalDeleteCategoria-' + {{ $categoria->id }}).style.display = 'none';">Cancelar</button>
                 <button type="submit" class="px-2 transition bg-red-600 rounded-full button sm:bg-transparent sm:text-red-600 hover:bg-red-600 hover:text-white">Apagar a categoria</button>
             </form>
         </div>
@@ -108,14 +108,14 @@
         document.getElementById('modalCategoria-' + idCategoria).style.display = 'none';
     }
     window.addEventListener('click', function(event) {
-        var modal = document.getElementById('modalDelete-' + {{ $categoria->id }});
+        var modal = document.getElementById('modalDeleteCategoria-' + {{ $categoria->id }});
         if (event.target === modal) {
             modal.style.display = 'none';
         }
     });
 
-    function modalDelete(idCategoria) {
-        document.getElementById('modalDelete-' + idCategoria).style.display = 'flex';
+    function modalDeleteCategoria(idCategoria) {
+        document.getElementById('modalDeleteCategoria-' + idCategoria).style.display = 'flex';
     }
 
 

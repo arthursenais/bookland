@@ -41,7 +41,8 @@
                         @endforelse
                     </div>
                     <button type="button" onclick="modalAddLivro()"
-                        class="relative w-16 h-16 mr-2 text-white transition bg-indigo-500 rounded-full bottom-4 right-4 material-icons hover:bg-indigo-600">add</button>
+                        class="relative w-16 h-16 text-white transition bg-indigo-500 rounded-full bottom-4 right-4 material-icons hover:bg-indigo-600">add</button>
+                    <button class="p-3 bg-red-600 rounded ">Apagar tudo</button>
                 </div>
 
 
@@ -77,21 +78,21 @@
 
 
                 <div>
-                    <h1 class="text-2xl dark:text-gray-200"> {{ $categorias->count() }}Categorias</h1>
+                    <h1 class="text-2xl dark:text-gray-200"> {{ $categorias->count() }} Categorias</h1>
                     <div
                         class="shadow-lg border  dark:border-gray-600/20 sm:min-w-[300px] min-h-full max-h-80 rounded-lg  overflow-auto ">
                         @forelse ($categorias as $categoria)
                             <div
                                 class="flex items-center justify-around transition hover:bg-gray-200 dark:hover:bg-gray-700 dark:text-gray-200">
-                                <div class="flex items-center w-[90%] gap-2 p-2">
+                                <a href="{{ Route('pesquisar', ['pesquisa' => $categoria->nome]) }}"
+                                    class="flex items-center w-[90%] gap-2 py-5 p-2">
                                     <div>
                                         <p class="max-w-xs">
-
                                             {{ $categoria->nome }}
                                         </p>
 
                                     </div>
-                                </div>
+                                </a>
                                 <button onclick="modalCategoria({{ $categoria->id }})"
                                     class="w-12 h-12 mr-2 text-white transition bg-red-500 rounded-full material-icons hover:bg-red-600">edit</button>
                             </div>
@@ -100,6 +101,10 @@
                             sem usuarios
                         @endforelse
                     </div>
+                    <button type="button" onclick="modalAddCategoria()"
+                        class="relative w-16 h-16 text-white transition bg-indigo-500 rounded-full bottom-4 right-4 material-icons hover:bg-indigo-600">add</button>
+                    <button  class="p-3 bg-red-600 rounded ">Apagar tudo</button>
+
                 </div>
 
 
