@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Categoria;
 use Illuminate\Http\Request;
 use App\Models\Livro;
 use App\Models\User;
@@ -11,7 +12,8 @@ class SiteController extends Controller
 {
     public function index() {
         $livros = Livro::all();
-        return view('site.home', compact('livros'));
+        $categorias = Categoria::all();
+        return view('site.home', compact('livros','categorias'));
     }
 
     public function pesquisar(Request $pesquisa) {
