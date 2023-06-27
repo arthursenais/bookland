@@ -74,4 +74,13 @@ class CategoriaController extends Controller
         $categoria->delete();
         return redirect()->route('dashboard')->with('sucesso','categoria removida com sucesso!');
     }
+    public function destroyAll()
+    {
+        $categorias = Categoria::all();
+        foreach ($categorias as $categoria) {
+            $categoria->livros()->delete();
+            $categoria->delete();
+        }
+        return redirect()->route('dashboard')->with('sucesso','Categorias removidas com sucesso');
+    }
 }

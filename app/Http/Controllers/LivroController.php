@@ -104,4 +104,9 @@ class LivroController extends Controller
         $livro->delete();
         return redirect()->route('dashboard')->with('sucesso','Livro removido com sucesso!');
     }
+    public function destroyAll()
+    {
+        Livro::truncate();
+        return redirect()->route('dashboard')->with('sucesso','Livros removidos com sucesso');
+    }
 }

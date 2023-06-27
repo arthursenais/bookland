@@ -1,4 +1,6 @@
 {{-- modal modificar livro --}}
+@isset($livro)
+
 <div id="modalLivro-{{ $livro->id }}"
     class="fixed inset-0 z-40 items-center justify-center hidden bg-gray-900/50">
     <div class="flex flex-col bg-white dark:bg-slate-800 rounded p-4 dark:text-white sm:min-w-[500px]">
@@ -18,7 +20,7 @@
                 <img src="{{ Str::startsWith($livro->imagem, 'http') ? $livro->imagem : asset("storage/{$livro->imagem}") }}" class="max-w-[100px]">
                 <label for="imageupload-{{$livro->id}}"
                     class="relative p-2 text-white transition rounded-full cursor-pointer material-icons button bg-emerald-500 bottom-6 left-20 hover:bg-emerald-600">edit</label>
-                <input type="file" id="imageupload-{{$livro->id}}" name="imagem" class="hidden">
+                <input type="file" id="imageupload-{{$livro->id}}"  name="imagem" class="hidden">
             </div>
 
             <table class="sm:w-full">
@@ -56,7 +58,7 @@
 
             <p>Descrição:</p>
 
-            <textarea name="descricao" class="w-full dark:bg-gray-900" rows="8">{{ $livro->descricao }}</textarea>
+            <textarea name="descricao" required class="w-full dark:bg-gray-900" rows="8">{{ $livro->descricao }}</textarea>
 
             <div class="flex justify-between w-full">
                 <button type="submit" class="px-2 transition bg-indigo-600 border border-indigo-600 rounded-full button sm:bg-transparent sm:text-indigo-600 hover:bg-indigo-600 hover:text-white">aplicar</button>
@@ -85,6 +87,7 @@
     </div>
 </div>
 
+@endisset
 
 {{-- modal adicionar livro --}}
 
@@ -96,7 +99,7 @@
             <button class="w-10 h-6 text-white transition bg-red-500 rounded-md material-icons hover:bg-red-600"
                 onclick="document.getElementById('modalAddLivro').style.display = 'none';">close</button>
         </div>
-
+        @if(count( $categorias) > 0)
         <form action="{{route('admin.storeLivro')}}" method="POST" enctype="multipart/form-data" class="flex flex-col items-center justify-center gap-4 text-left align-center">
             @csrf
             <div class="flex justify-start w-full">
@@ -116,10 +119,14 @@
                     <tr>
                         <th>categoria:</th>
                         <td class="w-full">
+
+
                             <select required name="id_categoria" class="dark:bg-slate-800 w-fit truncate  rounded p-0.5   invalid:border invalid:border-red-600/20 focus:outline-none focus:ring invalid:focus:ring-red-600">
                                 @foreach ($categorias as $categoria)
                                     <option value="{{$categoria->id}}">{{$categoria->nome}}</option>
+
                                 @endforeach
+
                             </select>
 
                         </td>
@@ -134,7 +141,8 @@
                 </table>
                 <div class="min-w-[250px] flex flex-col items-center">
                     <label for="addImagem" class="p-2 text-white transition rounded-full cursor-pointer material-icons button bg-emerald-500 hover:bg-emerald-600">image</label>
-                <input type="file" id="addImagem" name="imagem" class="hidden">
+                <input type="file" id="addImagem" required name="imagem" class="hidden">
+                imagem
                 </div>
             </div>
             <p>Descrição:</p>
@@ -146,29 +154,37 @@
                 <button type="button" onclick="document.getElementById('modalAddLivro').style.display = 'none';" class="px-2 transition bg-red-600 border border-red-600 rounded-full button sm:bg-transparent sm:text-red-600 hover:bg-red-600 hover:text-white">Cancelar</button>
             </div>
         </form>
+        @else
+        <p>Não há categorias para adicionar um livro</p>
+         
+        @endif
     </div>
 </div>
-
+@isset($livro)
+    <script>
+        window.addEventListener('click', function(event) {
+            var modal = document.getElementById('modalLivro-' + {{ $livro->id }});
+            if (event.target === modal) {
+                modal.style.display = 'none';
+            }
+        });
+        window.addEventListener('click', function(event) {
+            var modal = document.getElementById('modalDelete-' + {{ $livro->id }});
+            if (event.target === modal) {
+                modal.style.display = 'none';
+            }
+        });
+    </script>
+@endisset
 <script>
+
     function modalLivro(idLivro) {
         document.getElementById('modalLivro-' + idLivro).style.display = 'flex';
     }
-    window.addEventListener('click', function(event) {
-        var modal = document.getElementById('modalLivro-' + {{ $livro->id }});
-        if (event.target === modal) {
-            modal.style.display = 'none';
-        }
-    });
 
     function fecharModalLivro(idLivro) {
         document.getElementById('modalLivro-' + idLivro).style.display = 'none';
     }
-    window.addEventListener('click', function(event) {
-        var modal = document.getElementById('modalDelete-' + {{ $livro->id }});
-        if (event.target === modal) {
-            modal.style.display = 'none';
-        }
-    });
 
     function modalDelete(idLivro) {
         document.getElementById('modalDelete-' + idLivro).style.display = 'flex';

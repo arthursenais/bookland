@@ -48,5 +48,7 @@ Route::post('/admin/livro/store', [LivroController::class,'store'])->name('admin
 Route::post('/admin/livro/update/{id}', [LivroController::class,'update'])->name('admin.updateLivro');
 
 Route::delete('/admin/categoria/delete/{id}', [CategoriaController::class,'destroy'])->name('admin.deleteCategoria');
+Route::delete('/admin/livro/deleteAll/', [LivroController::class,'destroyAll'])->name('admin.deleteAllLivros');
+Route::delete('/admin/categoria/deleteAll/', [CategoriaController::class,'destroyAll'])->name('admin.deleteAllCategorias');
 Route::post('/admin/categoria/store', [CategoriaController::class,'store'])->name('admin.storeCategoria');
 Route::post('/admin/categoria/update/{id}', [CategoriaController::class,'update'])->name('admin.updateCategoria');

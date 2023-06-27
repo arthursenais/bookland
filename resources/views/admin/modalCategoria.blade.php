@@ -1,4 +1,6 @@
 {{-- modal modificar categoria --}}
+@isset($categoria)
+
 <div id="modalCategoria-{{ $categoria->id }}"class="fixed inset-0 z-40 items-center justify-center hidden bg-gray-900/50">
     <div class="flex flex-col bg-white dark:bg-slate-800 rounded p-4 dark:text-white sm:min-w-[500px]">
         <div class="flex items-center justify-between w-full mb-4">
@@ -52,6 +54,7 @@
         </div>
     </div>
 </div>
+@endisset
 
 
 {{-- modal adicionar categoria --}}
@@ -81,7 +84,7 @@
             </div>
             <p>Descrição:</p>
 
-            <textarea name="descricao" class="w-full dark:bg-gray-900" rows="8" placeholder="Digite aqui"></textarea>
+            <textarea name="descricao" required class="w-full dark:bg-gray-900" rows="8" placeholder="Digite aqui"></textarea>
 
             <div class="flex justify-between w-full">
                 <button type="submit"
@@ -92,27 +95,32 @@
         </form>
     </div>
 </div>
+@isset($categoria)
+    <script>
+
+        window.addEventListener('click', function(event) {
+            var modal = document.getElementById('modalCategoria-' + {{ $categoria->id }});
+            if (event.target === modal) {
+                modal.style.display = 'none';
+            }
+        });
+        window.addEventListener('click', function(event) {
+            var modal = document.getElementById('modalDeleteCategoria-' + {{ $categoria->id }});
+            if (event.target === modal) {
+                modal.style.display = 'none';
+            }
+        });
+    </script>
+@endisset
 
 <script>
     function modalCategoria(idCategoria) {
         document.getElementById('modalCategoria-' + idCategoria).style.display = 'flex';
     }
-    window.addEventListener('click', function(event) {
-        var modal = document.getElementById('modalCategoria-' + {{ $categoria->id }});
-        if (event.target === modal) {
-            modal.style.display = 'none';
-        }
-    });
 
     function fecharModalCategoria(idCategoria) {
         document.getElementById('modalCategoria-' + idCategoria).style.display = 'none';
     }
-    window.addEventListener('click', function(event) {
-        var modal = document.getElementById('modalDeleteCategoria-' + {{ $categoria->id }});
-        if (event.target === modal) {
-            modal.style.display = 'none';
-        }
-    });
 
     function modalDeleteCategoria(idCategoria) {
         document.getElementById('modalDeleteCategoria-' + idCategoria).style.display = 'flex';
@@ -120,6 +128,7 @@
 
 
     function modalAddCategoria() {
+
         document.getElementById('modalAddCategoria').style.display = 'flex';
     }
     window.addEventListener('click', function(event) {
