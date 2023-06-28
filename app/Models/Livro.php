@@ -22,5 +22,9 @@ class Livro extends Model
     public function categoria() {
         return $this->belongsTo(Categoria::class,'id_categoria');
     }
+    public function emprestimos() {
+        return $this->belongsToMany(Livro::class, 'emprestimos', 'id_usuario', 'id_livro');
+
+    }
 
 }

@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\EmprestimoController;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\SiteController;
 use App\Http\Controllers\LivroController;
@@ -29,9 +30,13 @@ Route::get('/', [SiteController::class, 'index'])->name('index');
 Route::get('/novidades', [LivroController::class,'novidades'])->name('novidades');
 Route::get('/populares', [LivroController::class,'populares'])->name('populares');
 Route::get('/livro/{slug}', [SiteController::class,'details'])->name('details');
+
+
 Route::view('/emdesenvolvimento', 'site.wip')->name('wip');
 Route::get('/pesquisa', [SiteController::class,'pesquisar'])->name('pesquisar');
 
+Route::get('/emprestimos', [EmprestimoController::class,'index'])->name('meusEmprestimos');
+Route::get('/novoEmprestimo/{id}', [EmprestimoController::class,'create'])->name('createEmprestimo');
 
 
 

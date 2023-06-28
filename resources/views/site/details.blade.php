@@ -22,8 +22,7 @@
 
                 <div
                     class="flex transition ease-in-out sm:mt-10 sm:hover:scale-105 sm:w-fit max-sm:my-5 max-sm:justify-center">
-                    <button
-                        class="p-2 text-white transition border-t border-b border-l rounded sm:bg-inherit border-sky-600 hover:bg-sky-600 hover:text-white bg-sky-600 sm:p-0 sm:px-2 sm:text-sky-600 sm:rounded-l-full">Empréstimo</button>
+                    <a href="{{route('createEmprestimo' , $livro->id)}}" class="p-2 text-white transition border-t border-b border-l rounded sm:bg-inherit border-sky-600 hover:bg-sky-600 hover:text-white bg-sky-600 sm:p-0 sm:px-2 sm:text-sky-600 sm:rounded-l-full">Empréstimo</a>
                     <button
                         class="p-2 text-white transition bg-red-500 border-t border-b border-r border-red-500 rounded sm:bg-inherit hover:bg-red-500 hover:text-white sm:p-0 sm:px-2 sm:text-red-500 sm:rounded-r-full">Reserva</button>
                 </div>
