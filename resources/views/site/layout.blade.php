@@ -73,11 +73,11 @@
                 <div class="flex items-center justify-center flex-1 sm:items-stretch sm:justify-start">
                     <div class="flex items-center flex-shrink-0">
 
-                        <p class="block w-auto h-8 font-medium lg:hidden text-slate-300">Bomlivro</p>
+                        <p class="block w-auto h-8 font-medium lg:hidden text-slate-300">BookLand</p>
 
                         <p
                             class="hidden w-auto h-8 py-1 font-medium cursor-default lg:block text-slate-300 hover:animate-pulse">
-                            Bomlivro</p>
+                            BookLand</p>
                     </div>
 
                     <div class="hidden sm:ml-6 sm:block ">
@@ -123,6 +123,12 @@
                                             </li>
                                         @endcan
                                         <li>
+                                            <a href="{{ route('meusEmprestimos') }}"
+                                                class="block px-4 py-2 text-gray-100 transition hover:bg-gray-700">
+                                                Meus empréstimos
+                                            </a>
+                                        </li>
+                                        <li>
                                             <a href="{{ route('login.logout') }}"
                                                 class="block px-4 py-2 text-red-400 transition hover:bg-gray-700">
                                                 Sair
@@ -133,10 +139,11 @@
                             </div>
                         </div>
                     @else
-                    <div class="p-4">
-                        <a href="{{ route('login') }}" class="px-3 py-2 text-sm font-medium text-gray-300 transition rounded-md hover:bg-gray-700 hover:text-white">Login</a>
-                    </div>
-                            @endauth
+                        <div class="p-4">
+                            <a href="{{ route('login') }}"
+                                class="px-3 py-2 text-sm font-medium text-gray-300 transition rounded-md hover:bg-gray-700 hover:text-white">Login</a>
+                        </div>
+                    @endauth
                 </form>
             </div>
         </div>
@@ -184,7 +191,7 @@
     <footer class="justify-between p-8 mt-10 border-t border-slate-200 sm:flex text-slate-500 dark:border-slate-200/5">
         <div>
             <div class="mb-6 sm:mb-0 sm:flex">
-                <p class="text-2xl sm:text-base">Copyright © 2023 Bomlivro.com</p>
+                <p class="text-2xl sm:text-base">Copyright © 2023 BookLand.com</p>
                 <p class="sm:ml-4 sm:pl-4 sm:border-l sm:border-slate-200 dark:sm:border-slate-200/5">
                     <a class="text-2xl hover:text-slate-900 dark:hover:text-slate-400 sm:text-base "
                         href="#">Voltar ao topo</a>

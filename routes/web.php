@@ -35,10 +35,11 @@ Route::get('/livro/{slug}', [SiteController::class,'details'])->name('details');
 Route::view('/emdesenvolvimento', 'site.wip')->name('wip');
 Route::get('/pesquisa', [SiteController::class,'pesquisar'])->name('pesquisar');
 
-Route::get('/emprestimos', [EmprestimoController::class,'index'])->name('meusEmprestimos');
-Route::get('/novoEmprestimo/{id}', [EmprestimoController::class,'create'])->name('createEmprestimo');
-
-
+Route::get('/emprestimos', [EmprestimoController::class,'index'])->name('meusEmprestimos')->middleware('auth');
+Route::get('/novoEmprestimo/{id}', [EmprestimoController::class,'create'])->name('createEmprestimo')->middleware('auth');
+Route::post('/emprestimo/store/', [EmprestimoController::class,'store'])->name('storeEmprestimo')->middleware('auth');
+Route::delete('/emprestimo/delete/{id}', [EmprestimoController::class,'destroy'])->name('user.deleteEmprestimo')->middleware('auth');
+Route::post('/admin/emprestimo/update/{emprestimo}', [EmprestimoController::class,'update'])->name('admin.arquivarEmprestimo');
 
 
 Route::get('/login', [SiteController::class, 'login'])->name('login');
@@ -57,3 +58,4 @@ Route::delete('/admin/livro/deleteAll/', [LivroController::class,'destroyAll'])-
 Route::delete('/admin/categoria/deleteAll/', [CategoriaController::class,'destroyAll'])->name('admin.deleteAllCategorias');
 Route::post('/admin/categoria/store', [CategoriaController::class,'store'])->name('admin.storeCategoria');
 Route::post('/admin/categoria/update/{id}', [CategoriaController::class,'update'])->name('admin.updateCategoria');
+Route::get('/arquivo', [EmprestimoController::class,'arquivados'])->name('admin.arquivados')->middleware('auth');

@@ -66,7 +66,7 @@ class LivroController extends Controller
     {
         //
     }
-    
+
     /**
      * Show the form for editing the specified resource.
      */
@@ -106,7 +106,10 @@ class LivroController extends Controller
     }
     public function destroyAll()
     {
-        Livro::truncate();
+        $livros = Livro::all();
+        foreach ($livros as $livro) {
+            $livro->delete();
+        }
         return redirect()->route('dashboard')->with('sucesso','Livros removidos com sucesso');
     }
 }

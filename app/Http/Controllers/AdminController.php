@@ -7,6 +7,7 @@ use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\Gate;
+use App\Models\Emprestimo;
 
 
 class AdminController extends Controller
@@ -15,10 +16,9 @@ class AdminController extends Controller
         $livros = Livro::all();
         $usuarios = User::all();
         $categorias = Categoria::all();
-        $ultimoMes = Carbon::now()->subMonth();
-        $usuariosAdquiridos = User::where('created_at', '>=', $ultimoMes)->get();
+        $emprestimos = Emprestimo::where('arquivado',0)->get();
         if (Gate::allows('verDashboard')) {
-            return view('admin.dashboard', compact('livros','usuarios','categorias','ultimoMes','usuariosAdquiridos'));
+            return view('admin.dashboard', compact('livros','usuarios','categorias','emprestimos'));
         } else {
             return redirect()->route('index') ;
         }

@@ -17,9 +17,13 @@ return new class extends Migration
             $table->unsignedBigInteger('id_usuario');
 
             $table->foreign('id_usuario')->references('id')->on('users')->onDelete('cascade')->onUpdate('cascade');
-            $table->unsignedBigInteger('id_livro');
+            $table->unsignedBigInteger('id_livro')->nullable();
 
-            $table->foreign('id_livro')->references('id')->on('livros')->onDelete('cascade')->onUpdate('cascade');
+            $table->double('multa')->nullable();
+            $table->unsignedTinyInteger('notificacao')->default(0);
+            $table->unsignedTinyInteger('arquivado')->default(0);
+
+            $table->foreign('id_livro')->references('id')->on('livros')->onDelete('set null')->onUpdate('cascade');
             $table->timestamp('data_limite');
             $table->timestamps();
         });

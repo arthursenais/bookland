@@ -13,6 +13,9 @@ class Emprestimo extends Model
         'id_usuario',
         'id_livro',
         'data_limite',
+        'multa',
+        'notificacao',
+        'arquivado'
     ];
     public function usuario()
     {

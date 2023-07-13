@@ -156,7 +156,7 @@
         </form>
         @else
         <p>Não há categorias para adicionar um livro</p>
-         
+
         @endif
     </div>
 </div>
@@ -201,3 +201,5 @@
         }
     });
 </script>
+
+

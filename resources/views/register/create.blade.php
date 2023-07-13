@@ -11,11 +11,11 @@
 
 <body class="bg-white dark:bg-slate-800">
 
-    <div class="flex min-h-full flex-col justify-center px-6 py-12 lg:px-8">
+    <div class="flex flex-col justify-center min-h-full px-6 py-12 lg:px-8">
         <div class="sm:mx-auto sm:w-full sm:max-w-sm">
-            <a href="{{ route('index') }}" class="sm:w-auto"><img class="mx-auto h-10 w-auto"
+            <a href="{{ route('index') }}" class="sm:w-auto"><img class="w-auto h-10 mx-auto"
                     src="https://tailwindui.com/img/logos/mark.svg?color=indigo&shade=600" alt="suabibli.on"></a>
-            <h2 class="mt-10 text-center text-2xl font-bold leading-9 tracking-tight text-gray-900 dark:text-white">Nova
+            <h2 class="mt-10 text-2xl font-bold leading-9 tracking-tight text-center text-gray-900 dark:text-white">Nova
                 conta</h2>
         </div>
 
@@ -27,10 +27,7 @@
                         class="block text-sm font-medium leading-6 text-gray-900 dark:text-white">Nome</label>
                     <div class="mt-2">
                         <input id="nome" name="nome" type="text" autocomplete="nome" required
-                            class="mt-1 block w-full px-3 py-2 bg-white border border-slate-300 rounded-md text-sm shadow-sm placeholder-slate-400
-                        focus:outline-none focus:border-sky-500 focus:ring-1 focus:ring-sky-500
-                        invalid:border-red-500 invalid:text-red-600
-                        focus:invalid:border-red-500 focus:invalid:ring-red-500 ">
+                            class="block w-full px-3 py-2 mt-1 text-sm bg-white border rounded-md shadow-sm border-slate-300 placeholder-slate-400 focus:outline-none focus:border-sky-500 focus:ring-1 focus:ring-sky-500 invalid:border-red-500 invalid:text-red-600 focus:invalid:border-red-500 focus:invalid:ring-red-500 ">
                     </div>
                 </div>
                 <div>
@@ -38,10 +35,7 @@
                         class="block text-sm font-medium leading-6 text-gray-900 dark:text-white">Sobrenome</label>
                     <div class="mt-2">
                         <input id="sobrenome" name="sobrenome" type="text" autocomplete="sobrenome" required
-                            class="mt-1 block w-full px-3 py-2 bg-white border border-slate-300 rounded-md text-sm shadow-sm placeholder-slate-400
-                        focus:outline-none focus:border-sky-500 focus:ring-1 focus:ring-sky-500
-                        invalid:border-red-500 invalid:text-red-600
-                        focus:invalid:border-red-500 focus:invalid:ring-red-500 ">
+                            class="block w-full px-3 py-2 mt-1 text-sm bg-white border rounded-md shadow-sm border-slate-300 placeholder-slate-400 focus:outline-none focus:border-sky-500 focus:ring-1 focus:ring-sky-500 invalid:border-red-500 invalid:text-red-600 focus:invalid:border-red-500 focus:invalid:ring-red-500 ">
                     </div>
                 </div>
                 <div>
@@ -49,10 +43,7 @@
                         class="block text-sm font-medium leading-6 text-gray-900 dark:text-white">Email</label>
                     <div class="mt-2">
                         <input id="email" name="email" type="email" autocomplete="email" required
-                            class="mt-1 block w-full px-3 py-2 bg-white border border-slate-300 rounded-md text-sm shadow-sm placeholder-slate-400
-                        focus:outline-none focus:border-sky-500 focus:ring-1 focus:ring-sky-500
-                        invalid:border-red-500 invalid:text-red-600
-                        focus:invalid:border-red-500 focus:invalid:ring-red-500 ">
+                            class="block w-full px-3 py-2 mt-1 text-sm bg-white border rounded-md shadow-sm border-slate-300 placeholder-slate-400 focus:outline-none focus:border-sky-500 focus:ring-1 focus:ring-sky-500 invalid:border-red-500 invalid:text-red-600 focus:invalid:border-red-500 focus:invalid:ring-red-500 ">
                     </div>
                 </div>
 
@@ -64,10 +55,7 @@
                     </div>
                     <div class="mt-2">
                         <input id="password" name="password" type="password" autocomplete="current-password" required
-                            class="mt-1 block w-full px-3 py-2 bg-white border border-slate-300 rounded-md text-sm shadow-sm placeholder-slate-400
-                focus:outline-none focus:border-sky-500 focus:ring-1 focus:ring-sky-500
-                invalid:border-red-500 invalid:text-red-600
-                focus:invalid:border-red-500 focus:invalid:ring-red-500">
+                            class="block w-full px-3 py-2 mt-1 text-sm bg-white border rounded-md shadow-sm border-slate-300 placeholder-slate-400 focus:outline-none focus:border-sky-500 focus:ring-1 focus:ring-sky-500 invalid:border-red-500 invalid:text-red-600 focus:invalid:border-red-500 focus:invalid:ring-red-500">
                     </div>
                 </div>
                 <div>
@@ -77,10 +65,7 @@
                     </div>
                     <div class="mt-2">
                         <input id="password" name="password" type="password" autocomplete="current-password" required
-                            class="mt-1 block w-full px-3 py-2 bg-white border border-slate-300 rounded-md text-sm shadow-sm placeholder-slate-400
-                focus:outline-none focus:border-sky-500 focus:ring-1 focus:ring-sky-500
-                invalid:border-red-500 invalid:text-red-600
-                focus:invalid:border-red-500 focus:invalid:ring-red-500">
+                            class="block w-full px-3 py-2 mt-1 text-sm bg-white border rounded-md shadow-sm border-slate-300 placeholder-slate-400 focus:outline-none focus:border-sky-500 focus:ring-1 focus:ring-sky-500 invalid:border-red-500 invalid:text-red-600 focus:invalid:border-red-500 focus:invalid:ring-red-500">
                     </div>
                 </div>
 
@@ -90,7 +75,7 @@
                 </div>
             </form>
 
-            <p class="mt-10 text-center text-sm text-gray-500">
+            <p class="mt-10 text-sm text-center text-gray-500">
                 Já tem uma conta?
                 <a href="{{ route('login') }}"
                     class="font-semibold leading-6 text-sky-600 hover:text-sky-500">Login</a>
