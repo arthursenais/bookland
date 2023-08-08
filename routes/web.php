@@ -36,7 +36,7 @@ Route::view('/emdesenvolvimento', 'site.wip')->name('wip');
 Route::get('/pesquisa', [SiteController::class,'pesquisar'])->name('pesquisar');
 
 Route::get('/emprestimos', [EmprestimoController::class,'index'])->name('meusEmprestimos')->middleware('auth');
-Route::get('/novoEmprestimo/{id}', [EmprestimoController::class,'create'])->name('createEmprestimo')->middleware('auth');
+Route::get('/novoEmprestimo/{slug}', [EmprestimoController::class,'create'])->name('createEmprestimo')->middleware('auth');
 Route::post('/emprestimo/store/', [EmprestimoController::class,'store'])->name('storeEmprestimo')->middleware('auth');
 Route::delete('/emprestimo/delete/{id}', [EmprestimoController::class,'destroy'])->name('user.deleteEmprestimo')->middleware('auth');
 Route::post('/admin/emprestimo/update/{emprestimo}', [EmprestimoController::class,'update'])->name('admin.arquivarEmprestimo');

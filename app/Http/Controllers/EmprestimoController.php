@@ -6,6 +6,7 @@ use App\Models\Emprestimo;
 use App\Models\Livro;
 use Illuminate\Support\Carbon;
 use Illuminate\Http\Request;
+use App\Models\User;
 
 class EmprestimoController extends Controller
 {
@@ -14,23 +15,26 @@ class EmprestimoController extends Controller
      */
     public function index()
     {
-        $emprestimos = Emprestimo::where('notificacao',0)->where('arquivado',0)->get();
+        $emprestimos = Emprestimo::where('notificacao',0)->where('arquivado',0)->where('id_usuario',auth()->user()->id)->get();
         return view('user.meusEmprestimos', compact('emprestimos'));
     }
     public function arquivados() {
-        $emprestimos = Emprestimo::where('arquivado',1)->get();
-        return view('admin.arquivados', compact('emprestimos'));
+        $emprestimosArquivados = Emprestimo::where('arquivado',1)->get();
+        $emprestimosAtivos = Emprestimo::where('arquivado',0)->get();
+        $emprestimos = Emprestimo::all();
+        return view('admin.arquivados', compact('emprestimos','emprestimosArquivados','emprestimosAtivos'));
     }
 
     /**
      * Show the form for creating a new resource.
      */
-    public function create($id)
+    public function create($slug)
     {
         $hoje = Carbon::now()->format('Y-m-d');
-        $livro = Livro::where('id', $id)->first();
+        $livro = Livro::where('slug', $slug)->first();
+        $usuarios = User::all();
 
-        return view('user.fazerEmprestimo', compact('livro', 'hoje'));
+        return view('user.fazerEmprestimo', compact('livro', 'hoje','usuarios'));
     }
 
     /**
@@ -75,6 +79,7 @@ class EmprestimoController extends Controller
     {
         $emprestimo->notificacao = 0;
         $emprestimo->arquivado = 1;
+        $emprestimo->data_limite = Carbon::now();
         $emprestimo->save();
         return back();
     }

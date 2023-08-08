@@ -16,7 +16,7 @@
                     <p class="line-clamp-2 dark:text-gray-300"> {{ $livro->titulo }} </p>
                 </a>
             @empty
-                <h1 class="md:text-2xl text-center mt-6 text-xl dark:text-gray-300">Sem resultados</h1>
+                <h1 class="md:text-2xl text-center mt-6 text-xl dark:text-gray-300">Não foram adicionados livros nesta semana</h1>
             @endforelse
 
 

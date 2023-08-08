@@ -114,7 +114,7 @@
                         <button type="button" onclick="modalAddCategoria()"
                             class="relative w-16 h-16 text-white transition bg-indigo-500 rounded-full bottom-4 right-4 material-icons hover:bg-indigo-600">add</button>
                         <button type="button" id="confirmar2" onclick="confirmarApagar2()"
-                            class="z-0 p-3 text-sm transition bg-gray-900 border rounded border-slate-500 text-slate-500 hover:bg-gray-950 border-3 black h-min">Remover
+                            class="z-0 p-3 text-sm transition bg-red-600 dark:bg-gray-900 border rounded dark:border-slate-500 dark:text-slate-500 text-white hover:bg-red-700 dark:hover:bg-gray-950 border-3 black h-min">Remover
                             tudo</button>
 
                     </div>
@@ -145,11 +145,11 @@
                         class="shadow-lg border  text-white max-h-80 dark:border-gray-600/20 sm:min-w-[300px]  rounded-lg  overflow-auto ">
                         @forelse ($emprestimos as $emprestimo)
                             <div
-                                class="flex items-center justify-around transition hover:bg-gray-200 dark:hover:bg-gray-700 dark:text-gray-200">
+                                class="flex items-center text-black justify-around transition hover:bg-gray-200 dark:hover:bg-gray-700 dark:text-gray-200">
                                 <div class="flex items-center w-[90%] gap-2 p-2">
                                     <div>
                                         <p class="max-w-xs">
-                                            {{ $emprestimo->livro->titulo }} - {{ $emprestimo->created_at->format('d/m/Y') }}
+                                            {{$emprestimo->usuario->nome}} {{$emprestimo->usuario->sobrenome}}: {{ $emprestimo->livro->titulo }} - {{ $emprestimo->created_at->format('d/m/Y') }}
 
                                         </p>
                                     </div>

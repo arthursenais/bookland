@@ -7,35 +7,10 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <script src="https://cdn.tailwindcss.com"></script>
+    @yield('header')
     <title>Biblioteca - @yield('title')</title>
     <style>
-        ::-webkit-scrollbar {
-            width: 2px;
-        }
-
-        ::-webkit-scrollbar:horizontal {
-            width: 2px;
-            height: 3px;
-
-        }
-
-        /* Track */
-        ::-webkit-scrollbar-track {
-            background: #88888817;
-            border-radius: 12px;
-
-        }
-
-        /* Handle */
-        ::-webkit-scrollbar-thumb {
-            background: #888;
-            border-radius: 12px;
-        }
-
-        /* Handle on hover */
-        ::-webkit-scrollbar-thumb:hover {
-            background: #555;
-        }
+       
     </style>
 </head>
 
