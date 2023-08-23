@@ -29,8 +29,25 @@ class UserController extends Controller
      */
     public function store(Request $request)
     {
-        $user = $request->all();
-        $user['password'] = bcrypt($request->password);
+        $validado = $request->validate([
+            'nome' => 'required',
+            'sobrenome' => 'required',
+            'email' => 'required|email|unique:users,email',
+            'matricula' => 'required|unique:users,matricula',
+            'password' => 'required',
+            'confirmarpassword' => 'required|same:password',
+        ], [
+            'email.required' => 'O campo email é obrigatório!',
+            'email.email' => 'Email inválido',
+            'matricula.required' => 'O campo matrícula é obrigatório!',
+            'matricula.unique' => 'A matrícula digitada já foi registrada. Verifique se há erros de digitação',
+            'password.required' => 'O campo senha é obrigatório!',
+            'confirmarpassword.required' => 'O campo senha é obrigatório!',
+            'confirmarpassword.same' => 'As senhas não estão iguais, Verifique se há erros de digitação'
+        ]);
+
+        $user = $validado;
+        $user['password'] = bcrypt($user['password']);
         $user = User::create($user);
 
         Auth::login($user);

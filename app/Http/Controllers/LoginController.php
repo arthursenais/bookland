@@ -10,11 +10,10 @@ class LoginController extends Controller
 
     public function auth(Request $request) {
         $credenciais = $request->validate([
-            'email' => ['required', 'email'],
+            'matricula' => ['required'],
             'password' => ['required'],
         ], [
-            'email.required' => 'O campo email é obrigatório!',
-            'email.email' => 'Email inválido',
+            'matricula.required' => 'O campo matricula é obrigatório!',
             'password.required' => 'O campo senha é obrigatório!'
         ]
     );
@@ -23,7 +22,7 @@ class LoginController extends Controller
             $request->session()->regenerate();
             return redirect()->intended(route('index'));
         } else {
-            return redirect()->back()->with('erro', 'Email ou senha inválida.');
+            return redirect()->back()->with('erro', 'Matricula ou senha inválida.');
         }
 
 

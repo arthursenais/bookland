@@ -17,8 +17,11 @@ class AdminController extends Controller
         $usuarios = User::all();
         $categorias = Categoria::all();
         $emprestimos = Emprestimo::where('arquivado',0)->get();
+        $emprestimosPorSemana = $emprestimos->groupBy(function($date) {
+            return Carbon::parse($date->created_at)->format('W'); // 'W' representa o número da semana
+        });
         if (Gate::allows('verDashboard')) {
-            return view('admin.dashboard', compact('livros','usuarios','categorias','emprestimos'));
+            return view('admin.dashboard', compact('livros','usuarios','categorias','emprestimos','emprestimosPorSemana'));
         } else {
             return redirect()->route('index') ;
         }

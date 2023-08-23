@@ -26,8 +26,11 @@ use App\Http\Controllers\CategoriaController;
 Route::resource('livros', LivroController::class);
 Route::resource('users', UserController::class);
 
+
+Route::get('/livross', [LivroController::class, 'index'])->name('index');
 Route::get('/', [SiteController::class, 'index'])->name('index');
 Route::get('/novidades', [LivroController::class,'novidades'])->name('novidades');
+Route::get('/categorias', [SiteController::class,'categorias'])->name('categorias');
 Route::get('/populares', [LivroController::class,'populares'])->name('populares');
 Route::get('/livro/{slug}', [SiteController::class,'details'])->name('details');
 
@@ -47,7 +50,7 @@ Route::get('/nova-conta', [LoginController::class, 'register'])->name('register'
 Route::get('/logout', [LoginController::class, 'logout'])->name('login.logout');
 Route::post('/auth', [LoginController::class, 'auth' ])->name('login.auth');
 
-Route::get('/dashboard', [AdminController::class,'dashboard'])->name('dashboard')->middleware('auth');
+Route::get('/painel', [AdminController::class,'dashboard'])->name('dashboard')->middleware('auth');
 
 Route::delete('/admin/livro/delete/{id}', [LivroController::class,'destroy'])->name('admin.deleteLivro');
 Route::post('/admin/livro/store', [LivroController::class,'store'])->name('admin.storeLivro');

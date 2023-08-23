@@ -136,6 +136,7 @@
                             <canvas id="myChart"></canvas>
                         </div>
                     </div>
+                   
 
                 </div>
                 <div class="min-h-full">
@@ -193,7 +194,7 @@
                                     </button>
                                 </span>
                             </div>
-                            {{-- include modal  --}}
+
                         @empty
                             sem emprestimos
                         @endforelse
@@ -300,6 +301,7 @@
             }
 
             const ctx = document.getElementById('myChart').getContext('2d');
+            const aqc = $('#myChart2');
             const categorias = [
                 @foreach ($categorias as $categoria)
                     '{{ $categoria->nome }}',
@@ -311,11 +313,6 @@
                 @endforeach
             ];
 
-            const datas = [
-                @foreach ($usuarios as $usuario)
-                    "{{ $usuario->created_at->format('Y-m-d') }}",
-                @endforeach
-            ];
 
             new Chart(ctx, {
                 type: 'pie',
@@ -334,6 +331,7 @@
 
                 }
             });
+
         </script>
     @else
         <div class="flex flex-col items-center justify-center p-20">

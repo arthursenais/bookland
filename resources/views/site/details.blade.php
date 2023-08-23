@@ -6,8 +6,8 @@
         <div class="flex flex-col items-center mt-10 sm:flex-row sm:items-start">
             <div class="mb-12 sm:mr-12">
                 <h1 class="text-2xl sm:hidden dark:text-gray-300">{{ $livro->titulo }}</h1>
-                <img class="shadow-lg w-[400px] shadow-black/50 hover:shadow-black/70 dark:shadow-black/30 dark:hover:shadow-black/50 hover:grayscale-0 grayscale-[30%] ease-out duration-300"
-                    src="{{ Str::startsWith($livro->imagem, 'http') ? $livro->imagem : asset("storage/{$livro->imagem}") }}">
+                <img class="shadow-lg max-w-[400px] min-w-[400px] shadow-black/50 hover:shadow-black/70 dark:shadow-black/30 dark:hover:shadow-black/50 hover:grayscale-0 grayscale-[30%] ease-out duration-300"
+                     src="{{ Str::startsWith($livro->imagem, 'http') ? $livro->imagem : asset("storage/{$livro->imagem}") }}">
             </div>
             <div class="max-w-xs sm:max-w-none">
 

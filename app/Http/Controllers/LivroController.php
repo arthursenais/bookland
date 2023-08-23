@@ -14,7 +14,13 @@ class LivroController extends Controller
      */
     public function index()
     {
-        //
+        $livros = Livro::all();
+        foreach ($livros as $dados) {
+            foreach ($dados as $info) {
+            //
+            }
+        }
+        return json_encode($livros);
     }
     public function novidades()
     {

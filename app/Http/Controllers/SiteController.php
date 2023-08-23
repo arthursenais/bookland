@@ -15,7 +15,11 @@ class SiteController extends Controller
         $categorias = Categoria::all();
         return view('site.home', compact('livros','categorias'));
     }
-
+    public function categorias() {
+        $livros = Livro::all();
+        $categorias = Categoria::all();
+        return view('site.categorias', compact('livros','categorias'));
+    }
     public function pesquisar(Request $pesquisa) {
         $livros = Livro::join('categorias', 'livros.id_categoria', '=', 'categorias.id')
             ->where('livros.titulo', 'like', '%' . request('pesquisa') . '%')
