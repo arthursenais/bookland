@@ -19,15 +19,17 @@
                 </svg>
                 <h1 class="text-xl">Bookland</h1>
             </div>
-            <h1 class="text-2xl font-bold sm:px-0 px-5 text-center">A leitura engrandece a alma</h1>
+            <h1 id="frase" class="text-md hidden sm:block max-w-[500px] text-center font-bold sm:px-0 px-5">A leitura engrandece a alma</h1>
             <div class="relative flex-auto" id="barraPesquisaHome">
-                <input type="search" name="pesquisa" id="pesquisa" placeholder="Pesquisar por livro, autor ou categoria"
-                    class="block w-full sm:w-[500px] px-3 pl-7 py-2 mt-1 text-xs transition bg-white border rounded-full shadow-sm dark:bg-slate-800 dark:text-white border-slate-300 dark:border-slate-600 lg:text-sm placeholder-slate-400 focus:outline-none focus:border-sky-500 focus:ring-1 focus:ring-sky-500 sm:max-w-sm">
-                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
-                    stroke="currentColor" class="w-6 h-6 absolute left-1 top-3">
-                    <path stroke-linecap="round" stroke-linejoin="round"
-                        d="M21 21l-5.197-5.197m0 0A7.5 7.5 0 105.196 5.196a7.5 7.5 0 0010.607 10.607z" />
-                </svg>
+                <form action="{{route('pesquisar')}}" method="get">
+                    <input type="search" name="pesquisa" id="pesquisa" placeholder="Pesquisar por livro, autor ou categoria"
+                        class="block w-full sm:w-[500px] px-3 pl-7 py-2 mt-1 text-xs transition bg-white border rounded-full shadow-sm dark:bg-slate-800 dark:text-white border-slate-300 dark:border-slate-600 lg:text-sm placeholder-slate-400 focus:outline-none focus:border-sky-500 focus:ring-1 focus:ring-sky-500 sm:max-w-sm">
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+                        stroke="currentColor" class="w-6 h-6 absolute left-1 top-3">
+                        <path stroke-linecap="round" stroke-linejoin="round"
+                            d="M21 21l-5.197-5.197m0 0A7.5 7.5 0 105.196 5.196a7.5 7.5 0 0010.607 10.607z" />
+                    </svg>
+                </form>
             </div>
 
 
@@ -110,11 +112,14 @@
                     </div>
                 @endif
             @endforeach
-            <a href="{{route('categorias')}}" class=" flex items-center p-3 hover:bg-gray-900 transition rounded-lg justify-between mt-10 w-fit gap-10">
+            <a href="{{ route('categorias') }}"
+                class=" flex items-center p-3 hover:bg-gray-900 transition rounded-lg justify-between mt-10 w-fit gap-10">
                 <div class="flex items-center gap-5">
-                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
-                        <path stroke-linecap="round" stroke-linejoin="round" d="M16.5 3.75V16.5L12 14.25 7.5 16.5V3.75m9 0H18A2.25 2.25 0 0120.25 6v12A2.25 2.25 0 0118 20.25H6A2.25 2.25 0 013.75 18V6A2.25 2.25 0 016 3.75h1.5m9 0h-9" />
-                      </svg>
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+                        stroke="currentColor" class="w-6 h-6">
+                        <path stroke-linecap="round" stroke-linejoin="round"
+                            d="M16.5 3.75V16.5L12 14.25 7.5 16.5V3.75m9 0H18A2.25 2.25 0 0120.25 6v12A2.25 2.25 0 0118 20.25H6A2.25 2.25 0 013.75 18V6A2.25 2.25 0 016 3.75h1.5m9 0h-9" />
+                    </svg>
                     Ver todas as categorias de livros
                 </div>
                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
@@ -199,23 +204,49 @@
             });
         @endforeach
         $.fn.isInViewport = function() {
-        var elementTop = $(this).offset().top;
-        var elementBottom = elementTop + $(this).outerHeight();
+            var elementTop = $(this).offset().top;
+            var elementBottom = elementTop + $(this).outerHeight();
 
-        var viewportTop = $(window).scrollTop();
-        var viewportBottom = viewportTop + $(window).height();
+            var viewportTop = $(window).scrollTop();
+            var viewportBottom = viewportTop + $(window).height();
 
-        return elementBottom > viewportTop && elementTop < viewportBottom;
+            return elementBottom > viewportTop && elementTop < viewportBottom;
 
-    };
-    $(window).on('load scroll', function() {
-    if ($("#barraPesquisaHome").isInViewport()) {
-        $("#barraPesquisaDesktop").fadeOut(100);
-    } else {
-        $("#barraPesquisaDesktop").fadeIn('fast');
-
-    }
-});
+        };
+        $(window).on('load scroll', function() {
+            if ($("#barraPesquisaHome").isInViewport()) {
+                $("#barraPesquisaDesktop").fadeOut(100);
+            } else {
+                if ($(window).width() >= 640) {
+                    $("#barraPesquisaDesktop").fadeIn('fast');
+                }
+            }
+        });
+        const frasesLeitura = [
+            "A leitura engrandece a alma.",
+            "Um quarto sem livros é como um corpo sem alma. - Marcus Tullius Cicero",
+            "Ler é viajar sem sair do lugar.",
+            "Um livro é um sonho que você pode segurar em suas mãos. - Neil Gaiman",
+            "A leitura é uma conversa com as melhores mentes dos séculos passados. - Rene Descartes",
+            "Não existem livros morais ou imorais. Os livros são bem ou mal escritos. - Oscar Wilde",
+            "Viajar mil milhas não é tão poderoso quanto ler mil livros. ",
+            "Os livros são os amigos mais silenciosos e constantes; eles são os mais acessíveis e sábios dos conselheiros, e os mais pacientes dos professores. - Charles W. Eliot",
+            "A leitura é para a mente o que o exercício é para o corpo. - Joseph Addison",
+            "Um livro bem escrito é um amigo seguro, nunca intriga com você. - Theodore Roosevelt",
+            "A leitura é a chave para desbloquear inúmeras aventuras e descobertas.",
+            "Livros não são feitos para serem acreditados, mas para serem submetidos a inquérito. - Umberto Eco",
+            "Quanto mais você lê, mais coisas você vai saber. Quanto mais você aprende, mais lugares você vai conhecer. - Dr. Seuss",
+            "Os livros podem ser perigosos. Os melhores merecem ser perigosos. - Ralph Waldo Emerson",
+            "A leitura é a nossa maneira de viajar quando não podemos pegar um avião. - Jenny Han",
+            "Ler é sonhar pela mão de outrem. - Fernando Pessoa",
+            "Livros são espelhos: você só vê neles o que já tem dentro de você. - Carlos Ruiz Zafón",
+            "A leitura torna o homem completo; a conversação torna-o ágil, o escrever torna-o preciso.",
+            "Há muitos que não gostam de ler; mas há muitos que, não sabendo pensar, gostariam de ter pensamentos alheios a rodo. - Arthur Schopenhauer",
+            "O homem que não lê bons livros não tem nenhuma vantagem sobre o homem que não sabe ler. - Mark Twain",
+            "A leitura é uma ferramenta essencial para o crescimento intelectual e emocional.",
+        ];
+        var frase = frasesLeitura[Math.floor(Math.random() * frasesLeitura.length) + 0];
+        $('#frase').html(frase);
     </script>
 
 

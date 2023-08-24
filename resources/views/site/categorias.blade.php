@@ -2,14 +2,14 @@
 @section('title', 'Bem-vindo!')
 @section('content')
 
-    <div class="flex flex-wrap justify-evenly gap-1 px-2 mt-10 sm:px-32 dark:text-white">
+    <div class="flex flex-wrap  gap-4 px-2 mt-10 sm:px-24    dark:text-white">
         @if ($livros->isEmpty())
             <div class="flex justify-center p-24">
                 <h1>Não há livros ainda!</h1>
             </div>
         @else
             @foreach ($categorias->sortBy('id') as $categoria)
-                <button onclick="collapse('#modal{{$categoria->id}}')" type="button" id="categoria{{ $categoria->id }}"
+                <button onclick="collapse('#modal{{ $categoria->id }}')" type="button" id="categoria{{ $categoria->id }}"
                     class=" flex items-center justify-center hover:scale-105 h-[100px] w-[200px] hover:to-purple-800  transition rounded-lg ">
                     {{ $categoria->nome }}
                 </button>
@@ -34,12 +34,30 @@
                         class="swiper-button-next rounded-full bg-white/50 opacity-75 hover:opacity-100 dark:bg-gray-800/70 shadow dark:shadow-black dark:shadow-lg backdrop-blur p-8 hover:scale-110 transition text-black dark:text-white">
                     </div>
                 </div> --}}
-                <div  class="fixed inset-0 z-50 flex justify-center items-center bg-gray-950/80 hidden" id="modal{{$categoria->id}}">
-                <div class="w-[600px] p-5 min-h-[350px] bg-gray-800">
-                    <h1 class="text-4xl"> {{$categoria->nome}} </h1>
+                <div class="modal fixed inset-0 z-40 flex justify-center  bg-gray-950/80 hidden"
+                    id="modal{{ $categoria->id }}">
+                    <div class="bloco w-[450px] p-5 m-5 min-h-[350px] overflow-auto ">
+                        <div class="w-full flex items-top justify-between">
+                            <h1 class="text-2xl">{{ $categoria->nome }}</h1>
+                            <button type="button"
+                                class="fechar w-10 h-6 text-white transition bg-red-500 rounded-md material-icons hover:bg-red-600">close</button>
+                        </div>
+                        <div class="flex flex-wrap items-center gap-x-5 gap-y-2 justify-center mt-2">
+                            @foreach ($livros as $livro)
+                                @if ($livro->categoria->nome == $categoria->nome)
+                                    <a class="livro sm:hover:scale-110  transition rounded-lg flex flex-col justify-center items-center"
+                                        href="{{ route('details', $livro->slug) }}">
+                                        <img class="w-[100px]  transition h-[150px]"
+                                            src="{{ Str::startsWith($livro->imagem, 'http') ? $livro->imagem : asset("storage/{$livro->imagem}") }}">
+                                        <p class="absolute hidden transition text-center ">{{ $livro->titulo }}</p>
+                                    </a>
+                                @endif
+                            @endforeach
+                        </div>
+
+                    </div>
                 </div>
-                </div>
-                @endforeach
+            @endforeach
     </div>
     @endif
     <script>
@@ -52,17 +70,51 @@
             'linear-gradient(295deg, rgba(201,45,14,1) 0%, rgba(227,107,7,1) 100%)', // laranja e laranja
             'linear-gradient(295deg, rgba(201,14,140,1) 0%, rgba(138,2,2,1) 100%)', // vermelho com rosa
 
-
         ];
         @foreach ($categorias as $categoria)
             corAleatoria = cores[Math.floor(Math.random() * cores.length) + 0];
             $('#categoria{{ $categoria->id }}').css({
                 background: corAleatoria
             });
+            $('#modal{{ $categoria->id }}').find('.bloco').css({
+                background: corAleatoria
+            });
         @endforeach
         function collapse(modal) {
-            $(modal).toggleClass('hidden');
+            $(modal).toggleClass('hidden').css({
+                opacity: 0,
+            });
+            $(modal).find('.bloco').css({
+                scale: 0,
+            });
+            $(modal).animate({
+                opacity: 1,
+            }, 200);
+            $(modal).find('.bloco').animate({
+                scale: 1,
+            }, 200);
         }
+
+        $(".modal").click(function(e) {
+            if (e.target != this) {
+                return;
+            }
+            $(this).toggleClass('hidden');
+        });
+        $(".livro").hover(function() {
+            $(this).find('p').toggleClass('hidden');
+            $(this).find('img').css({
+                filter: 'brightness(0.2)',
+            });
+        })
+
+        $(".livro").mouseleave(function() {
+            $(this).find('img').css('filter', 'brightness(1)');
+        })
+
+        $(".fechar").click(function() {
+            $(this).closest('.modal').toggleClass('hidden');
+        })
     </script>
 
 
