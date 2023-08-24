@@ -16,8 +16,7 @@
                     </div>
 
                     <div id='results'
-                        class="shadow-lg border  dark:border-gray-600/20   sm:min-w-[500px] min-h-full max-h-80 rounded-lg  overflow-auto ">
-
+                        class="shadow-lg border listaDiv dark:border-gray-600/20   sm:min-w-[500px] min-h-full max-h-80 rounded-lg  overflow-auto ">
                         @forelse ($livros as $livro)
                             <div
                                 class="flex items-center justify-around transition linkLivro hover:bg-gray-200 dark:hover:bg-gray-700 dark:text-gray-200">
@@ -57,7 +56,7 @@
                 <div>
                     <h1 class="text-2xl dark:text-gray-200"> {{ $usuarios->count() }} Usuários Cadastrados</h1>
                     <div
-                        class="shadow-lg border  dark:border-gray-600/20 sm:min-w-[300px] min-h-full max-h-80 rounded-lg  overflow-auto ">
+                        class="shadow-lg border listaDiv dark:border-gray-600/20 sm:min-w-[300px] min-h-full max-h-80 rounded-lg  overflow-auto ">
                         @forelse ($usuarios as $usuario)
                             <div
                                 class="flex items-center justify-around transition hover:bg-gray-200 dark:hover:bg-gray-700 dark:text-gray-200">
@@ -88,7 +87,7 @@
                 <div>
                     <h1 class="text-2xl dark:text-gray-200 "> {{ $categorias->count() }} Categorias</h1>
                     <div
-                        class="shadow-lg border  dark:border-gray-600/20 sm:min-w-[300px] min-h-full max-h-80 rounded-lg  overflow-auto ">
+                        class="shadow-lg border listaDiv dark:border-gray-600/20 sm:min-w-[300px] min-h-full max-h-80 rounded-lg  overflow-auto ">
                         @forelse ($categorias as $categoria)
                             <div
                                 class="flex items-center justify-around transition hover:bg-gray-200 dark:hover:bg-gray-700 dark:text-gray-200">
@@ -136,14 +135,14 @@
                             <canvas id="myChart"></canvas>
                         </div>
                     </div>
-                   
+
 
                 </div>
                 <div class="min-h-full">
                     <h1 class="text-2xl dark:text-gray-200"> {{ $emprestimos->count() }} Empréstimos ativos <a href="{{route('admin.arquivados')}}"
                             class="text-xs underline">ver histórico de empréstimos</a></h1>
                     <div
-                        class="shadow-lg border  text-white max-h-80 dark:border-gray-600/20 sm:min-w-[300px]  rounded-lg  overflow-auto ">
+                        class="shadow-lg border listaDiv text-white max-h-80 dark:border-gray-600/20 sm:min-w-[300px]  rounded-lg  overflow-auto ">
                         @forelse ($emprestimos as $emprestimo)
                             <div
                                 class="flex items-center text-black justify-around transition hover:bg-gray-200 dark:hover:bg-gray-700 dark:text-gray-200">
@@ -301,7 +300,6 @@
             }
 
             const ctx = document.getElementById('myChart').getContext('2d');
-            const aqc = $('#myChart2');
             const categorias = [
                 @foreach ($categorias as $categoria)
                     '{{ $categoria->nome }}',
@@ -331,6 +329,9 @@
 
                 }
             });
+
+
+            
 
         </script>
     @else

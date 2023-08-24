@@ -85,7 +85,7 @@
                 opacity: 0,
             });
             $(modal).find('.bloco').css({
-                scale: 0,
+                scale: 0.9,
             });
             $(modal).animate({
                 opacity: 1,
