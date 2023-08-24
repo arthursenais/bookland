@@ -213,24 +213,7 @@
             $("#mobile-menu").addClass("block");
         }
     }
-    $.fn.isInViewport = function() {
-        var elementTop = $(this).offset().top;
-        var elementBottom = elementTop + $(this).outerHeight();
 
-        var viewportTop = $(window).scrollTop();
-        var viewportBottom = viewportTop + $(window).height();
-
-        return elementBottom > viewportTop && elementTop < viewportBottom;
-
-    };
-    $(window).on('load scroll', function() {
-    if ($("#barraPesquisaHome").isInViewport()) {
-        $("#barraPesquisaDesktop").fadeOut(100);
-    } else {
-        $("#barraPesquisaDesktop").fadeIn('fast');
-
-    }
-});
 </script>
 
 </html>
