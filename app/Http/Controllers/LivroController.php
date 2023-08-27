@@ -2,9 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Categoria;
 use Illuminate\Http\Request;
 use App\Models\Livro;
 use Illuminate\Support\Carbon;
+use Illuminate\Support\Facades\Gate;
 use Illuminate\Support\Str;
 
 class LivroController extends Controller
@@ -15,12 +17,13 @@ class LivroController extends Controller
     public function index()
     {
         $livros = Livro::all();
-        foreach ($livros as $dados) {
-            foreach ($dados as $info) {
-            //
-            }
+        $categorias = Categoria::all();
+        if (Gate::allows('verDashboard')) {
+            return view('admin.livros',compact('livros','categorias'));
+
+        } else {
+            return redirect()->route('index') ;
         }
-        return json_encode($livros);
     }
     public function novidades()
     {

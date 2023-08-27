@@ -27,7 +27,6 @@ Route::resource('livros', LivroController::class);
 Route::resource('users', UserController::class);
 
 
-Route::get('/livross', [LivroController::class, 'index'])->name('index');
 Route::get('/', [SiteController::class, 'index'])->name('index');
 Route::get('/novidades', [LivroController::class,'novidades'])->name('novidades');
 Route::get('/categorias', [SiteController::class,'categorias'])->name('categorias');
@@ -52,6 +51,9 @@ Route::post('/auth', [LoginController::class, 'auth' ])->name('login.auth');
 
 Route::get('/painel', [AdminController::class,'dashboard'])->name('dashboard')->middleware('auth');
 
+Route::get('/painel/livros', [LivroController::class, 'index'])->middleware('auth');
+Route::get('/painel/usuarios', [UserController::class, 'index'])->middleware('auth');
+Route::get('/painel/emprestimos', [EmprestimoController::class, 'arquivados'])->middleware('auth');
 Route::delete('/admin/livro/delete/{id}', [LivroController::class,'destroy'])->name('admin.deleteLivro');
 Route::post('/admin/livro/store', [LivroController::class,'store'])->name('admin.storeLivro');
 Route::post('/admin/livro/update/{id}', [LivroController::class,'update'])->name('admin.updateLivro');

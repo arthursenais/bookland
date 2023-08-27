@@ -7,6 +7,7 @@ use App\Models\Livro;
 use Illuminate\Support\Carbon;
 use Illuminate\Http\Request;
 use App\Models\User;
+use Illuminate\Support\Facades\Gate;
 
 class EmprestimoController extends Controller
 {
@@ -22,7 +23,11 @@ class EmprestimoController extends Controller
         $emprestimosArquivados = Emprestimo::where('arquivado',1)->get();
         $emprestimosAtivos = Emprestimo::where('arquivado',0)->get();
         $emprestimos = Emprestimo::all();
-        return view('admin.arquivados', compact('emprestimos','emprestimosArquivados','emprestimosAtivos'));
+        if (Gate::allows('verDashboard')) {
+            return view('admin.emprestimos', compact('emprestimos','emprestimosArquivados','emprestimosAtivos'));
+        } else {
+            return redirect()->route('index') ;
+        }
     }
 
     /**

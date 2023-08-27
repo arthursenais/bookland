@@ -15,9 +15,6 @@
     </script>
     @yield('header')
     <title>Biblioteca - @yield('title')</title>
-    <style>
-
-    </style>
 </head>
 
 <body class="bg-white dark:bg-slate-800">
