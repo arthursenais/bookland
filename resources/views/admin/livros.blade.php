@@ -1,15 +1,19 @@
 <h1 class="text-4xl cursor-default dark:text-gray-200 text-bold hover:animate-pulse">Livros</h1>
 <div class="flex flex-col sm:flex-row">
-    <div>
-        <div class="flex gap-2 align-bottom ">
+    <div class="sm:min-w-[800px]">
+        <div class="flex gap-5 align-bottom dark:text-white">
             <p class="text-2xl dark:text-gray-200">{{ $livros->count() }} Items no Acervo</p>
+            <div class="align-center gap-2 flex">
+                Pesquisar:
+                <input type="text" id="pesquisa" class="bg-transparent border h-min">
+            </div>
         </div>
 
         <div id='results'
             class="shadow-lg border listaDiv dark:border-gray-600/20   sm:min-w-[500px]  min-h-full max-h-80 rounded-lg  overflow-auto ">
             @forelse ($livros as $livro)
                 <div
-                    class="flex items-center justify-around transition linkLivro hover:bg-gray-200 dark:hover:bg-gray-700 dark:text-gray-200">
+                    class="flex items-center justify-around transition item-livro hover:bg-gray-200 dark:hover:bg-gray-700 dark:text-gray-200">
                     <a href="{{ route('details', $livro->slug) }}" class="flex items-center w-[90%] gap-2 p-2">
                         <img src="{{ Str::startsWith($livro->imagem, 'http') ? $livro->imagem : asset("storage/{$livro->imagem}") }}"
                             alt="imagem" class="max-w-[64px] rounded">
@@ -84,16 +88,15 @@
     </div>
 </div>
 
-    {{-- grafico livros --}}
-    <div class="mt-20">
-        <h1 class="text-2xl cursor-default dark:text-gray-200 text-bold hover:animate-pulse">Livros por
-            categoria
-        </h1>
-        <div
-            class="relative w-[300px] sm:w-[450px] sm:h-[600px] border rounded-lg shadow-lg dark:border-gray-600/20 ">
-            <canvas id="myChart"></canvas>
-        </div>
+{{-- grafico livros --}}
+<div class="mt-20">
+    <h1 class="text-2xl cursor-default dark:text-gray-200 text-bold hover:animate-pulse">Livros por
+        categoria
+    </h1>
+    <div class="relative w-[300px] sm:w-[450px] sm:h-[600px] border rounded-lg shadow-lg dark:border-gray-600/20 ">
+        <canvas id="myChart"></canvas>
     </div>
+</div>
 
 
 
@@ -106,8 +109,8 @@
 
 {{-- modal remover livros --}}
 <div class="fixed inset-0 z-50 flex items-center justify-center hidden bg-gray-900/50" id="modalApagarTudo">
-    <form class="flex flex-col bg-white dark:bg-slate-800 rounded p-4 dark:text-white sm:min-w-[300px]"
-        method="post" action="{{ route('admin.deleteAllLivros') }}">
+    <form class="flex flex-col bg-white dark:bg-slate-800 rounded p-4 dark:text-white sm:min-w-[300px]" method="post"
+        action="{{ route('admin.deleteAllLivros') }}">
         @method('DELETE')
         @csrf
         <div class="flex items-center justify-between w-full mb-4">
@@ -117,14 +120,13 @@
                 onclick='resetConfirmar1()'>close</button>
         </div>
         <p>Esta ação não poderá ser desfeita e não é recomendada</p>
-        <button type="submit"
-            class="p-2 transition bg-indigo-600 rounded w-min hover:bg-indigo-700">Confirmar</button>
+        <button type="submit" class="p-2 transition bg-indigo-600 rounded w-min hover:bg-indigo-700">Confirmar</button>
     </form>
 </div>
 {{-- modal remover categorias --}}
 <div class="fixed inset-0 z-50 flex items-center justify-center hidden bg-gray-900/50" id="modalApagarTudo2">
-    <form class="flex flex-col bg-white dark:bg-slate-800 rounded p-4 dark:text-white sm:min-w-[300px]"
-        method="post" action="{{ route('admin.deleteAllCategorias') }}">
+    <form class="flex flex-col bg-white dark:bg-slate-800 rounded p-4 dark:text-white sm:min-w-[300px]" method="post"
+        action="{{ route('admin.deleteAllCategorias') }}">
         @method('DELETE')
         @csrf
         <div class="flex items-center justify-between w-full mb-4">
@@ -134,18 +136,29 @@
                 onclick='resetConfirmar2()'>close</button>
         </div>
         <p>Esta ação não poderá ser desfeita e não é recomendada</p>
-        <button type="submit"
-            class="p-2 transition bg-indigo-600 rounded w-min hover:bg-indigo-700">Confirmar</button>
+        <button type="submit" class="p-2 transition bg-indigo-600 rounded w-min hover:bg-indigo-700">Confirmar</button>
     </form>
 
 </div>
 
 
 {{-- Script --}}
-
 <script>
-    var confirmar1 = document.getElementById('confirmar1');
-    var confirmar2 = document.getElementById('confirmar2');
+    $("#pesquisa").on('keyup', function() {
+        var pesquisa = $(this).val().toLowerCase();
+
+        $(".item-livro").each(function() {
+            if ($(this).html().toLowerCase().indexOf(pesquisa) != -1) {
+                $(this).show();
+            } else {
+                $(this).hide();
+            }
+        });
+    });
+</script>
+<script>
+    var confirmar1 = $('#confirmar1');
+    var confirmar2 = $('#confirmar2');
 
     function confirmarApagar1() {
         confirmar1.classList.add("bg-red-600", "hover:bg-red-700", "text-white");
