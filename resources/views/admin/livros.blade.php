@@ -1,6 +1,5 @@
 <h1 class="text-4xl cursor-default dark:text-gray-200 text-bold hover:animate-pulse">Livros</h1>
-<div class="flex">
-
+<div class="flex flex-col sm:flex-row">
     <div>
         <div class="flex gap-2 align-bottom ">
             <p class="text-2xl dark:text-gray-200">{{ $livros->count() }} Items no Acervo</p>
