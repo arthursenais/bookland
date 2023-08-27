@@ -5,7 +5,7 @@
             <p class="text-2xl dark:text-gray-200">{{ $livros->count() }} Items no Acervo</p>
             <div class="align-center gap-2 flex">
                 Pesquisar:
-                <input type="text" id="pesquisa" class="bg-transparent border h-min">
+                <input type="text" id="pesquisa" autocomplete="off" class="bg-transparent border h-min">
             </div>
         </div>
 

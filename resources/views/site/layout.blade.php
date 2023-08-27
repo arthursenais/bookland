@@ -187,11 +187,8 @@
     <footer class="justify-between p-8 mt-10 border-t border-slate-200 sm:flex text-slate-500 dark:border-slate-200/5">
         <div>
             <div class="mb-6 sm:mb-0 sm:flex">
-                <p class="text-2xl sm:text-base">Copyright © 2023 BookLand.com</p>
-                <p class="sm:ml-4 sm:pl-4 sm:border-l sm:border-slate-200 dark:sm:border-slate-200/5">
-                    <a class="text-2xl hover:text-slate-900 dark:hover:text-slate-400 sm:text-base "
-                        href="#">Voltar ao topo</a>
-                </p>
+                <p class="text-2xl sm:text-base">2023 BookLand</p>
+
             </div>
         </div>
     </footer>

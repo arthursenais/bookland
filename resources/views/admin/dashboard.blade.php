@@ -66,7 +66,7 @@
         <div class="flex items-baseline">
             <div id="app"
                 class="fixed flex flex-col top-0 left-0 p-5 z-40 w-64 h-screen bg-slate-800 border-r border-gray-700 sm:translate-x-0 -translate-x-full dark:text-white">
-                <h1 class="text-xl text-center mb-3">BookLand</h1>
+                <a href="{{route('index')}}" class="text-xl text-center mb-3">BookLand</a>
                 <div class="flex flex-col gap-2">
                     <a href="#" id="link1" onclick="routeLivros();"
                         class="flex items-center gap-2 py-2 block px-3 text-xs font-medium w-full text-gray-300  rounded-md hover:bg-gray-700 hover:text-white lg:text-sm ">
