@@ -14,6 +14,12 @@ class Aluno extends Model
         'nome_completo',
         'matricula',
         'ativo',
+        
+
     ];
+    public function emprestimos()
+    {
+        return $this->belongsToMany(Livro::class, 'emprestimos', 'id_aluno', 'id_livro');
+    }
 
 }

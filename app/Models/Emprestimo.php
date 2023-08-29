@@ -10,16 +10,19 @@ class Emprestimo extends Model
     use HasFactory;
     protected $table = 'emprestimos';
     protected $fillable = [
-        'id_usuario',
+        'id_aluno',
         'id_livro',
         'data_limite',
         'multa',
         'notificacao',
         'arquivado'
     ];
-    public function usuario()
+    protected $casts = [
+        'data_limite' => 'datetime'
+    ];
+    public function aluno()
     {
-        return $this->belongsTo(User::class, 'id_usuario');
+        return $this->belongsTo(Aluno::class, 'id_aluno');
     }
 
     public function livro()

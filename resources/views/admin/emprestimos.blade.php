@@ -58,7 +58,7 @@
             @if ($loop->first)
                 <h1 class="text-4xl pb-4">Empréstimos ativos</h1>
                 <table class="bg-black/20 table-auto">
-                    <tr class="text-xl bg-gray-900">
+                    <tr class="bg-gray-900">
                         <td class="border border-gray-700">Feito por</td>
                         <td class="border border-gray-700">Título do livro</td>
                         <td class="border border-gray-700">Data de criação</td>
@@ -66,10 +66,10 @@
                     </tr>
             @endif
             <tr>
-                <td class="border border-gray-700">{{ $emprestimo->usuario->nome }}</td>
+                <td class="border border-gray-700">{{ $emprestimo->aluno->nome_completo }}</td>
                 <td class="border border-gray-700">{{ $emprestimo->livro->titulo }}</td>
-                <td class="border border-gray-700">{{ $emprestimo->created_at }}</td>
-                <td class="border border-gray-700">{{ $emprestimo->data_limite }}</td>
+                <td class="border border-gray-700">{{ $emprestimo->created_at->format('d/m/y h:i:s')}}</td>
+                <td class="border border-gray-700">{{ $emprestimo->data_limite->format('d/m/y h:i:s')}}</td>
             </tr>
             @if ($loop->last)
                 </table>
@@ -82,7 +82,7 @@
             @if ($loop->first)
                 <h1 class="text-4xl pb-4">Empréstimos arquivados</h1>
                 <table class="bg-black/20 table-auto">
-                    <tr class="text-xl bg-gray-900">
+                    <tr class="bg-gray-900">
                         <td class="border border-gray-700">Feito por</td>
                         <td class="border border-gray-700">Título do livro</td>
                         <td class="border border-gray-700">Data de criação</td>
@@ -90,10 +90,10 @@
                     </tr>
             @endif
             <tr>
-                <td class="border border-gray-700">{{ $emprestimo->usuario->nome }}</td>
+                <td class="border border-gray-700">{{ $emprestimo->aluno->nome_completo }}</td>
                 <td class="border border-gray-700">{{ $emprestimo->livro->titulo }}</td>
-                <td class="border border-gray-700">{{ $emprestimo->created_at }}</td>
-                <td class="border border-gray-700">{{ $emprestimo->data_limite }}</td>
+                <td class="border border-gray-700">{{ $emprestimo->created_at->format('d/m/y h:i:s')}}</td>
+                <td class="border border-gray-700">{{ $emprestimo->data_limite->format('d/m/y h:i:s')}}</td>
             </tr>
             @if ($loop->last)
                 </table>

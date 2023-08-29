@@ -42,7 +42,7 @@
         </div>
         <div class="flex justify-between">
             <button type="button" onclick="modalAddLivro()"
-                class="relative w-16 h-16 text-white transition bg-indigo-500 rounded-full bottom-4 right-4 material-icons hover:bg-indigo-600">add</button>
+                class="relative w-16 h-16 text-white transition bg-indigo-500 rounded-full z-40 bottom-4 right-4 material-icons hover:bg-indigo-600">add</button>
             <button type="button" id="confirmar1" onclick="confirmarApagar1()"
                 class="z-0 p-3 text-sm transition bg-gray-900 border rounded border-slate-500 text-slate-500 hover:bg-gray-950 border-3 black h-min">Remover
                 tudo</button>

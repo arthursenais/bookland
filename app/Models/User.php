@@ -44,8 +44,5 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
         'password' => 'hashed',
     ];
-    public function emprestimos()
-    {
-        return $this->belongsToMany(Livro::class, 'emprestimos', 'id_usuario', 'id_livro');
-    }
+   
 }

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Aluno;
 use App\Models\Emprestimo;
 use App\Models\Livro;
 use Illuminate\Support\Carbon;
@@ -37,9 +38,9 @@ class EmprestimoController extends Controller
     {
         $hoje = Carbon::now()->format('Y-m-d');
         $livro = Livro::where('slug', $slug)->first();
-        $usuarios = User::all();
+        $alunos = Aluno::where('ativo',1)->get();
 
-        return view('user.fazerEmprestimo', compact('livro', 'hoje','usuarios'));
+        return view('user.fazerEmprestimo', compact('livro', 'hoje','alunos'));
     }
 
     /**
@@ -53,11 +54,11 @@ class EmprestimoController extends Controller
 
         if ($request->data_emprestimo < Carbon::now()->startOfDay()->toDateString() or $request->semanas <= 0) {
             return back()->with('erro', 'Insira uma data válida');
-        } elseif (Emprestimo::where('id_livro', $request->id_livro)->where('id_usuario', $request->id_usuario)->exists()) {
+        } elseif (Emprestimo::where('id_livro', $request->id_livro)->where('id_aluno', $request->id_aluno)->exists()) {
             return back()->with('erro', 'Você já possui um empréstimo para este livro');
         } else {
             $emprestimo = Emprestimo::create($emprestimo);
-            return redirect()->route('meusEmprestimos');
+            return redirect()->route('dashboard');
         }
     }
 

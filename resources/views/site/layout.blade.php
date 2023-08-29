@@ -111,12 +111,15 @@
                                             </a>
                                         </li>
                                     @endcan
-                                    <li>
+                                    {{-- <li>
+                                        <!--
+                            Aqui levaria a rota emprestimos, caso o cliente queira que cada aluno tenha um cadastro como usuário
+                        -->
                                         <a href="{{ route('meusEmprestimos') }}"
                                             class="block px-4 py-2 text-gray-100 transition hover:bg-gray-700">
                                             Meus empréstimos
                                         </a>
-                                    </li>
+                                    </li> --}}
                                     <li>
                                         <a href="{{ route('login.logout') }}"
                                             class="block px-4 py-2 text-red-400 transition hover:bg-gray-700">
@@ -145,9 +148,12 @@
                     <a href="{{ route('login.logout') }}"
                         class="block px-3 py-2 text-base font-medium text-gray-300 rounded-md hover:bg-gray-700 hover:text-white"
                         aria-current="page">{{ auth()->user()->nome }} - Sair</a>
-                    <a href="{{ route('meusEmprestimos') }}"
+
+                    {{--
+
+                        <a href="{{ route('meusEmprestimos') }}"
                         class="block px-3 py-2 text-base font-medium text-gray-300 rounded-md hover:bg-gray-700 hover:text-white"
-                        aria-current="page">Meus empréstimos</a>
+                        aria-current="page">Meus empréstimos</a> --}}
                     @can('verDashboard')
                         <a href="{{ route('dashboard') }}"
                             class="block px-3 py-2 text-base font-medium text-gray-300 rounded-md hover:bg-gray-700 hover:text-white"
@@ -207,7 +213,6 @@
             $("#mobile-menu").addClass("block");
         }
     }
-
 </script>
 
 </html>

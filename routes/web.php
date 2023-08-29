@@ -38,7 +38,8 @@ Route::get('/livro/{slug}', [SiteController::class,'details'])->name('details');
 Route::view('/emdesenvolvimento', 'site.wip')->name('wip');
 Route::get('/pesquisa', [SiteController::class,'pesquisar'])->name('pesquisar');
 
-Route::get('/emprestimos', [EmprestimoController::class,'index'])->name('meusEmprestimos')->middleware('auth');
+//Aqui seria a rota para ver os "meus empréstimos". Está desabilitado por padrão.
+//Route::get('/emprestimos', [EmprestimoController::class,'index'])->name('meusEmprestimos')->middleware('auth');
 Route::get('/novoEmprestimo/{slug}', [EmprestimoController::class,'create'])->name('createEmprestimo')->middleware('auth');
 Route::post('/emprestimo/store/', [EmprestimoController::class,'store'])->name('storeEmprestimo')->middleware('auth');
 Route::delete('/emprestimo/delete/{id}', [EmprestimoController::class,'destroy'])->name('user.deleteEmprestimo')->middleware('auth');
@@ -54,7 +55,9 @@ Route::get('/painel', [AdminController::class,'dashboard'])->name('dashboard')->
 
 Route::get('/painel/livros', [LivroController::class, 'index'])->middleware('auth');
 Route::get('/painel/usuarios', [UserController::class, 'index'])->middleware('auth');
+
 Route::get('/painel/emprestimos', [EmprestimoController::class, 'arquivados'])->middleware('auth');
+
 Route::delete('/admin/livro/delete/{id}', [LivroController::class,'destroy'])->name('admin.deleteLivro');
 Route::post('/admin/livro/store', [LivroController::class,'store'])->name('admin.storeLivro');
 Route::post('/admin/livro/update/{id}', [LivroController::class,'update'])->name('admin.updateLivro');
