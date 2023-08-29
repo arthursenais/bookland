@@ -30,10 +30,12 @@
             height: 4px;
             width: 4px;
         }
+
         div::-webkit-scrollbar {
             height: 8px;
             width: 8px;
         }
+
         div::-webkit-scrollbar-track {
             background-color: #00000021;
         }
@@ -66,46 +68,58 @@
         <div class="flex items-baseline">
             <div id="app"
                 class="fixed flex flex-col top-0 left-0 p-5 z-40 w-64 h-screen bg-slate-800 border-r border-gray-700 sm:translate-x-0 -translate-x-full dark:text-white">
-                <a href="{{route('index')}}" class="text-xl text-center mb-3">BookLand</a>
+                <a href="{{ route('index') }}" class="text-xl text-center mb-3">BookLand</a>
                 <div class="flex flex-col gap-2">
                     <a href="#" id="link1" onclick="routeLivros();"
                         class="flex items-center gap-2 py-2 block px-3 text-xs font-medium w-full text-gray-300  rounded-md hover:bg-gray-700 hover:text-white lg:text-sm ">
-                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
-                            <path stroke-linecap="round" stroke-linejoin="round" d="M12 6.042A8.967 8.967 0 006 3.75c-1.052 0-2.062.18-3 .512v14.25A8.987 8.987 0 016 18c2.305 0 4.408.867 6 2.292m0-14.25a8.966 8.966 0 016-2.292c1.052 0 2.062.18 3 .512v14.25A8.987 8.987 0 0018 18a8.967 8.967 0 00-6 2.292m0-14.25v14.25" />
-                          </svg>
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+                            stroke="currentColor" class="w-6 h-6">
+                            <path stroke-linecap="round" stroke-linejoin="round"
+                                d="M12 6.042A8.967 8.967 0 006 3.75c-1.052 0-2.062.18-3 .512v14.25A8.987 8.987 0 016 18c2.305 0 4.408.867 6 2.292m0-14.25a8.966 8.966 0 016-2.292c1.052 0 2.062.18 3 .512v14.25A8.987 8.987 0 0018 18a8.967 8.967 0 00-6 2.292m0-14.25v14.25" />
+                        </svg>
 
                         Livros</a>
                     <a href="#" id="link2" onclick="routeUsuarios()"
                         class="py-2 flex items-center gap-2 block px-3 text-xs font-medium w-full text-gray-300  rounded-md hover:bg-gray-700 hover:text-white lg:text-sm ">
-                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
-                            <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 6a3.75 3.75 0 11-7.5 0 3.75 3.75 0 017.5 0zM4.501 20.118a7.5 7.5 0 0114.998 0A17.933 17.933 0 0112 21.75c-2.676 0-5.216-.584-7.499-1.632z" />
-                          </svg>
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+                            stroke="currentColor" class="w-6 h-6">
+                            <path stroke-linecap="round" stroke-linejoin="round"
+                                d="M15.75 6a3.75 3.75 0 11-7.5 0 3.75 3.75 0 017.5 0zM4.501 20.118a7.5 7.5 0 0114.998 0A17.933 17.933 0 0112 21.75c-2.676 0-5.216-.584-7.499-1.632z" />
+                        </svg>
 
                         Usuários
                         e alunos</a>
                     <a href="#" id="link3" onclick="routeEmprestimos()"
-                        class="py-2 flex items-center gap-2 block px-3 text-xs font-medium w-full text-gray-300  rounded-md hover:bg-gray-700 hover:text-white lg:text-sm "><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
-                            <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 12h16.5m-16.5 3.75h16.5M3.75 19.5h16.5M5.625 4.5h12.75a1.875 1.875 0 010 3.75H5.625a1.875 1.875 0 010-3.75z" />
-                          </svg>
-                          Empréstimos</a>
+                        class="py-2 flex items-center gap-2 block px-3 text-xs font-medium w-full text-gray-300  rounded-md hover:bg-gray-700 hover:text-white lg:text-sm "><svg
+                            xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+                            stroke="currentColor" class="w-6 h-6">
+                            <path stroke-linecap="round" stroke-linejoin="round"
+                                d="M3.75 12h16.5m-16.5 3.75h16.5M3.75 19.5h16.5M5.625 4.5h12.75a1.875 1.875 0 010 3.75H5.625a1.875 1.875 0 010-3.75z" />
+                        </svg>
+                        Empréstimos</a>
                 </div>
                 <div class="border-t border-gray-700 my-5 pt-5 w-full">
                     <a href="{{ route('index') }}"
-                        class="py-2 flex items-center gap-2 block px-3 text-xs font-medium w-full text-gray-300  rounded-md hover:bg-gray-700 hover:text-white lg:text-sm"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
-                            <path stroke-linecap="round" stroke-linejoin="round" d="M9 15L3 9m0 0l6-6M3 9h12a6 6 0 010 12h-3" />
-                          </svg>
-                          Ir
+                        class="py-2 flex items-center gap-2 block px-3 text-xs font-medium w-full text-gray-300  rounded-md hover:bg-gray-700 hover:text-white lg:text-sm"><svg
+                            xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+                            stroke="currentColor" class="w-6 h-6">
+                            <path stroke-linecap="round" stroke-linejoin="round"
+                                d="M9 15L3 9m0 0l6-6M3 9h12a6 6 0 010 12h-3" />
+                        </svg>
+                        Ir
                         para o site</a>
                     <a href="{{ route('index') }}"
-                        class="py-2 flex items-center gap-2 block px-3 text-xs font-medium w-full text-gray-300  rounded-md hover:bg-gray-700 hover:text-white lg:text-sm"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-6 h-6">
-                            <path fill-rule="evenodd" d="M19.449 8.448L16.388 11a4.52 4.52 0 010 2.002l3.061 2.55a8.275 8.275 0 000-7.103zM15.552 19.45L13 16.388a4.52 4.52 0 01-2.002 0l-2.55 3.061a8.275 8.275 0 007.103 0zM4.55 15.552L7.612 13a4.52 4.52 0 010-2.002L4.551 8.45a8.275 8.275 0 000 7.103zM8.448 4.55L11 7.612a4.52 4.52 0 012.002 0l2.55-3.061a8.275 8.275 0 00-7.103 0zm8.657-.86a9.776 9.776 0 011.79 1.415 9.776 9.776 0 011.414 1.788 9.764 9.764 0 010 10.211 9.777 9.777 0 01-1.415 1.79 9.777 9.777 0 01-1.788 1.414 9.764 9.764 0 01-10.212 0 9.776 9.776 0 01-1.788-1.415 9.776 9.776 0 01-1.415-1.788 9.764 9.764 0 010-10.212 9.774 9.774 0 011.415-1.788A9.774 9.774 0 016.894 3.69a9.764 9.764 0 0110.211 0zM14.121 9.88a2.985 2.985 0 00-1.11-.704 3.015 3.015 0 00-2.022 0 2.985 2.985 0 00-1.11.704c-.326.325-.56.705-.704 1.11a3.015 3.015 0 000 2.022c.144.405.378.785.704 1.11.325.326.705.56 1.11.704.652.233 1.37.233 2.022 0a2.985 2.985 0 001.11-.704c.326-.325.56-.705.704-1.11a3.016 3.016 0 000-2.022 2.985 2.985 0 00-.704-1.11z" clip-rule="evenodd" />
-                          </svg>
-                          Ajuda</a>
+                        class="py-2 flex items-center gap-2 block px-3 text-xs font-medium w-full text-gray-300  rounded-md hover:bg-gray-700 hover:text-white lg:text-sm"><svg
+                            xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-6 h-6">
+                            <path fill-rule="evenodd"
+                                d="M19.449 8.448L16.388 11a4.52 4.52 0 010 2.002l3.061 2.55a8.275 8.275 0 000-7.103zM15.552 19.45L13 16.388a4.52 4.52 0 01-2.002 0l-2.55 3.061a8.275 8.275 0 007.103 0zM4.55 15.552L7.612 13a4.52 4.52 0 010-2.002L4.551 8.45a8.275 8.275 0 000 7.103zM8.448 4.55L11 7.612a4.52 4.52 0 012.002 0l2.55-3.061a8.275 8.275 0 00-7.103 0zm8.657-.86a9.776 9.776 0 011.79 1.415 9.776 9.776 0 011.414 1.788 9.764 9.764 0 010 10.211 9.777 9.777 0 01-1.415 1.79 9.777 9.777 0 01-1.788 1.414 9.764 9.764 0 01-10.212 0 9.776 9.776 0 01-1.788-1.415 9.776 9.776 0 01-1.415-1.788 9.764 9.764 0 010-10.212 9.774 9.774 0 011.415-1.788A9.774 9.774 0 016.894 3.69a9.764 9.764 0 0110.211 0zM14.121 9.88a2.985 2.985 0 00-1.11-.704 3.015 3.015 0 00-2.022 0 2.985 2.985 0 00-1.11.704c-.326.325-.56.705-.704 1.11a3.015 3.015 0 000 2.022c.144.405.378.785.704 1.11.325.326.705.56 1.11.704.652.233 1.37.233 2.022 0a2.985 2.985 0 001.11-.704c.326-.325.56-.705.704-1.11a3.016 3.016 0 000-2.022 2.985 2.985 0 00-.704-1.11z"
+                                clip-rule="evenodd" />
+                        </svg>
+                        Ajuda</a>
                 </div>
             </div>
             @include('admin.mensagens')
-            <div id="div" class="flex flex-col w-full items-center justify-center mt-4 sm:ml-64">
-
+            <div id="div" class="flex flex-col w-full  items-center justify-center mt-4 sm:ml-64">
             </div>
         </div>
     @else
@@ -133,6 +147,7 @@
                 }
             })
         }
+
         function routeUsuarios() {
             event.preventDefault();
             const CSRF_TOKEN = $('meta[name="csrf-token"]').attr('content');
@@ -151,6 +166,7 @@
             })
 
         }
+
         function routeEmprestimos() {
             event.preventDefault();
             const CSRF_TOKEN = $('meta[name="csrf-token"]').attr('content');

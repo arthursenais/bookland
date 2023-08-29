@@ -7,6 +7,7 @@ use App\Http\Controllers\SiteController;
 use App\Http\Controllers\LivroController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\AlunoController;
 use App\Http\Controllers\CategoriaController;
 /*
 |--------------------------------------------------------------------------
@@ -62,5 +63,7 @@ Route::delete('/admin/categoria/delete/{id}', [CategoriaController::class,'destr
 Route::delete('/admin/livro/deleteAll/', [LivroController::class,'destroyAll'])->name('admin.deleteAllLivros');
 Route::delete('/admin/categoria/deleteAll/', [CategoriaController::class,'destroyAll'])->name('admin.deleteAllCategorias');
 Route::post('/admin/categoria/store', [CategoriaController::class,'store'])->name('admin.storeCategoria');
+Route::post('/admin/aluno/store', [AlunoController::class,'store'])->name('admin.storeAluno');
+Route::delete('/admin/aluno/delete/{matricula}', [AlunoController::class,'update'])->name('admin.deleteAluno')->middleware('auth');
 Route::post('/admin/categoria/update/{id}', [CategoriaController::class,'update'])->name('admin.updateCategoria');
 Route::get('/arquivo', [EmprestimoController::class,'arquivados'])->name('admin.arquivados')->middleware('auth');

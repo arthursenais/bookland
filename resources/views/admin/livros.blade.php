@@ -1,5 +1,5 @@
-<h1 class="text-4xl cursor-default dark:text-gray-200 text-bold hover:animate-pulse">Livros</h1>
-<div class="flex flex-col sm:flex-row">
+<h1  class="text-4xl cursor-default dark:text-gray-200 text-bold hover:animate-pulse">Livros</h1>
+<div id="livrosDiv" class="flex flex-col sm:flex-row">
     <div class="sm:min-w-[800px]">
         <div class="flex gap-5 align-bottom dark:text-white">
             <p class="text-2xl dark:text-gray-200">{{ $livros->count() }} Items no Acervo</p>
@@ -211,6 +211,8 @@
     function modalApagarTudo2() {
         document.getElementById('modalApagarTudo2').classList.remove("hidden");
     }
+
+
 
 
 

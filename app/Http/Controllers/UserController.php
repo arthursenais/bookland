@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Aluno;
 use Illuminate\Http\Request;
 use App\Models\User;
 use Illuminate\Support\Facades\Auth;
@@ -15,8 +16,9 @@ class UserController extends Controller
     public function index()
     {
         $usuarios = User::all();
+        $alunos = Aluno::all();
         if (Gate::allows('verDashboard')) {
-            return view('admin.usuarios',compact('usuarios'));
+            return view('admin.usuarios',compact('usuarios','alunos'));
 
         } else {
             return redirect()->route('index') ;
