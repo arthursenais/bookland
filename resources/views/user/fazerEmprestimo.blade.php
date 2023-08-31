@@ -7,6 +7,18 @@
         <div>
             @can('verDashboard')
             <h1 class="text-4xl">Fazer empréstimo</h1>
+            <p>
+                @if ($livro->disponiveis >= 1)
+                {{ $livro->disponiveis }}
+                @if ($livro->disponiveis == 1)
+                    exemplar disponível
+                @else
+                    exemplares disponíveis
+                @endif
+            @else
+            Nenhum exemplar disponível
+            @endif
+            </p>
                 <form method="POST" action="{{ route('storeEmprestimo') }}" class="flex flex-col mt-8 max-w-fit">
                     @csrf
                     <label for="data" class="block text-sm font-medium leading-6 text-gray-900 dark:text-white">Quando o livro

@@ -89,7 +89,7 @@
 
                         Usuários
                         e alunos</a>
-                    <a href="#" id="link3" onclick="routeEmprestimos()"
+                    <a href="#" id="link3" onclick="routeEmprestimos(null)"
                         class="py-2 flex items-center gap-2 block px-3 text-xs font-medium w-full text-gray-300  rounded-md hover:bg-gray-700 hover:text-white lg:text-sm "><svg
                             xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
                             stroke="currentColor" class="w-6 h-6">
@@ -167,15 +167,14 @@
 
         }
 
-        function routeEmprestimos() {
+        function routeEmprestimos(msg) {
             event.preventDefault();
             const CSRF_TOKEN = $('meta[name="csrf-token"]').attr('content');
-
             $.ajax({
                 url: "/painel/emprestimos",
                 type: 'get',
                 data: {
-                    CSRF_TOKEN
+                    CSRF_TOKEN,
                 },
                 success: function(data) {
                     $('#div').html(data);

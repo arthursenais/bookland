@@ -24,6 +24,7 @@ class EmprestimoController extends Controller
         $emprestimosArquivados = Emprestimo::where('arquivado',1)->get();
         $emprestimosAtivos = Emprestimo::where('arquivado',0)->get();
         $emprestimos = Emprestimo::all();
+
         if (Gate::allows('verDashboard')) {
             return view('admin.emprestimos', compact('emprestimos','emprestimosArquivados','emprestimosAtivos'));
         } else {
@@ -51,13 +52,18 @@ class EmprestimoController extends Controller
         $emprestimo = $request->all();
         $emprestimo['data_limite'] = Carbon::createFromFormat('Y-m-d', $request->data_emprestimo)->addWeeks($request->semanas);
         $emprestimo['notificacao'] = 0;
+        $livroEmprestado =  Livro::where('id',$request->id_livro)->first();
 
         if ($request->data_emprestimo < Carbon::now()->startOfDay()->toDateString() or $request->semanas <= 0) {
             return back()->with('erro', 'Insira uma data válida');
-        } elseif (Emprestimo::where('id_livro', $request->id_livro)->where('id_aluno', $request->id_aluno)->exists()) {
-            return back()->with('erro', 'Você já possui um empréstimo para este livro');
+        } elseif (Emprestimo::where('id_livro', $request->id_livro)->where('id_aluno', $request->id_aluno)->where('arquivado',0)->exists()) {
+            return back()->with('erro', 'O aluno já possui um empréstimo para este livro');
+        } elseif ($livroEmprestado->disponiveis < 1) {
+            return back()->with('erro', 'O livro não está disponível. Você poderá fazer uma reserva');
         } else {
             $emprestimo = Emprestimo::create($emprestimo);
+            $livroEmprestado->disponiveis -= 1;
+            $livroEmprestado->save();
             return redirect()->route('dashboard');
         }
     }
@@ -83,11 +89,11 @@ class EmprestimoController extends Controller
      */
     public function update(Request $request, Emprestimo $emprestimo)
     {
-        $emprestimo->notificacao = 0;
         $emprestimo->arquivado = 1;
         $emprestimo->data_limite = Carbon::now();
         $emprestimo->save();
-        return back();
+        $sucesso = 'Empréstimo arquivado com sucesso';
+        return $sucesso;
     }
 
     /**
