@@ -66,6 +66,11 @@ class LivroController extends Controller
         if($request->imagem) {
             $livro['imagem'] = $request->imagem->store('livros');
         }
+        if ($request->clube_do_livro) {
+          $livro['clube_do_livro'] = 1;
+        } else {
+          $livro['clube_do_livro'] = 0;
+        }
         $livro['slug'] = Str::slug($request->titulo);
 
 
@@ -104,6 +109,11 @@ class LivroController extends Controller
         $livro->descricao = $request->descricao;
         $livro->disponiveis = $request->disponiveis;
         $livro->id_categoria = $request->id_categoria;
+        if ($request->clube_do_livro == 1) {
+            $livro->clube_do_livro = 1;
+          } else {
+              $livro->clube_do_livro = 0;
+          }
         $livro->slug = Str::slug($request->titulo);
         $livro->save();
         return redirect()->route('dashboard')->with('sucesso','Livro atualizado com sucesso!');

@@ -22,7 +22,7 @@
                         $(document).ready(function() {
                             $('#previewImg-{{ $livro->id }}').attr("src",
                                 "{{ Str::startsWith($livro->imagem, 'http') ? $livro->imagem : asset("storage/{$livro->imagem}") }}"
-                                );
+                            );
                         });
                     </script>
                     <img id="previewImg-{{ $livro->id }}" src="" class="max-w-[100px]">
@@ -66,6 +66,14 @@
                             <input type="number" name="disponiveis" min="0" max="100"
                                 value="{{ $livro->disponiveis }}"
                                 class="text-right w-full border dark:border-slate-700 rounded p-1 truncate dark:bg-slate-800">
+                        </th>
+                    </tr>
+                    <tr>
+                        <th></th>
+                        <th>
+                            <input type="checkbox" name="clube_do_livro"
+                                @if ($livro->clube_do_livro == 1) @checked(true) @endif value="1">
+                            <label for="clube_do_livro">Clube da leitura</label>
                         </th>
                     </tr>
                 </table>
@@ -159,6 +167,13 @@
                                     class="dark:bg-slate-800 max-w-min truncate  rounded p-0.5 invalid:border invalid:border-red-600/20 focus:outline-none focus:ring invalid:focus:ring-red-600">
                             </td>
                         </tr>
+                        <tr>
+                            <th></th>
+                            <td class="w-full">
+                                <input type="checkbox" name="clube_do_livro" value="1">
+                                <label for="clube_do_livro">Clube da leitura</label>
+                            </td>
+                        </tr>
                     </table>
                     <div class="min-w-[250px] flex flex-col items-center relative">
                         <img id="previewimagem" class="max-w-[100px]" alt="">
@@ -178,6 +193,7 @@
                     <button type="button" onclick="document.getElementById('modalAddLivro').style.display = 'none';"
                         class="px-2 transition bg-red-600 border border-red-600 rounded-full button sm:bg-transparent sm:text-red-600 hover:bg-red-600 hover:text-white">Cancelar</button>
                 </div>
+
             </form>
         @else
             <p>Não há categorias para adicionar um livro</p>
