@@ -69,7 +69,6 @@
                         <div class="swiper-slide transition ">
                             <a class="sm:w-[160px] sm:h-[230px] sm:hover:scale-110 transition   rounded-lg bg-gray-900 flex justify-center items-center"
                                 href="{{ route('details', $livro->slug) }}">
-
                                 <img class="sm:max-w-[150px] sm:max-h-[200px]"
                                     src="{{ Str::startsWith($livro->imagem, 'http') ? $livro->imagem : asset("storage/{$livro->imagem}") }}">
                             </a>

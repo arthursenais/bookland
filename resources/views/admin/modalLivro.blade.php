@@ -17,7 +17,13 @@
         <form method="POST" action="{{route('admin.updateLivro', $livro->id)}}" enctype="multipart/form-data" class="flex flex-col items-center justify-center gap-4 text-left align-center">
             @csrf
             <div>
-                <img src="{{ Str::startsWith($livro->imagem, 'http') ? $livro->imagem : asset("storage/{$livro->imagem}") }}" class="max-w-[100px]">
+                <script>
+                    $(document).ready(function () {
+                        $('#previewImg-{{$livro->id}}').attr("src","{{ Str::startsWith($livro->imagem, 'http') ? $livro->imagem : asset("storage/{$livro->imagem}") }}");
+                    });
+
+                </script>
+                <img id="previewImg-{{$livro->id}}" src="" class="max-w-[100px]">
                 <label for="imageupload-{{$livro->id}}"
                     class="relative p-2 text-white transition rounded-full cursor-pointer material-icons button bg-emerald-500 bottom-6 left-20 hover:bg-emerald-600">edit</label>
                 <input type="file" id="imageupload-{{$livro->id}}"  name="imagem" class="hidden">
@@ -27,19 +33,19 @@
                 <tr>
                     <th>titulo:</th>
                     <th class="w-full">
-                        <input name="titulo" required type="text" value="{{ $livro->titulo }}" class="w-full text-right truncate dark:bg-slate-800">
+                        <input name="titulo" required type="text" value="{{ $livro->titulo }}" class="w-full text-right border dark:border-slate-700 rounded p-1 truncate dark:bg-slate-800">
                     </th>
                 </tr>
                 <tr>
                     <th>autor:</th>
                     <th class="text-right">
-                        <input name="autor" required  type="text" value="{{ $livro->autor }}" class="text-right truncate dark:bg-slate-800">
+                        <input name="autor" required  type="text" value="{{ $livro->autor }}" class="text-right  w-full border dark:border-slate-700 rounded p-1 truncate dark:bg-slate-800">
                     </th>
                 </tr>
                 <tr>
                     <th>categoria:</th>
                     <th class="text-right">
-                        <select required name="id_categoria"  class="dark:bg-slate-800 w-fit truncate  text-right rounded p-0.5 invalid:border invalid:border-red-600/20 focus:outline-none focus:ring invalid:focus:ring-red-600">
+                        <select required name="id_categoria"  class="dark:bg-slate-800 w-fit truncate  border dark:border-slate-700 rounded p-1 text-right rounded p-0.5 invalid:border invalid:border-red-600/20 focus:outline-none focus:ring invalid:focus:ring-red-600">
                             @foreach ($categorias as $categoria)
                                 <option value="{{$categoria->id}}" {{ $categoria->id == $livro->categoria->id ? 'selected' : '' }}>{{$categoria->nome}}</option>
                             @endforeach
@@ -51,14 +57,14 @@
                     <th>disponiveis:</th>
                     <th class="text-right">
                         <input type="number" name="disponiveis" min="0" max="100" value="{{ $livro->disponiveis }}"
-                            class="text-right dark:bg-slate-800 w-fit">
+                            class="text-right w-full border dark:border-slate-700 rounded p-1 truncate dark:bg-slate-800">
                     </th>
                 </tr>
             </table>
 
             <p>Descrição:</p>
 
-            <textarea name="descricao" required class="w-full dark:bg-gray-900" rows="8">{{ $livro->descricao }}</textarea>
+            <textarea name="descricao" required class="w-full border dark:border-slate-700 rounded p-1 truncate dark:bg-slate-800" rows="8">{{ $livro->descricao }}</textarea>
 
             <div class="flex justify-between w-full">
                 <button type="submit" class="px-2 transition bg-indigo-600 border border-indigo-600 rounded-full button sm:bg-transparent sm:text-indigo-600 hover:bg-indigo-600 hover:text-white">aplicar</button>
@@ -201,5 +207,30 @@
         }
     });
 </script>
+
+
+<script>
+    $(document).ready(function() {
+        // Adicione um evento change para cada input de arquivo
+        $('input[type="file"]').change(function() {
+            var livroId = $(this).attr('id').replace('imageupload-', ''); // Obtém o ID do livro
+
+            // Verifica se um arquivo foi selecionado
+            if (this.files && this.files[0]) {
+                var reader = new FileReader();
+
+                reader.onload = function(e) {
+                    // Atualiza a src da imagem com a imagem selecionada
+                    $('#previewImg-' + livroId).attr('src', e.target.result);
+                }
+
+                // Lê o arquivo selecionado como uma URL de dados
+                reader.readAsDataURL(this.files[0]);
+            }
+        });
+    });
+    </script>
+
+
 
 

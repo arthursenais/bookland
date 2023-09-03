@@ -30,6 +30,7 @@ Route::resource('users', UserController::class);
 
 Route::get('/', [SiteController::class, 'index'])->name('index');
 Route::get('/novidades', [LivroController::class,'novidades'])->name('novidades');
+Route::get('/clubedolivro', [LivroController::class,'clubedolivro'])->name('clubedolivro');
 Route::get('/categorias', [SiteController::class,'categorias'])->name('categorias');
 Route::get('/populares', [LivroController::class,'populares'])->name('populares');
 Route::get('/livro/{slug}', [SiteController::class,'details'])->name('details');
@@ -68,5 +69,7 @@ Route::delete('/admin/categoria/deleteAll/', [CategoriaController::class,'destro
 Route::post('/admin/categoria/store', [CategoriaController::class,'store'])->name('admin.storeCategoria');
 Route::post('/admin/aluno/store', [AlunoController::class,'store'])->name('admin.storeAluno');
 Route::delete('/admin/aluno/delete/{matricula}', [AlunoController::class,'update'])->name('admin.deleteAluno')->middleware('auth');
+Route::post('/admin/aluno/ativar/{matricula}', [AlunoController::class,'ativar'])->name('admin.ativarAluno')->middleware('auth');
 Route::post('/admin/categoria/update/{id}', [CategoriaController::class,'update'])->name('admin.updateCategoria');
 Route::get('/arquivo', [EmprestimoController::class,'arquivados'])->name('admin.arquivados')->middleware('auth');
+Route::get('/admin/aluno/arquivados', [AlunoController::class,'arquivados'])->name('admin.alunosArquivados')->middleware('auth');

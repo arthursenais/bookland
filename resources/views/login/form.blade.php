@@ -47,8 +47,7 @@
                         <label for="password"
                             class="block text-sm font-medium leading-6 text-gray-900 dark:text-white">Senha</label>
                         <div class="text-sm">
-                            <a href="#" class="font-semibold text-sky-600 hover:text-sky-500">Esqueceu a
-                                senha?</a>
+                            <a href="#" class="font-semibold text-sky-600 hover:text-sky-500"> </a>
                         </div>
                     </div>
                     <div class="mt-2">

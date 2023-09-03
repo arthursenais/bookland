@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Aluno;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
+use Illuminate\Support\Facades\Gate;
 
 class AlunoController extends Controller
 {
@@ -23,7 +24,15 @@ class AlunoController extends Controller
     {
         //
     }
-
+    public function arquivados()
+    {
+        $alunos = Aluno::all();
+        if (Gate::allows('verDashboard')) {
+            return view('admin.listaAlunos', compact('alunos'));
+        } else {
+            return redirect()->route('index');
+        }
+    }
     /**
      * Store a newly created resource in storage.
      */
@@ -64,11 +73,17 @@ class AlunoController extends Controller
      */
     public function update(Request $request, Aluno $aluno)
     {
-        $aluno = Aluno::where('matricula',$request->matricula)->first();
+        $aluno = Aluno::where('matricula', $request->matricula)->first();
         $aluno->ativo = 0;
         $aluno->save();
         return response()->json('Aluno atualizado com sucesso', 200);
-
+    }
+    public function ativar(Request $request, Aluno $aluno)
+    {
+        $aluno = Aluno::where('matricula', $request->matricula)->first();
+        $aluno->ativo = 1;
+        $aluno->save();
+        return response()->json('Aluno atualizado com sucesso', 200);
     }
 
     /**

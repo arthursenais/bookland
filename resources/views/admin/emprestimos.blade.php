@@ -54,13 +54,13 @@
     </div>
     @endif --}}
     <div class="flex flex-col p-10 dark:text-white gap-10">
-        <h1 class="text-2xl">{{$emprestimosAtivos->count()}} Empréstimos ativos</h1>
-        <div class="rounded-lg bg-black/10 p-2">
+        <h1 class="text-2xl">{{ $emprestimosAtivos->count() }} Empréstimos ativos</h1>
+        <div class="rounded-lg border border-slate-600/20 shadow-lg max-h-[400px] overflow-auto">
             @forelse ($emprestimosAtivos as $emprestimo)
                 @if ($loop->first)
-                    <table class="table-auto w-full border-collapse">
-                        <tr class="bg-black/20 uppercase">
-                            <td>Feito por</td>
+                    <table class="table-auto w-full border-collapse ">
+                        <tr class="bg-slate-900 text-white  uppercase w-full sticky top-0">
+                            <td class="p-2">Feito por</td>
                             <td>Título do livro</td>
                             <td>Data de criação</td>
                             <td>Data de devolução estipulada</td>
@@ -68,13 +68,13 @@
                         </tr>
                 @endif
                 <tr class="capitalize">
-                    <td class="border-t border-gray-700 py-5">{{ $emprestimo->aluno->nome_completo }}</td>
-                    <td class="border-t border-gray-700 ">{{ $emprestimo->livro->titulo }}</td>
-                    <td class="border-t border-gray-700">{{ $emprestimo->created_at->format('d/m/y') }}</td>
-                    <td class="border-t  border-gray-700">{{ $emprestimo->data_limite->format('d/m/y') }}</td>
-                    <td class="border-t border-gray-700">
+                    <td class="border-t border-slate-700/50 p-5">{{ $emprestimo->aluno->nome_completo }}</td>
+                    <td class="border-t border-slate-700/50 ">{{ $emprestimo->livro->titulo }}</td>
+                    <td class="border-t border-slate-700/50">{{ $emprestimo->created_at->format('d/m/y') }}</td>
+                    <td class="border-t  border-slate-700/50">{{ $emprestimo->data_limite->format('d/m/y') }}</td>
+                    <td class="border-t border-slate-700/50">
                         <button onclick="modalArquivarEmprestimo(this)" type="button"
-                            class="w-min bg-blue-700 hover:bg-blue-800 transition py-1 px-2 rounded-lg">
+                            class="w-min bg-blue-700 hover:bg-blue-800 text-white transition py-1 px-2 rounded-lg">
                             Receber
                         </button>
                     </td>
@@ -116,24 +116,27 @@
                 <h1 class="text-xl pb-4">Não há empréstimos ativos atualmente</h1>
             @endforelse
         </div>
-        <h1 class="text-2xl">{{$emprestimosArquivados->count()}} Empréstimos arquivados</h1>
-        <div class=" rounded-lg bg-black/10 p-2">
-            @forelse ($emprestimosArquivados as $emprestimo)
+        <h1 class="text-2xl">{{ $emprestimosArquivados->count() }} Empréstimos arquivados</h1>
+
+
+        <div class=" rounded-lg  border border-slate-600/20 shadow-lg max-h-[400px] overflow-auto">
+
+            @forelse ($emprestimosArquivados->sortByDesc('created_at') as $emprestimo)
                 @if ($loop->first)
-                    <table class="table-auto w-full border-collapse">
-                        <tr class="bg-black/20 uppercase">
-                            <td>Feito por</td>
-                            <td>Título do livro</td>
-                            <td>Data de criação</td>
-                            <td>Data de devolução</td>
+                    <table class="table-auto w-full border-collapse ">
+                        <tr class="bg-slate-900  text-white uppercase w-full sticky top-0">
+                            <td class="p-2">Feito por</td>
+                            <td >Título do livro</td>
+                            <td >Data de criação</td>
+                            <td >Data de devolução</td>
 
                         </tr>
                 @endif
                 <tr class="capitalize">
-                    <td class="border-t border-gray-700 py-5">{{ $emprestimo->aluno->nome_completo }}</td>
-                    <td class="border-t border-gray-700 ">{{ $emprestimo->livro->titulo }}</td>
-                    <td class="border-t border-gray-700">{{ $emprestimo->created_at->format('d/m/y') }}</td>
-                    <td class="border-t  border-gray-700">{{ $emprestimo->data_limite->format('d/m/y') }}</td>
+                    <td class="border-t border-slate-700/50 p-5">{{ $emprestimo->aluno->nome_completo }}</td>
+                    <td class="border-t border-slate-700/50 ">{{ $emprestimo->livro->titulo }}</td>
+                    <td class="border-t border-slate-700/50">{{ $emprestimo->created_at->format('d/m/y') }}</td>
+                    <td class="border-t  border-slate-700/50">{{ $emprestimo->data_limite->format('d/m/y') }}</td>
                 </tr>
                 @if ($loop->last)
                     </table>

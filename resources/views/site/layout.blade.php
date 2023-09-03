@@ -5,16 +5,18 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Biblioteca - @yield('title')</title>
+
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link rel="shortcut icon" href="{{asset('images/logo.png')}}" type="image/x-icon">
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://code.jquery.com/jquery-3.7.0.js" crossorigin="anonymous"></script>
     <script>
-        $(window).on('load', function() { //Do the code in the {}s when the window has loaded
-            $("#loader").fadeOut("fast"); //Fade out the #loader div
+        $(window).on('load', function() {
+            $("#loader").fadeOut("fast");
         });
     </script>
     @yield('header')
-    <title>Biblioteca - @yield('title')</title>
 </head>
 
 <body class="bg-white dark:bg-slate-800">
@@ -78,7 +80,7 @@
                             <a href="{{ route('novidades') }}"
                                 class="px-3 py-2 text-xs font-medium text-gray-300 transition rounded-md hover:bg-gray-700 hover:text-white lg:text-sm">Recém
                                 Adicionados</a>
-                            <a href="{{ route('wip') }}"
+                            <a href="{{ route('clubedolivro') }}"
                                 class="px-3 py-2 text-xs font-medium text-gray-300 transition rounded-md hover:bg-gray-700 hover:text-white lg:text-sm">Clube
                                 da leitura</a>
                         </div>
@@ -172,7 +174,7 @@
                 <a href="{{ route('novidades') }}"
                     class="block px-3 py-2 text-base font-medium text-gray-300 rounded-md hover:bg-gray-700 hover:text-white">Recém
                     Adicionados</a>
-                <a href="{{ route('wip') }}"
+                <a href="{{ route('clubedolivro') }}"
                     class="block px-3 py-2 text-base font-medium text-gray-300 rounded-md hover:bg-gray-700 hover:text-white">Clube
                     da leitura</a>
                 <form class="flex sm:items-center sm:justify-center sm:space-x-0 sm:w-full sm:flex-1">
@@ -193,7 +195,7 @@
     <footer class="justify-between p-8 mt-10 border-t border-slate-200 sm:flex text-slate-500 dark:border-slate-200/5">
         <div>
             <div class="mb-6 sm:mb-0 sm:flex">
-                <p class="text-2xl sm:text-base">2023 BookLand</p>
+                <p class="text-xs sm:text-xs">2023 BookLand</p>
 
             </div>
         </div>

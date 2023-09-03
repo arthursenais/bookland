@@ -16,6 +16,7 @@ class Livro extends Model
         'imagem',
         'slug',
         'id_categoria',
+        'clubedolivro',
         'disponiveis',
     ];
 

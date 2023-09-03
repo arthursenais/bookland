@@ -1,9 +1,9 @@
 @extends('site.layout')
-@section('title', 'Novidades')
+@section('title', 'Clube da leitura')
 
 @section('content')
 
-    <h1 class="md:text-4xl text-center mt-6 text-2xl dark:text-gray-300">Novidades da semana</h1>
+    <h1 class="md:text-4xl text-center mt-6 text-2xl dark:text-gray-300">Clube do livro</h1>
 
     <div class="flex flex-col sm:px-32">{{ $livros->links() }}
 
@@ -16,7 +16,7 @@
                     <p class="line-clamp-2 dark:text-gray-300"> {{ $livro->titulo }} </p>
                 </a>
             @empty
-                <h1 class="md:text-2xl text-center mt-6 text-xl dark:text-gray-300">Não foram adicionados livros nesta semana</h1>
+                <h1 class="md:text-2xl text-center mt-6 text-xl dark:text-gray-300">Ainda não foram adicionados livros ao clube do livro</h1>
             @endforelse
 
 

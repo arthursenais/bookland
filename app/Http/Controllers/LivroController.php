@@ -36,6 +36,12 @@ class LivroController extends Controller
 
         return view('site.novidades', compact('livros'));
     }
+    public function clubedolivro()
+    {
+        $livros = Livro::where('clube_do_livro',1)->paginate(10);
+
+        return view('site.clubeDoLivro', compact('livros'));
+    }
     public function populares()
     {
         $livros = Livro::where('emprestados','>=',1)->orderBy('emprestados','desc')->paginate(10);

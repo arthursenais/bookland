@@ -1,6 +1,8 @@
 @extends('site.layout')
-@section('title', 'Bem-vindo!')
 
+@section('title')
+    Resultados para '{{ request('pesquisa') }}'
+@endsection
 @section('content')
 
     <h1 class="md:text-4xl text-center mt-6 text-2xl dark:text-gray-300">Resultados para '{{ request('pesquisa') }}'</h1>

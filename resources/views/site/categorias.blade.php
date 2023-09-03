@@ -1,5 +1,5 @@
 @extends('site.layout')
-@section('title', 'Bem-vindo!')
+@section('title', 'Categorias')
 @section('content')
 
     <div class="flex flex-wrap  gap-4 px-2 mt-10 sm:px-24    dark:text-white">
