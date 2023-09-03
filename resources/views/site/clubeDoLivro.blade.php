@@ -3,7 +3,7 @@
 
 @section('content')
 
-    <h1 class="md:text-4xl text-center mt-6 text-2xl dark:text-gray-300">Clube do livro</h1>
+    <h1 class="md:text-4xl text-center mt-6 text-2xl dark:text-gray-300">Clube da leitura</h1>
 
     <div class="flex flex-col sm:px-32">{{ $livros->links() }}
 

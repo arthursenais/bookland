@@ -80,7 +80,7 @@
 
                 <p>Descrição:</p>
 
-                <textarea name="descricao" required class="w-full border dark:border-slate-700 rounded p-1 truncate dark:bg-slate-800"
+                <textarea name="descricao" required class=" w-full border   dark:border-slate-700 rounded p-1 dark:bg-slate-800"
                     rows="8">{{ $livro->descricao }}</textarea>
 
                 <div class="flex justify-between w-full">

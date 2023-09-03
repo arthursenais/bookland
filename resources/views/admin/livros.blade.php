@@ -1,4 +1,4 @@
-<h1  class="text-4xl cursor-default dark:text-gray-200 text-bold hover:animate-pulse">Livros</h1>
+<h1 class="text-4xl cursor-default dark:text-gray-200 text-bold hover:animate-pulse">Livros</h1>
 <div id="livrosDiv" class="flex flex-col sm:flex-row">
     <div class="sm:min-w-[800px]">
         <div class="flex gap-5 align-bottom dark:text-white">
@@ -19,13 +19,20 @@
                             alt="imagem" class="max-w-[64px] rounded">
                         <div>
                             <p class="max-w-xs">
+
                                 {{ $livro->titulo }}
                                 @if ($livro->disponiveis <= 0)
-
-                                <label class="text-xs bg-red-500/30 px-2 rounded-full">{{$livro->disponiveis}}</label>
+                                    <label
+                                        class="text-xs bg-red-500/30 px-2 rounded-full">{{ $livro->disponiveis }}</label>
                                 @else
+                                    <label
+                                        class="text-xs bg-blue-500/30 px-2 rounded-full">{{ $livro->disponiveis }}</label>
+                                @endif
+                                @if ($livro->clube_do_livro == 1)
 
-                                <label class="text-xs bg-blue-500/30 px-2 rounded-full">{{$livro->disponiveis}}</label>
+                                <label
+                                class="text-xs bg-blue-500/30 px-2 rounded-full">Clube da leitura</label>
+
                                 @endif
                             </p>
 
@@ -116,8 +123,6 @@
     });
 </script>
 <script>
-
-
     var ctx = document.getElementById('myChart').getContext('2d');
     var categorias = [
         @foreach ($categorias as $categoria)

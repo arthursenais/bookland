@@ -30,7 +30,7 @@ Route::resource('users', UserController::class);
 
 Route::get('/', [SiteController::class, 'index'])->name('index');
 Route::get('/novidades', [LivroController::class,'novidades'])->name('novidades');
-Route::get('/clubedolivro', [LivroController::class,'clubedolivro'])->name('clubedolivro');
+Route::get('/clubedaleitura', [LivroController::class,'clubedolivro'])->name('clubedolivro');
 Route::get('/categorias', [SiteController::class,'categorias'])->name('categorias');
 Route::get('/populares', [LivroController::class,'populares'])->name('populares');
 Route::get('/livro/{slug}', [SiteController::class,'details'])->name('details');
