@@ -247,11 +247,11 @@
             }
         });
         $('#addImagem').change(function() {
-            $('#loadImg').html('Carregando imagem...');
             // Verifica se um arquivo foi selecionado
             if (this.files && this.files[0]) {
                 var reader = new FileReader();
 
+                $('#loadImg').html('Carregando imagem...');
                 reader.onload = function(e) {
                     // Atualiza a src da imagem com a imagem selecionada
                     $('#previewimagem').attr('src', e.target.result);
