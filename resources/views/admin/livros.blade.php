@@ -20,7 +20,15 @@
                         <div>
                             <p class="max-w-xs">
                                 {{ $livro->titulo }}
+                                @if ($livro->disponiveis <= 0)
+
+                                <label class="text-xs bg-red-500/30 px-2 rounded-full">{{$livro->disponiveis}}</label>
+                                @else
+
+                                <label class="text-xs bg-blue-500/30 px-2 rounded-full">{{$livro->disponiveis}}</label>
+                                @endif
                             </p>
+
                             <p class="italic font-thin">{{ $livro->categoria->nome }} || {{ $livro->autor }}
                             </p>
                         </div>
