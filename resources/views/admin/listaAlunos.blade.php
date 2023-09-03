@@ -1,4 +1,4 @@
-@forelse ($alunos->where('ativo',0) as $aluno)
+@forelse ($alunos->where('ativo',0)->sortByDesc('updated_at') as $aluno)
                 <div onclick="abrirModalAluno(this)"
                     class="flex items-center justify-around group transition hover:bg-gray-200 dark:hover:bg-gray-700 dark:text-gray-200">
                     <div class="flex items-center w-[90%] gap-2 p-2">

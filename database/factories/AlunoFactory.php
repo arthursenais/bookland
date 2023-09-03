@@ -21,7 +21,7 @@ class AlunoFactory extends Factory
 
         return [
             'matricula' => fake()->numerify('##########'),
-            'nome_completo' => fake()->name(),
+            'nome_completo' => fake()->firstName() .' '. fake()->lastName(),
             'ativo' => 0,
 
         ];
