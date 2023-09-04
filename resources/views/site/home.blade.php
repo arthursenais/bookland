@@ -6,7 +6,7 @@
 @endsection
 @section('content')
 
-    <div class="flex flex-col px-2 sm:px-32 dark:text-white">
+    <div class="flex flex-col px-2 sm:px-32 dark:text-white ">
         <div class="flex flex-col bg-gradient-to-r from-cyan-500 to-blue-500 items-center py-5 mt-5 gap-5  rounded ">
             <div class="flex flex-col items-center">
                 <svg viewBox="0 0 960 856.49" class="max-w-[70px] fill-white">

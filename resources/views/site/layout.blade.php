@@ -16,10 +16,16 @@
             $("#loader").fadeOut("fast");
         });
     </script>
+    <style>
+        .swiper {
+            user-select: none;
+            -moz-user-select: none;
+        }
+    </style>
     @yield('header')
 </head>
 
-<body class="bg-white dark:bg-slate-800">
+<body class="bg-white dark:bg-slate-800 ">
     <div id="loader"
         class="fixed inset-0 dark:bg-gray-800 backdrop-blur dark:text-white flex justify-center items-center bg-white z-50 ">
         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"

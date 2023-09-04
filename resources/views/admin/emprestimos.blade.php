@@ -64,15 +64,31 @@
                             <td>Título do livro</td>
                             <td>Data de criação</td>
                             <td>Data de devolução estipulada</td>
+
                             <td></td>
                         </tr>
                 @endif
                 <tr class="capitalize">
                     <td class="border-t border-slate-700/50 p-5">{{ $emprestimo->aluno->nome_completo }}</td>
-                    <td class="border-t border-slate-700/50 ">{{ $emprestimo->livro->titulo }}</td>
-                    <td class="border-t border-slate-700/50">{{ $emprestimo->created_at->format('d/m/y') }}</td>
+                    <td class="border-t border-slate-700/50 relative">{{ $emprestimo->livro->titulo }}
+                    @if ($emprestimo->livro->clube_do_livro == 1)
+                    <label
+                    class="text-xs bg-blue-500/30 px-2 rounded-full normal-case absolute left-0 top-2">Clube da leitura</label>
+                    @endif
+                    </td>
+                    <td class="border-t border-slate-700/50">{{ $emprestimo->created_at->format('d/m/y') }}
+                        @if ($emprestimo->created_at < Carbon\Carbon::now() and $emprestimo->livro->clube_do_livro == 0 )
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor"
+                                class="relative icone inline bottom-2 w-5 h-5 fill-sky-400 ">
+                                <path fill-rule="evenodd"
+                                    d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a.75.75 0 000 1.5h.253a.25.25 0 01.244.304l-.459 2.066A1.75 1.75 0 0010.747 15H11a.75.75 0 000-1.5h-.253a.25.25 0 01-.244-.304l.459-2.066A1.75 1.75 0 009.253 9H9z"
+                                    clip-rule="evenodd" />
+                            </svg>
+                        @endif
+                    </td>
                     <td class="border-t  border-slate-700/50">{{ $emprestimo->data_limite->format('d/m/y') }}</td>
                     <td class="border-t border-slate-700/50">
+
                         <button onclick="modalArquivarEmprestimo(this)" type="button"
                             class="w-min bg-blue-700 hover:bg-blue-800 text-white transition py-1 px-2 rounded-lg">
                             Receber
@@ -116,6 +132,11 @@
                 <h1 class="text-xl pb-4">Não há empréstimos ativos atualmente</h1>
             @endforelse
         </div>
+        <span class="absolute aviso text-xs dark:bg-slate-900/60 border dark:border-slate-900 px-2 rounded-full" style="display: none">
+            <p>
+                Esse empréstimo ainda está marcado para retirada. Certifique-se de atender a essa solicitação
+            </p>
+        </span>
         <h1 class="text-2xl">{{ $emprestimosArquivados->count() }} Empréstimos arquivados</h1>
 
 
@@ -126,9 +147,9 @@
                     <table class="table-auto w-full border-collapse ">
                         <tr class="bg-slate-900  text-white uppercase w-full sticky top-0">
                             <td class="p-2">Feito por</td>
-                            <td >Título do livro</td>
-                            <td >Data de criação</td>
-                            <td >Data de devolução</td>
+                            <td>Título do livro</td>
+                            <td>Data de criação</td>
+                            <td>Data de devolução</td>
 
                         </tr>
                 @endif
@@ -174,5 +195,38 @@
                 routeEmprestimos(msg);
             },
         });
+    });
+    $('.icone').on({
+        mouseenter: function() {
+            {
+                var offset = $(this).offset();
+                var top = offset.top;
+                var left = offset.left;
+
+                $('.aviso').show();
+                $('.aviso').offset({
+                    top: top - 20,
+                    left: left
+                });
+
+            }
+        },
+        mouseleave: function() {
+            {
+                $('.aviso').hide();
+            }
+        }
+    });
+    $('.aviso').on({
+        mouseover: function() {
+            {
+                $('.aviso').show();
+            }
+        },
+        mouseleave: function() {
+            {
+                $('.aviso').hide();
+            }
+        }
     });
 </script>

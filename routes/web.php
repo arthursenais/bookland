@@ -35,6 +35,7 @@ Route::get('/categorias', [SiteController::class,'categorias'])->name('categoria
 Route::get('/populares', [LivroController::class,'populares'])->name('populares');
 Route::get('/livro/{slug}', [SiteController::class,'details'])->name('details');
 
+Route::view('/suporte', 'site.suporte')->name('suporte');
 
 Route::view('/emdesenvolvimento', 'site.wip')->name('wip');
 Route::get('/pesquisa', [SiteController::class,'pesquisar'])->name('pesquisar');

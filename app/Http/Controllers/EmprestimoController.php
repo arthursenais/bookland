@@ -59,7 +59,7 @@ class EmprestimoController extends Controller
         } elseif (Emprestimo::where('id_livro', $request->id_livro)->where('id_aluno', $request->id_aluno)->where('arquivado',0)->exists()) {
             return back()->with('erro', 'O aluno já possui um empréstimo para este livro');
         } elseif ($livroEmprestado->disponiveis < 1) {
-            return back()->with('erro', 'O livro não está disponível. Você poderá fazer uma reserva');
+            return back()->with('erro', 'O livro não está disponível no momento.');
         } else {
             $emprestimo = Emprestimo::create($emprestimo);
             $livroEmprestado->disponiveis -= 1;

@@ -108,7 +108,7 @@
                         </svg>
                         Ir
                         para o site</a>
-                    <a href="mailto:arthurmarcos.sa@gmail.com"
+                    <a href="{{route('suporte')}}"
                         class="py-2 flex items-center gap-2 block px-3 text-xs font-medium w-full   rounded-md hover:bg-slate-100 dark:hover:bg-gray-700   hover:text-black  dark:hover:text-white lg:text-sm"><svg
                             xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-6 h-6">
                             <path fill-rule="evenodd"
